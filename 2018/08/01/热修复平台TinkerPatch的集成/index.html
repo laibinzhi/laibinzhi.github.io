@@ -9,6 +9,7 @@
   <title>热修复平台TinkerPatch的集成 | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="什么是热修复（热更新，热补丁）？  一句话概括，动态地修复和更新App的行为 热修复有什么好处？  用户下载了我们的app，如果出现bug或者我们要修改某个功能，我们就要重新编译一个版本让用户覆盖安装才能解决问题，不过这份成本非常高，我们首先要发一个版本，其次用户还得重新安装下载apk，这个过程可能会使用户流失掉，热修复，可以在用户神不知鬼不觉的情况下就完成bug的修复和新功能的实现">
+<meta name="keywords" content="Android,安卓,热修复,热更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="热修复平台TinkerPatch的集成">
 <meta property="og:url" content="http://yoursite.com/2018/08/01/热修复平台TinkerPatch的集成/index.html">
@@ -19,7 +20,7 @@
 <meta property="og:image" content="http://i2.bvimg.com/656323/45c239f622cc649d.png">
 <meta property="og:image" content="http://i2.bvimg.com/656323/318e285656661cbe.png">
 <meta property="og:image" content="http://i2.bvimg.com/656323/cba2fdc07e331b9a.png">
-<meta property="og:updated_time" content="2018-08-02T01:57:01.698Z">
+<meta property="og:updated_time" content="2018-08-02T09:24:32.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="热修复平台TinkerPatch的集成">
 <meta name="twitter:description" content="什么是热修复（热更新，热补丁）？  一句话概括，动态地修复和更新App的行为 热修复有什么好处？  用户下载了我们的app，如果出现bug或者我们要修改某个功能，我们就要重新编译一个版本让用户覆盖安装才能解决问题，不过这份成本非常高，我们首先要发一个版本，其次用户还得重新安装下载apk，这个过程可能会使用户流失掉，热修复，可以在用户神不知鬼不觉的情况下就完成bug的修复和新功能的实现">
@@ -58,6 +59,8 @@
 		  <h1 class="header-author"><a href="/">智先森</a></h1>
 		</hgroup>
 		
+		<p class="header-subtitle">怀着乐观总有转机</p>
+		
 
 		<nav class="header-menu">
 			<ul>
@@ -75,8 +78,6 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-    			
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
@@ -88,11 +89,7 @@
 				
 					<a class="github" target="_blank" href="https://github.com/laibinzhi" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/a5feb1458cd0" title="jianshu"><i class="icon-jianshu"></i></a>
 		        
 			</div>
 		</nav>
@@ -116,6 +113,8 @@
 			  <h1 class="header-author js-header-author">智先森</h1>
 			</hgroup>
 			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>怀着乐观总有转机<i class="icon icon-quo-right"></i></p>
+			
 			
 			
 				
@@ -129,11 +128,7 @@
 					
 						<a class="github" target="_blank" href="https://github.com/laibinzhi" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/a5feb1458cd0" title="jianshu"><i class="icon-jianshu"></i></a>
 			        
 				</div>
 			</nav>
@@ -341,6 +336,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">热修复</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">热更新</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -495,8 +513,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -508,15 +524,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -535,6 +549,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安卓</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热更新</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -579,38 +625,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
     
 
     
