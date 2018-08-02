@@ -15,15 +15,15 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="什么是热修复（热更新，热补丁）？  一句话概括，动态地修复和更新App的行为 热修复有什么好处？  用户下载了我们的app，如果出现bug或者我们要修改某个功能，我们就要重新编译一个版本让用户覆盖安装才能解决问题，不过这份成本非常高，我们首先要发一个版本，其次用户还得重新安装下载apk，这个过程可能会使用户流失掉，热修复，可以在用户神不知鬼不觉的情况下就完成bug的修复和新功能的实现">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://laibinzhi.github.io/Image/gradletask.png">
-<meta property="og:image" content="https://laibinzhi.github.io/Image/savebaseapk.png">
-<meta property="og:image" content="https://laibinzhi.github.io/Image/gradletinkertask.png">
-<meta property="og:image" content="https://laibinzhi.github.io/Image/tinkerapkpath.png">
-<meta property="og:updated_time" content="2018-08-01T09:56:06.370Z">
+<meta property="og:image" content="http://i2.bvimg.com/656323/ae6a95ca6936677a.png">
+<meta property="og:image" content="http://i2.bvimg.com/656323/45c239f622cc649d.png">
+<meta property="og:image" content="http://i2.bvimg.com/656323/318e285656661cbe.png">
+<meta property="og:image" content="http://i2.bvimg.com/656323/cba2fdc07e331b9a.png">
+<meta property="og:updated_time" content="2018-08-02T01:57:01.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="热修复平台TinkerPatch的集成">
 <meta name="twitter:description" content="什么是热修复（热更新，热补丁）？  一句话概括，动态地修复和更新App的行为 热修复有什么好处？  用户下载了我们的app，如果出现bug或者我们要修改某个功能，我们就要重新编译一个版本让用户覆盖安装才能解决问题，不过这份成本非常高，我们首先要发一个版本，其次用户还得重新安装下载apk，这个过程可能会使用户流失掉，热修复，可以在用户神不知鬼不觉的情况下就完成bug的修复和新功能的实现">
-<meta name="twitter:image" content="https://laibinzhi.github.io/Image/gradletask.png">
+<meta name="twitter:image" content="http://i2.bvimg.com/656323/ae6a95ca6936677a.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -323,15 +323,15 @@
 <p>5.在程序入口Activity的onCreate()方法中执行加载补丁方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">      super.onCreate(savedInstanceState);</span><br><span class="line">      setContentView(R.layout.activity_main);</span><br><span class="line">      TinkerPatch.with().fetchPatchUpdate(true);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><h3 id="1-构建基准包"><a href="#1-构建基准包" class="headerlink" title="1.构建基准包"></a>1.构建基准包</h3><pre><code>方法一：在AS Terminal 命令窗口 执行gradlew assemblerelease 命令
 方法二：在AS gradle执行assemblerelease命令行，如下图
-</code></pre><p>  <img src="https://laibinzhi.github.io/Image/gradletask.png" alt="image"></p>
+</code></pre><p>  <img src="http://i2.bvimg.com/656323/ae6a95ca6936677a.png" alt="image"></p>
 <h3 id="2-把基准包信息填入tinkerpatch-gradle中"><a href="#2-把基准包信息填入tinkerpatch-gradle中" class="headerlink" title="2.把基准包信息填入tinkerpatch.gradle中"></a>2.把基准包信息填入tinkerpatch.gradle中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def bakPath = file(&quot;$&#123;buildDir&#125;/bakApk/&quot;)</span><br><span class="line">def baseInfo = &quot;app-1.0.0-0801-14-13-17&quot;</span><br><span class="line">def variantName = &quot;release&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="3-复制保存基准包"><a href="#3-复制保存基准包" class="headerlink" title="3.复制保存基准包"></a>3.复制保存基准包</h3><p> 此时此基准包将作为正式服务器版本发布出去。需要保管妥当，将bakApk中对应的版本复制一份保存在本地，以免执行AS中Clean Project任务时删掉。如下图，<br> 将app-1.0.0-0801-14-13-17整个文件夹复制保存于本地。如果在构建补丁包的时候没有找到的话，就把本地的copy进去。<br> <img src="https://laibinzhi.github.io/Image/savebaseapk.png" alt="image"></p>
+<h3 id="3-复制保存基准包"><a href="#3-复制保存基准包" class="headerlink" title="3.复制保存基准包"></a>3.复制保存基准包</h3><p> 此时此基准包将作为正式服务器版本发布出去。需要保管妥当，将bakApk中对应的版本复制一份保存在本地，以免执行AS中Clean Project任务时删掉。如下图，<br> 将app-1.0.0-0801-14-13-17整个文件夹复制保存于本地。如果在构建补丁包的时候没有找到的话，就把本地的copy进去。<br> <img src="http://i2.bvimg.com/656323/45c239f622cc649d.png" alt="image"></p>
 <h3 id="4-构建补丁包"><a href="#4-构建补丁包" class="headerlink" title="4.构建补丁包"></a>4.构建补丁包</h3><p>  在线上的APP出现bug或者需要进行资源替换，就要生产补丁包，方法和构建基准包方法一样，有两种：</p>
 <p>  方法一：在AS Terminal 命令窗口 执行gradlew tinkerPatchRelease 命令</p>
 <p>  方法二：在AS gradle执行tinkerPatchRelease命令行，如下图</p>
-<p>  <img src="https://laibinzhi.github.io/Image/gradletinkertask.png" alt="image"></p>
+<p>  <img src="http://i2.bvimg.com/656323/318e285656661cbe.png" alt="image"></p>
 <p>  补丁包将位于 build/outputs/tinkerPatch下。如下图</p>
-<p> <img src="https://laibinzhi.github.io/Image/tinkerapkpath.png" alt="image"></p>
+<p> <img src="http://i2.bvimg.com/656323/cba2fdc07e331b9a.png" alt="image"></p>
 <h3 id="4-发布补丁包"><a href="#4-发布补丁包" class="headerlink" title="4.发布补丁包"></a>4.发布补丁包</h3><h4 id="1-注册登陆-http-www-tinkerpatch-com"><a href="#1-注册登陆-http-www-tinkerpatch-com" class="headerlink" title="1.注册登陆 http://www.tinkerpatch.com"></a>1.注册登陆 <a href="http://www.tinkerpatch.com" target="_blank" rel="noopener">http://www.tinkerpatch.com</a></h4><h4 id="2-新增APP-APP名要和应用程序名称一致"><a href="#2-新增APP-APP名要和应用程序名称一致" class="headerlink" title="2.新增APP,APP名要和应用程序名称一致"></a>2.新增APP,APP名要和应用程序名称一致</h4><h4 id="3-添加APP版本-把程序中app-version-name填写进去。注意，构建补丁包的appVersion-code和name都是不变的。这个补丁包仅作用于1-0-0。"><a href="#3-添加APP版本-把程序中app-version-name填写进去。注意，构建补丁包的appVersion-code和name都是不变的。这个补丁包仅作用于1-0-0。" class="headerlink" title="3.添加APP版本,把程序中app version      name填写进去。注意，构建补丁包的appVersion code和name都是不变的。这个补丁包仅作用于1.0.0。"></a>3.添加APP版本,把程序中app version      name填写进去。注意，构建补丁包的appVersion code和name都是不变的。这个补丁包仅作用于1.0.0。</h4><h4 id="4-发布新补丁，选择补丁包中patch-signed-7zip-apk这个加签补丁包"><a href="#4-发布新补丁，选择补丁包中patch-signed-7zip-apk这个加签补丁包" class="headerlink" title="4.发布新补丁，选择补丁包中patch_signed_7zip.apk这个加签补丁包"></a>4.发布新补丁，选择补丁包中patch_signed_7zip.apk这个加签补丁包</h4><h4 id="5-发布成功之后，线上的APP在进入主程序入口的时候，会执行加载补丁包，此时杀死程序重新进入或者锁屏再开屏（初始化TinkerPatch的时候设置setPatchRestartOnSrceenOff为true的情况下）这两种方法，都可以呈现出补丁包的内容。此时热修复已完成。"><a href="#5-发布成功之后，线上的APP在进入主程序入口的时候，会执行加载补丁包，此时杀死程序重新进入或者锁屏再开屏（初始化TinkerPatch的时候设置setPatchRestartOnSrceenOff为true的情况下）这两种方法，都可以呈现出补丁包的内容。此时热修复已完成。" class="headerlink" title="5.发布成功之后，线上的APP在进入主程序入口的时候，会执行加载补丁包，此时杀死程序重新进入或者锁屏再开屏（初始化TinkerPatch的时候设置setPatchRestartOnSrceenOff为true的情况下）这两种方法，都可以呈现出补丁包的内容。此时热修复已完成。"></a>5.发布成功之后，线上的APP在进入主程序入口的时候，会执行加载补丁包，此时杀死程序重新进入或者锁屏再开屏（初始化TinkerPatch的时候设置setPatchRestartOnSrceenOff为true的情况下）这两种方法，都可以呈现出补丁包的内容。此时热修复已完成。</h4><h3 id="5-监控补丁安装情况，成功率，删除补丁，删除版本，暂停下发等功能，可以详细阅读-http-www-tinkerpatch-com-Docs-intro"><a href="#5-监控补丁安装情况，成功率，删除补丁，删除版本，暂停下发等功能，可以详细阅读-http-www-tinkerpatch-com-Docs-intro" class="headerlink" title="5.监控补丁安装情况，成功率，删除补丁，删除版本，暂停下发等功能，可以详细阅读 http://www.tinkerpatch.com/Docs/intro"></a>5.监控补丁安装情况，成功率，删除补丁，删除版本，暂停下发等功能，可以详细阅读 <a href="http://www.tinkerpatch.com/Docs/intro" target="_blank" rel="noopener">http://www.tinkerpatch.com/Docs/intro</a></h3><h1 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h1><p><a href="https://github.com/laibinzhi/TinkerPatchSampleDemo" target="_blank" rel="noopener">https://github.com/laibinzhi/TinkerPatchSampleDemo</a></p>
 
       
@@ -403,16 +403,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-  
-    <a href="/2018/08/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
