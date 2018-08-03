@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/8 | 智先森的博客</title>
+  <title>基于RxJava2的轻量级图片缓存框架 | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="智先森写的东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="智先森的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/08/index.html">
+  <meta name="description" content="序言Android的图片缓存框架有很多，在Universal-Image-Loader断更之后，就经常使用Glide和Picasso。基于RxJava2的框架实现一个轻量级的图片缓存（三级缓存），加载图片的流程图如图所示:">
+<meta name="keywords" content="Android,安卓,框架,RxJava2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于RxJava2的轻量级图片缓存框架">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/基于RxJava2的轻量级图片缓存框架/index.html">
 <meta property="og:site_name" content="智先森的博客">
-<meta property="og:description" content="智先森写的东西">
+<meta property="og:description" content="序言Android的图片缓存框架有很多，在Universal-Image-Loader断更之后，就经常使用Glide和Picasso。基于RxJava2的框架实现一个轻量级的图片缓存（三级缓存），加载图片的流程图如图所示:">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://static.open-open.com/lib/uploadImg/20160930/20160930102005_713.png">
+<meta property="og:image" content="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concat.png">
+<meta property="og:updated_time" content="2018-08-03T04:02:38.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="智先森的博客">
-<meta name="twitter:description" content="智先森写的东西">
+<meta name="twitter:title" content="基于RxJava2的轻量级图片缓存框架">
+<meta name="twitter:description" content="序言Android的图片缓存框架有很多，在Universal-Image-Loader断更之后，就经常使用Glide和Picasso。基于RxJava2的框架实现一个轻量级的图片缓存（三级缓存），加载图片的流程图如图所示:">
+<meta name="twitter:image" content="http://static.open-open.com/lib/uploadImg/20160930/20160930102005_713.png">
   
     <link rel="alternative" href="/atom.xml" title="智先森的博客" type="application/atom+xml">
   
@@ -147,36 +152,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-基于RxJava2的轻量级图片缓存框架" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/03/基于RxJava2的轻量级图片缓存框架/" class="archive-article-date">
-  	<time datetime="2018-08-03T03:51:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/03/基于RxJava2的轻量级图片缓存框架/">基于RxJava2的轻量级图片缓存框架</a>
+    <h1 class="article-title" itemprop="name">
+      基于RxJava2的轻量级图片缓存框架
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/03/基于RxJava2的轻量级图片缓存框架/" class="archive-article-date">
+  	<time datetime="2018-08-03T03:51:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>Android的图片缓存框架有很多，在<a href="https://github.com/nostra13/Android-Universal-Image-Loader" target="_blank" rel="noopener">Universal-Image-Loader</a>断更之后，就经常使用<a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">Glide</a>和<a href="https://github.com/square/picasso" target="_blank" rel="noopener">Picasso</a>。基于RxJava2的框架实现一个轻量级的图片缓存（三级缓存），加载图片的流程图如图所示:<br><a id="more"></a><br><img src="http://static.open-open.com/lib/uploadImg/20160930/20160930102005_713.png" alt="image"></p>
+<hr>
+<p>结合图所得出的流程大概如下</p>
+<ol>
+<li>请求加载图片。</li>
+<li>首先检测内存中是否存在数据，如果存在，显示数据，如果没有数据，则下一步。</li>
+<li>检测本地文件是否存在数据，如果存在，显示数据，并缓存到内存中，如果不存在，则下一步。</li>
+<li>请求网络获取网络图片显示数据，并把数据缓存到内存和本地文件中。</li>
+</ol>
+<hr>
+<ul>
+<li>在本个项目中，我们用到的内存缓存是Android自带的<strong>LruCaChe</strong>,本地缓存是<strong>DiskLruCache</strong>，其中后者不是属于Android自带的，<a href="https://android.googlesource.com/platform/libcore/+/jb-mr2-release/luni/src/main/java/libcore/io/DiskLruCache.java" target="_blank" rel="noopener">附下载地址</a></li>
+<li>对于以上两个类不作过多陈述，google一下会出来很多demo</li>
+</ul>
+<hr>
+<h2 id="现在，我们开始编写这个简单框架"><a href="#现在，我们开始编写这个简单框架" class="headerlink" title="现在，我们开始编写这个简单框架"></a>现在，我们开始编写这个简单框架</h2><ol>
+<li><p>首先，先来确定我们项目的基本骨架的使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RxImageLoader.with(MainActivity.<span class="keyword">this</span>).load(url).into(image_view);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过with(context)方法创建RxImageLoader的单例,这里使用的是<strong>构建者模式</strong>创建RxImageLoader的对象。为什么要用构建者模式呢？因为链式调用很简洁易懂，例如OKHttp和Retrofit的创建就是通过构建者Builder创建对象的，额，这是题外话，不做过多讲解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">volatile</span> RxImageLoader singleton = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">RxImageLoader</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//定义私有的构造方法，防止外部可以通过new来获取RxImageLoader对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//单例模式</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RxImageLoader <span class="title">with</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (RxImageLoader.class) &#123;</span><br><span class="line">            <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</span><br><span class="line">                singleton = <span class="keyword">new</span> Builder(context).build();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> singleton;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">RxImageLoader</span><span class="params">(Builder builder)</span> </span>&#123;</span><br><span class="line">    mRequestCreator = <span class="keyword">new</span> RequestCreator(builder.mContext);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构建者模式</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mContext = context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RxImageLoader <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RxImageLoader(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.再看load方法，注意要返回RxImageLoader对象，否者无法链式调用下面的into方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> RxImageLoader <span class="title">load</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mUrl = url;</span><br><span class="line">    <span class="keyword">return</span> singleton;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.重头戏来了，into方法。我们要获取来自内存，本地，网络三个数据源的数据，按照顺序获取，任一环节有数据，马上调用下面的方法，所以这里调用RxJava的<strong>concat</strong>操作符和<strong>firstElement()</strong></p>
+<blockquote>
+<p>concat操作符—从concatMap操作我们知道，concat操作符肯定也是有序的，而concat操作符是接收若干个Observables，发射数据是有序的，不会交叉。<br><img src="https://raw.github.com/wiki/ReactiveX/RxJava/images/rx-operators/concat.png" alt="image"><br>firstElement()—和RxJava1的<strong>first</strong>操作符功能相类似，源Observable产生的结果的第一个提交给订阅者。</p>
+</blockquote>
+<p>接下来，看代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">into</span><span class="params">(<span class="keyword">final</span> ImageView imageView)</span> </span>&#123;</span><br><span class="line">        Observable.concat(mRequestCreator.getImageFromMemory(mUrl),</span><br><span class="line">                mRequestCreator.getImageFromDisk(mUrl),</span><br><span class="line">                mRequestCreator.getImageFromNetwork(mUrl))</span><br><span class="line">                .filter(<span class="keyword">new</span> Predicate&lt;Image&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> image != <span class="keyword">null</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .firstElement()</span><br><span class="line">                .subscribe(<span class="keyword">new</span> Consumer&lt;Image&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        imageView.setImageBitmap(image.getBitmap());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, <span class="keyword">new</span> Consumer&lt;Throwable&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Throwable throwable)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        throwable.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>5.大概框架已经搭建好，现在就是三个数据源获取的问题，首先我们定义一个抽象类，里面包含两个抽象方法，分别是读数据和些数据的。还有一个getImage方法。为什么用抽象类而不用接口呢，抽象类可以有方法的实现体。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">DataSourceObservable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Observable&lt;Image&gt; <span class="title">getImage</span><span class="params">(<span class="keyword">final</span> String url)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Image&gt;() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;Image&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                Image image = getDataFromDataSource(url);</span><br><span class="line">                <span class="keyword">if</span> (!e.isDisposed()) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (image != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        e.onNext(image);</span><br><span class="line">                    &#125;</span><br><span class="line">                    e.onComplete();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Image <span class="title">getDataFromDataSource</span><span class="params">(String url)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">putDataToDataSource</span><span class="params">(Image image)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>6.编写三个不同数据源的类实现该抽象类，分别是MemoryDataSourceObservable，DiskDataSourceObservable，NetworkDataSourceObservable。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemoryDataSourceObservable</span> <span class="keyword">extends</span> <span class="title">DataSourceObservable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> memorySize = (<span class="keyword">int</span>) (Runtime.getRuntime().maxMemory() / <span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> maxSize = memorySize / <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> LruCache&lt;String, Bitmap&gt; mLruCache = <span class="keyword">new</span> LruCache&lt;String, Bitmap&gt;(maxSize) &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(String key, Bitmap value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> value.getRowBytes() * value.getHeight() / <span class="number">1024</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Image <span class="title">getDataFromDataSource</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        Bitmap bitmap = mLruCache.get(url);</span><br><span class="line">        <span class="keyword">if</span> (bitmap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Image(url, bitmap);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putDataToDataSource</span><span class="params">(Image image)</span> </span>&#123;</span><br><span class="line">        mLruCache.put(image.getUrl(), image.getBitmap());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiskDataSourceObservable</span> <span class="keyword">extends</span> <span class="title">DataSourceObservable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DiskLruCache mDiskLruCache;</span><br><span class="line"></span><br><span class="line">    DiskCacheUtil mDiskCacheUtil;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> maxSize = <span class="number">20</span> * <span class="number">1024</span> * <span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DiskDataSourceObservable</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mContext = context;</span><br><span class="line">        initDiskLruCache();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initDiskLruCache</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mDiskCacheUtil = DiskCacheUtil.getSingleton();</span><br><span class="line">        File cacheDirectory = mDiskCacheUtil.getDiskCacheDir(mContext, <span class="string">"image_cache"</span>);</span><br><span class="line">        <span class="keyword">int</span> appVersion = mDiskCacheUtil.getAppVersion(mContext);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            mDiskLruCache=DiskLruCache.open(cacheDirectory, appVersion, <span class="number">1</span>, maxSize);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Image <span class="title">getDataFromDataSource</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        Bitmap bitmap = getDataFromDiskCache(url);</span><br><span class="line">        <span class="keyword">if</span> (bitmap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Image(url, bitmap);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Bitmap <span class="title">getDataFromDiskCache</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        DiskLruCache.Snapshot mSnapshot = <span class="keyword">null</span>;</span><br><span class="line">        FileInputStream mFileInputStream = <span class="keyword">null</span>;</span><br><span class="line">        FileDescriptor mFileDescriptor = <span class="keyword">null</span>;</span><br><span class="line">        Bitmap bitmap = <span class="keyword">null</span>;</span><br><span class="line">        String key = mDiskCacheUtil.hashKeyForDisk(url);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            mSnapshot = mDiskLruCache.get(key);</span><br><span class="line">            <span class="keyword">if</span> (mSnapshot != <span class="keyword">null</span>) &#123;</span><br><span class="line">                mFileInputStream = (FileInputStream) mSnapshot.getInputStream(<span class="number">0</span>);</span><br><span class="line">                mFileDescriptor = mFileInputStream.getFD();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (mFileDescriptor != <span class="keyword">null</span>) &#123;</span><br><span class="line">                bitmap = BitmapFactory.decodeFileDescriptor(mFileDescriptor);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> bitmap;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (mFileDescriptor == <span class="keyword">null</span> &amp;&amp; mFileInputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    mFileInputStream.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> bitmap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putDataToDataSource</span><span class="params">(<span class="keyword">final</span> Image image)</span> </span>&#123;</span><br><span class="line">        Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;Image&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;Image&gt; e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                putDataToDiskCache(image);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).subscribeOn(Schedulers.io()).subscribe();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">putDataToDiskCache</span><span class="params">(Image image)</span> </span>&#123;</span><br><span class="line">        DiskLruCache.Editor mEditor = <span class="keyword">null</span>;</span><br><span class="line">        OutputStream mOutputStream = <span class="keyword">null</span>;</span><br><span class="line">        String key = mDiskCacheUtil.hashKeyForDisk(image.getUrl());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            mEditor = mDiskLruCache.edit(key);</span><br><span class="line">            mOutputStream = mEditor.newOutputStream(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">boolean</span> success = downloadUrlToStream(image.getUrl(), mOutputStream);</span><br><span class="line">            <span class="keyword">if</span> (success) &#123;</span><br><span class="line">                mEditor.commit();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                mEditor.abort();</span><br><span class="line">            &#125;</span><br><span class="line">            mDiskLruCache.flush();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 建立HTTP请求，并获取Bitmap对象。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> urlString 图片的URL地址</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 解析后的Bitmap对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">downloadUrlToStream</span><span class="params">(String urlString, OutputStream outputStream)</span> </span>&#123;</span><br><span class="line">        HttpURLConnection urlConnection = <span class="keyword">null</span>;</span><br><span class="line">        BufferedOutputStream out = <span class="keyword">null</span>;</span><br><span class="line">        BufferedInputStream in = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">final</span> URL url = <span class="keyword">new</span> URL(urlString);</span><br><span class="line">            urlConnection = (HttpURLConnection) url.openConnection();</span><br><span class="line">            in = <span class="keyword">new</span> BufferedInputStream(urlConnection.getInputStream(), <span class="number">8</span> * <span class="number">1024</span>);</span><br><span class="line">            out = <span class="keyword">new</span> BufferedOutputStream(outputStream, <span class="number">8</span> * <span class="number">1024</span>);</span><br><span class="line">            <span class="keyword">int</span> b;</span><br><span class="line">            <span class="keyword">while</span> ((b = in.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">                out.write(b);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (urlConnection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                urlConnection.disconnect();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (out != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    out.close();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (in != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NetworkDataSourceObservable</span> <span class="keyword">extends</span> <span class="title">DataSourceObservable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Image <span class="title">getDataFromDataSource</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        Bitmap bitmap = getBitmapFromNet(url);</span><br><span class="line">        <span class="keyword">if</span> (bitmap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Image(url, bitmap);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Bitmap <span class="title">getBitmapFromNet</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        URLConnection mURLConnection = <span class="keyword">null</span>;</span><br><span class="line">        InputStream mInputStream = <span class="keyword">null</span>;</span><br><span class="line">        Bitmap mBitmap = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            mURLConnection = <span class="keyword">new</span> URL(url).openConnection();</span><br><span class="line">            mInputStream = mURLConnection.getInputStream();</span><br><span class="line">            mBitmap = BitmapFactory.decodeStream(mInputStream);</span><br><span class="line">            <span class="keyword">if</span> (mBitmap != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> mBitmap;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (mInputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    mInputStream.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mBitmap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">putDataToDataSource</span><span class="params">(Image image)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7.写一个数据管理类来管理这三个类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestCreator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"RequestCreator"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MemoryDataSourceObservable mMemoryCacheObservable;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DiskDataSourceObservable mDiskCacheObservable;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> NetworkDataSourceObservable mNetworkCacheObservable;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RequestCreator</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        mMemoryCacheObservable = <span class="keyword">new</span> MemoryDataSourceObservable();</span><br><span class="line">        mDiskCacheObservable = <span class="keyword">new</span> DiskDataSourceObservable(context);</span><br><span class="line">        mNetworkCacheObservable = <span class="keyword">new</span> NetworkDataSourceObservable();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Observable&lt;Image&gt; <span class="title">getImageFromMemory</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mMemoryCacheObservable.getImage(url).filter(<span class="keyword">new</span> Predicate&lt;Image&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> image!=<span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).doOnNext(<span class="keyword">new</span> Consumer&lt;Image&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"get data from Memory"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Observable&lt;Image&gt; <span class="title">getImageFromDisk</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mDiskCacheObservable.getImage(url)</span><br><span class="line">                .filter(<span class="keyword">new</span> Predicate&lt;Image&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> image!=<span class="keyword">null</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).doOnNext(<span class="keyword">new</span> Consumer&lt;Image&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        Log.d(TAG, <span class="string">"get data from Disk"</span>);</span><br><span class="line">                        mMemoryCacheObservable.putDataToDataSource(image);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Observable&lt;Image&gt; <span class="title">getImageFromNetwork</span><span class="params">(String url)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mNetworkCacheObservable.getImage(url)</span><br><span class="line">                .filter(<span class="keyword">new</span> Predicate&lt;Image&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> image != <span class="keyword">null</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;).doOnNext(<span class="keyword">new</span> Consumer&lt;Image&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Image image)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                        Log.d(TAG, <span class="string">"get data from Network"</span>);</span><br><span class="line">                        mMemoryCacheObservable.putDataToDataSource(image);</span><br><span class="line">                        mDiskCacheObservable.putDataToDataSource(image);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是我们请求数据成功之后需要执行保存数据到内存和本地的操作，我们可以在返回Observable<image>之前执行doOnNext方法。这里的getImageFromMemory方法就不需要了。他属于最高一级。</image></p>
+<p>具体代码请看项目地址<a href="https://github.com/laibinzhi/MyRxImageLoader/" target="_blank" rel="noopener">项目地址</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,207 +239,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/03/基于RxJava2的轻量级图片缓存框架/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/03/Android-MVP框架的项目分享/" class="archive-article-date">
-  	<time datetime="2018-08-03T03:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/03/Android-MVP框架的项目分享/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android MVP框架的项目分享</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/03/Android-MVP框架的项目分享/">Android MVP框架的项目分享</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/第一篇随笔/" class="archive-article-date">
-  	<time datetime="2018-08-02T10:27:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/第一篇随笔/">第一篇随笔</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/02/关于Git和GitHub的一些笔记/" class="archive-article-date">
-  	<time datetime="2018-08-02T08:04:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/02/关于Git和GitHub的一些笔记/">关于Git和GitHub的一些笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/热修复平台TinkerPatch的集成/" class="archive-article-date">
-  	<time datetime="2018-08-01T10:25:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/热修复平台TinkerPatch的集成/">热修复平台TinkerPatch的集成</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">热修复</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">热更新</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -420,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
