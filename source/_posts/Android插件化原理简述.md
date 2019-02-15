@@ -27,7 +27,7 @@ tags:
 - #### 插件化：将一个应用按照宿主插件的方式改造就叫插件化
 
 ## 结构对比
-![插件化结构对比](http://pd4brty72.bkt.clouddn.com/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94.png)
+![插件化结构对比](http://lbz-blog.test.upcdn.net/post/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94.png)
 
 ## 插件化和组件化的对比
 - #### 组件化是一种编程思想（封装设计模式），而插件化是一种技术
@@ -47,13 +47,13 @@ tags:
 4. 四大组件加载原理
 
 ## Manifeast处理
-![Manifeast处理](http://pd4brty72.bkt.clouddn.com/Manifest%E5%A4%84%E7%90%86.jpg)
+![Manifeast处理](http://lbz-blog.test.upcdn.net/post/Manifest%E5%A4%84%E7%90%86.jpg)
 1. 构建期进行全量Merge操作
 2. Bundle的依赖单独Merge,生成Bundle的Merge manifest
 3. 解析各个Bundle的Merge Manifest，得到整包的BundleInfoListundleInfoList
 
 ## 插件类加载
-![插件类加载](http://pd4brty72.bkt.clouddn.com/%E6%8F%92%E4%BB%B6%E7%B1%BB%E5%8A%A0%E8%BD%BD.jpg)
+![插件类加载](http://lbz-blog.test.upcdn.net/post/%E6%8F%92%E4%BB%B6%E7%B1%BB%E5%8A%A0%E8%BD%BD.jpg)
 1. DelegateClassLoader以PatchClassLoader为父classLoader，找不到的情况下根据BundleList找到对应的BundleClassLoader
 2. DelegateClassLoader的父对象为BootClassLoader，包含PathClassLoader对象，先查找当前的classLoader，再查找当前PatchClassLoader
 

@@ -37,18 +37,18 @@ Segment为我们开发工程师节省了数月的安装和维护分析工具，�
 ### 1. 注册Segment账号和登录
 [https://app.segment.com/login](https://app.segment.com/login)
 ### 2.登录成功之后如下图所示
-![image](http://pd4brty72.bkt.clouddn.com/Segment%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png)
+![image](http://lbz-blog.test.upcdn.net/post/Segment%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png)
 ### 3.点击绿色按钮Add Sources添加资源，选择Android
-![image](http://pd4brty72.bkt.clouddn.com/Segment%E6%B7%BB%E5%8A%A0%E8%B5%84%E6%BA%90%E9%80%89%E6%8B%A9Android.png)
+![image](http://lbz-blog.test.upcdn.net/post/Segment%E6%B7%BB%E5%8A%A0%E8%B5%84%E6%BA%90%E9%80%89%E6%8B%A9Android.png)
 ### 4.点击Connect
-![image](http://pd4brty72.bkt.clouddn.com/%E7%82%B9%E5%87%BBconnect.png)
+![image](http://lbz-blog.test.upcdn.net/post/%E7%82%B9%E5%87%BBconnect.png)
 ### 填写资源名称，点确定表示我们已经成功创建资源
-![image](http://pd4brty72.bkt.clouddn.com/%E5%A1%AB%E5%86%99%E8%B5%84%E6%BA%90%E5%90%8D%E5%AD%97.png)
+![image](http://lbz-blog.test.upcdn.net/post/%E5%A1%AB%E5%86%99%E8%B5%84%E6%BA%90%E5%90%8D%E5%AD%97.png)
 
 # Sample
 ### 1. 申请Write Key
 在上一步准备工作的资源面板中，Settings-API Keys-Write Key,就是我们要用到的***WRITE_KEY***
-![image](http://pd4brty72.bkt.clouddn.com/write_key.png)
+![image](http://lbz-blog.test.upcdn.net/post/write_key.png)
 ### 2. 安装库
 在analytics模块添加到*build.gradle*
 
@@ -109,7 +109,7 @@ traits.putUsername(username);
 Analytics.with(this).identify(userID, traits, new Options());
 ```
 然后，我们在资源面板的Debugger中看到出现如下图两行记录，说明我们已经连接成功，客户端已经和我们的Segment服务器正式绑定下来。而在右侧的面板，我们则可以看到我们的用户信息。
-![image](http://pd4brty72.bkt.clouddn.com/%E9%89%B4%E5%AE%9Adebugger.png)
+![image](http://lbz-blog.test.upcdn.net/post/%E9%89%B4%E5%AE%9Adebugger.png)
 
 ### 6.Screen屏幕
 该*screen*方法允许您在用户看到移动应用程序的屏幕时进行记录，以及有关正在查看的页面的可选附加信息。
@@ -124,7 +124,7 @@ Analytics.with(this).identify(userID, traits, new Options());
 Analytics.with(this).screen("MainActivity页面", new Properties().putValue("time",DateFormat.format("dd-MM-yyyy HH:mm:ss", new Date()).toString()));
 ```
 在资源面板中出现了一个MainActivity页面以及右边出现他所对应的值
-![image](http://pd4brty72.bkt.clouddn.com/segment%E5%B1%8F%E5%B9%95.png)
+![image](http://lbz-blog.test.upcdn.net/post/segment%E5%B1%8F%E5%B9%95.png)
 
 ### 7.跟踪Track
 track允许您记录用户执行的操作。每个动作都会触发我们称之为“事件”的事件，事件也可能具有相关属性。
@@ -144,7 +144,7 @@ track允许您记录用户执行的操作。每个动作都会触发我们称之
         });
 ```
 再看资源面板，已经成功记录点击事件
-![image](http://pd4brty72.bkt.clouddn.com/segment%E8%B7%9F%E8%B8%AA.png)
+![image](http://lbz-blog.test.upcdn.net/post/segment%E8%B7%9F%E8%B8%AA.png)
 
 ###  8.更多
 关于更多的Segment的api请参考[这里](https://segment.com/docs/sources/mobile/android/)
@@ -152,7 +152,7 @@ track允许您记录用户执行的操作。每个动作都会触发我们称之
 ### 9.Segment和Google Analytics绑定
 - > 首先你得注册一个Google Analytics账号并且登录（需要谷歌账号）。然后新建一个项目，获取到一个跟踪id
 - >在Segment资源面板Overview页面的绿色按钮Add Destination 点击，然后选择Google Analytics，然后点击Configure Google Analytics,选择Segment你的项目，最后点击Confirm Source,出现下图所示
-![image](http://pd4brty72.bkt.clouddn.com/segment_google.png)
+![image](http://lbz-blog.test.upcdn.net/post/segment_google.png)
 勾选***Google* Analytics Setting**
 然后点击***Mobile* Tracking ID**，然后把第一步的跟踪id填写上去。
 - > 在你的*build.gradle*文件加上
@@ -168,7 +168,7 @@ builder.use(GoogleAnalyticsIntegration.FACTORY);
 
 ```
 -> 最后，重新运行一次程序，打开Google Analytics，你会发现，在Segment捕捉记录下来的事件也会在这里出现。如图
-![image](http://pd4brty72.bkt.clouddn.com/%E8%B0%B7%E6%AD%8C%E5%88%86%E6%9E%90.png)
+![image](http://lbz-blog.test.upcdn.net/post/%E8%B0%B7%E6%AD%8C%E5%88%86%E6%9E%90.png)
 
 ### 10.结语
 到此，Segment的Android客户端配置简介配置到此为止，更多新的有趣的用法，可以参考[官方开发文档](https://segment.com/docs/sources/mobile/android/)。

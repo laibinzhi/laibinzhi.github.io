@@ -233,7 +233,7 @@ public class SampleApplication extends Application {
 ### 1.构建基准包
     方法一：在AS Terminal 命令窗口 执行gradlew assemblerelease 命令
     方法二：在AS gradle执行assemblerelease命令行，如下图
-  ![image](http://pd4brty72.bkt.clouddn.com/gradletask.png)
+  ![image](http://lbz-blog.test.upcdn.net/post/gradletask.png)
   
 ### 2.把基准包信息填入tinkerpatch.gradle中
  
@@ -245,7 +245,7 @@ def variantName = "release"
 ### 3.复制保存基准包
  此时此基准包将作为正式服务器版本发布出去。需要保管妥当，将bakApk中对应的版本复制一份保存在本地，以免执行AS中Clean Project任务时删掉。如下图，
  将app-1.0.0-0801-14-13-17整个文件夹复制保存于本地。如果在构建补丁包的时候没有找到的话，就把本地的copy进去。
- ![image](http://pd4brty72.bkt.clouddn.com/savebaseapk.png)
+ ![image](http://lbz-blog.test.upcdn.net/post/savebaseapk.png)
  
 ### 4.构建补丁包
   在线上的APP出现bug或者需要进行资源替换，就要生产补丁包，方法和构建基准包方法一样，有两种：
@@ -254,11 +254,11 @@ def variantName = "release"
   
   方法二：在AS gradle执行tinkerPatchRelease命令行，如下图
   
-  ![image](http://pd4brty72.bkt.clouddn.com/gradletinkertask.png)
+  ![image](http://lbz-blog.test.upcdn.net/post/gradletinkertask.png)
   
   补丁包将位于 build/outputs/tinkerPatch下。如下图
   
- ![image](http://pd4brty72.bkt.clouddn.com/tinkerapkpath.png)
+ ![image](http://lbz-blog.test.upcdn.net/post/tinkerapkpath.png)
 
 ### 4.发布补丁包
 ####   1.注册登陆 http://www.tinkerpatch.com
