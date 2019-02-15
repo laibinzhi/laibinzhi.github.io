@@ -116,8 +116,8 @@
         var data = res.list[j].arr;
         var liTmpl = "";
         for (var i = 0, len = data.link.length; i < len; i++) {
-          var minSrc = 'http://pcte8rzh8.bkt.clouddn.com/min_photo/' + data.link[i];
-          var src = 'http://pcte8rzh8.bkt.clouddn.com/photo/' + data.link[i];
+          var minSrc = 'http://lbz-blog.test.upcdn.net/photo/min_photo/' + data.link[i];
+          var src = 'http://lbz-blog.test.upcdn.net/photo/photo/' + data.link[i];
           var type = data.type[i];
           var target = src + (type === 'video' ? '.mp4' : '.jpg');
           //src += '.jpg';
