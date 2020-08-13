@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.laibinzhi.top">
-  <title>Archives: 2020/8 | 智先森的博客</title>
+  <title>基于Jetpack+MVVM+Kotlin Coroutine的App | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="智先森写的东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="智先森的博客">
-<meta property="og:url" content="http://www.laibinzhi.top/archives/2020/08/index.html">
+  <meta name="description" content="GoogleArchitectureArchitecture Components  Jetpack Room Paging3 DataBinding ViewModel LiveData Hilt Kotlin Coroutine ViewPager2   本实例是参照以上谷歌推荐的应用框架。 常见的应用架构原则有两：  分离关注点 通过模型驱动界面">
+<meta name="keywords" content="Android,MVVM,JetPack,Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Jetpack+MVVM+Kotlin Coroutine的App">
+<meta property="og:url" content="http://www.laibinzhi.top/2020/08/13/基于Jetpack-MVVM-Kotlin-Coroutine的App/index.html">
 <meta property="og:site_name" content="智先森的博客">
-<meta property="og:description" content="智先森写的东西">
+<meta property="og:description" content="GoogleArchitectureArchitecture Components  Jetpack Room Paging3 DataBinding ViewModel LiveData Hilt Kotlin Coroutine ViewPager2   本实例是参照以上谷歌推荐的应用框架。 常见的应用架构原则有两：  分离关注点 通过模型驱动界面">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/google-final-architecture.png">
+<meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/paging3-library-architecture.svg">
+<meta property="og:image" content="https://s31.aconvert.com/convert/p3r68-cdx67/pu86h-6n1cj.gif">
+<meta property="og:updated_time" content="2020-08-13T08:40:10.653Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="智先森的博客">
-<meta name="twitter:description" content="智先森写的东西">
+<meta name="twitter:title" content="基于Jetpack+MVVM+Kotlin Coroutine的App">
+<meta name="twitter:description" content="GoogleArchitectureArchitecture Components  Jetpack Room Paging3 DataBinding ViewModel LiveData Hilt Kotlin Coroutine ViewPager2   本实例是参照以上谷歌推荐的应用框架。 常见的应用架构原则有两：  分离关注点 通过模型驱动界面">
+<meta name="twitter:image" content="http://lbz-blog.test.upcdn.net/post/google-final-architecture.png">
   
     <link rel="alternative" href="/atom.xml" title="智先森的博客" type="application/atom+xml">
   
@@ -153,36 +159,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-基于Jetpack-MVVM-Kotlin-Coroutine的App" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/13/基于Jetpack-MVVM-Kotlin-Coroutine的App/" class="archive-article-date">
-  	<time datetime="2020-08-13T08:23:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/13/基于Jetpack-MVVM-Kotlin-Coroutine的App/">基于Jetpack+MVVM+Kotlin Coroutine的App</a>
+    <h1 class="article-title" itemprop="name">
+      基于Jetpack+MVVM+Kotlin Coroutine的App
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/08/13/基于Jetpack-MVVM-Kotlin-Coroutine的App/" class="archive-article-date">
+  	<time datetime="2020-08-13T08:23:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="GoogleArchitecture"><a href="#GoogleArchitecture" class="headerlink" title="GoogleArchitecture"></a>GoogleArchitecture</h1><p>Architecture Components</p>
+<ul>
+<li>Jetpack</li>
+<li>Room</li>
+<li>Paging3</li>
+<li>DataBinding</li>
+<li>ViewModel</li>
+<li>LiveData</li>
+<li>Hilt</li>
+<li>Kotlin Coroutine</li>
+<li>ViewPager2</li>
+</ul>
+<p><img src="http://lbz-blog.test.upcdn.net/post/google-final-architecture.png" alt="image"></p>
+<p>本实例是参照以上谷歌推荐的应用框架。</p>
+<p>常见的应用架构原则有两：</p>
+<ul>
+<li>分离关注点</li>
+<li>通过模型驱动界面<a id="more"></a>
+以本项目首页为例子，讲述一下整个流程。</li>
+</ul>
+<h2 id="构建界面"><a href="#构建界面" class="headerlink" title="构建界面"></a>构建界面</h2><ol>
+<li>界面由 Fragment <em>HomeFragment</em> 及其对应的布局文件 <em>fragment_home.xml</em> 组成。</li>
+<li>如需驱动该界面，数据模型需要存储以下数据元素：</li>
+</ol>
+<ul>
+<li>Banner列表 <em>List<banner></banner></em></li>
+<li>文章数据 <em>List<article></article></em></li>
+</ul>
+<p>我们将使用 <em>ArticlesitoriesViewModel</em>（基于 ViewModel 架构组件）存储这些信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@ExperimentalCoroutinesApi</span><br><span class="line">class ArticlesitoriesViewModel):ViewModel() :</span><br><span class="line">    ViewModel() &#123;</span><br><span class="line"></span><br><span class="line">    val articles:LiveData&lt;List&lt;Article&gt;&gt; = TODO()</span><br><span class="line">    val banner:LiveData&lt;List&lt;Banner&gt;&gt; = TODO()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后看一下<em>HomeFragment</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class HomeFragment : BaseFragment&lt;FragmentHomeBinding&gt;(),</span><br><span class="line">    SwipeRefreshLayout.OnRefreshListener &#123;</span><br><span class="line"></span><br><span class="line">    private val viewModel: ArticlesitoriesViewModel by viewModels()</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们有了<em>ArticlesitoriesViewModel</em>和<em>HomeFragment</em>，如何将它们连接起来？毕竟，在 <em>ArticlesitoriesViewModel</em> 类中获取 <em>banner</em>，我们需要一种方法来通知界面。这时候，JetPack另一个关键成员LiveData就出来了。</p>
+<p>LiveData 是一种可观察的数据存储器。应用中的其他组件可以使用此存储器监控对象的更改，而无需在它们之间创建明确且严格的依赖路径。LiveData 组件还遵循应用组件（如 Activity、Fragment 和 Service）的生命周期状态，并包括清理逻辑以防止对象泄漏和过多的内存消耗。</p>
+<p>我们将 ArticlesitoriesViewModel 中<em>的banner</em>字段类型更改为 LiveData&lt;List<banner>&gt;。现在，更新数据时，系统会通知 <em>HomeFragment</em>。此外，由于此 <em>LiveData</em> 字段具有生命周期感知能力，因此当不再需要引用时，会自动清理它们。</banner></p>
+<p>现在，我们在<em>HomeFragment</em>以观察数据并更新界面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class HomeFragment : BaseFragment&lt;FragmentHomeBinding&gt;()&#123;</span><br><span class="line">   ...</span><br><span class="line">    private val viewModel: ArticlesitoriesViewModel by viewModels()</span><br><span class="line">   ...</span><br><span class="line">   </span><br><span class="line">    private fun getBanner() &#123;</span><br><span class="line">        viewModel?.let &#123; homeModel -&gt;</span><br><span class="line">            homeModel.banner.observe(viewLifecycleOwner, Observer &#123;</span><br><span class="line">                if (it.isNotEmpty()) &#123;</span><br><span class="line">                    adapter.setBanner(it)</span><br><span class="line">                    adapter.notifyDataSetChanged()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        viewModel.getBanner()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每次获取到banner数据时，系统都会调用 onChanged() 回调并刷新界面。如果您熟悉EventBus或者RxJava等可观察回调的热门框架，我们要手动设置 Fragment 的 onStop() 方法以停止观察数据，否则会出现内存泄漏。使用 LiveData 时没必要执行此步骤，因为它具有生命周期感知能力。这意味着，除非 Fragment 处于活跃状态（即，已接收 onStart() 但尚未接收 onStop()），否则它不会调用 onChanged() 回调。当调用 Fragment 的 onDestroy() 方法时，LiveData 还会自动移除观察者。</p>
+<p>在此项目中，在这个机制下，会出现一种现象，数据倒灌。当一个ViewModel里面存在一个LiveData,FragmentA observe 这个LiveData，正常运行，这时候打开一个新的Fragment B，当从FragmentB按返回键，Fragment的回退栈返回，FragmentA重现，会自动走一遍 observe回调，倒灌旧数据。对于数据倒灌的解决，有了很好的解决方法，请参考<a href="https://www.jianshu.com/p/f3158a4e0bc8" target="_blank" rel="noopener">该文章</a></p>
+<h2 id="数据获取"><a href="#数据获取" class="headerlink" title="数据获取"></a>数据获取</h2><p>现在，我们已使用 LiveData 将 <em>ArticlesitoriesViewModel</em> 连接到 <em>HomeFragment</em>，那么如何获取banner数据呢？</p>
+<p>在本项目中,我们使用Retrofit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface LbzService &#123;</span><br><span class="line">    @GET(&quot;/banner/json&quot;)</span><br><span class="line">    fun getBannerAsync(): Call&lt;DataResponse&lt;List&lt;Banner&gt;&gt;&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现 ViewModel 的第一个想法可能是直接调用LbzService来获取数据，然后将该数据分配给LiveData对象。这种设计行得通，但如果采用这种设计，随着应用的扩大，应用会变得越来越难以维护。这样会使 ArticlesitoriesViewModel 类承担太多的责任，这就违背<strong>了分离关注点</strong>原则。此外，<em>ViewModel</em>的时间范围与 Activity 或 Fragment 生命周期相关联，这意味着，当关联界面对象的生命周期结束时，会丢失 Webservice 的数据，进而影响用户体验。</p>
+<p>ArticlesitoriesViewModel 会将数据获取过程委派给一个新的模块，即存储区。</p>
+<p>存储区模块会处理数据操作。它们会提供一个干净的 API，以便应用的其余部分可以轻松检索该数据。数据更新时，它们知道从何处获取数据以及进行哪些 API 调用。您可以将存储区视为不同数据源（如持久性模型、网络服务和缓存）之间的媒介。</p>
+<p>所以我们创建了 <em>ArticleRepository</em> 这个类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class ArticleRepository @Inject constructor(</span><br><span class="line">    private val service: LbzService) &#123;</span><br><span class="line">     fun getBanner(): LiveData&lt;List&lt;Banner&gt;&gt; &#123;</span><br><span class="line">       // This isn&apos;t an optimal implementation. We&apos;ll fix it later.</span><br><span class="line">       val data = MutableLiveData&lt;List&lt;Banner&gt;&gt;()</span><br><span class="line">       service.getBannerAsync().enqueue(object : Callback&lt;List&lt;Banner&gt;&gt; &#123;</span><br><span class="line">           override fun onResponse(call: Call&lt;List&lt;Banner&gt;&gt;, response: Response&lt;List&lt;Banner&gt;&gt;) &#123;</span><br><span class="line">               data.value = response.body()</span><br><span class="line">           &#125;</span><br><span class="line">           // Error case is left out for brevity.</span><br><span class="line">           override fun onFailure(call: Call&lt;List&lt;Banner&gt;&gt;, t: Throwable) &#123;</span><br><span class="line">               TODO()</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       return data</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然存储区模块看起来不必要，但它起着一项重要的作用：它会从应用的其余部分中提取数据源。现在，ArticlesitoriesViewModel 不知道如何获取数据，因此我们可以为视图模型提供从几个不同的数据获取实现获得的数据。</p>
+<h2 id="连接-ViewModel-与存储区"><a href="#连接-ViewModel-与存储区" class="headerlink" title="连接 ViewModel 与存储区"></a>连接 ViewModel 与存储区</h2><p>先说明一下，本项目使用<strong>Hilt</strong>实现依赖注入，它是基于Dagger，相对于Dagger，它更简单使用，重要的是他可以和viewmodel结合使用。想了解更多Hilt的知识，可以参阅<a href="https://developer.android.google.cn/jetpack/androidx/releases/hilt" target="_blank" rel="noopener">Hilt官方文档</a></p>
+<p>我们看回我们最初的ArticlesitoriesViewModel,就是使用依赖注入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@ExperimentalCoroutinesApi</span><br><span class="line">class ArticlesitoriesViewModel @ViewModelInject constructor(private val repository: ArticleRepository) :</span><br><span class="line">    ViewModel() &#123;</span><br><span class="line"></span><br><span class="line">    val banner: LiveData&lt;List&lt;Banner&gt;&gt; = repository.getBanner()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缓存和保留数据"><a href="#缓存和保留数据" class="headerlink" title="缓存和保留数据"></a>缓存和保留数据</h2><p>目前市面上实现缓存的方式有很多，okhttp CacheControl或者是使用RxCache等，但是这个项目中，打算采用数据库。这时候，JetPack的另一个成员Room就出来了。</p>
+<p>要使用 Room，我们需要定义本地架构。首先，我们向 Banner 数据模型类添加 @Entity 注释，并向该类的 id 字段添加 @PrimaryKey 注释。这些注释会将 Banner 标记为数据库中的表格，并将 databaseId 标记为该表格的主键：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Entity(tableName = &quot;banner&quot;)</span><br><span class="line">data class Banner(</span><br><span class="line">    @PrimaryKey(autoGenerate = true)</span><br><span class="line">    val databaseId: Int,</span><br><span class="line">    val desc: String,</span><br><span class="line">    val id: Int,</span><br><span class="line">    val imagePath: String,</span><br><span class="line">    val isVisible: Int,</span><br><span class="line">    val order: Int,</span><br><span class="line">    val title: String,</span><br><span class="line">    val type: Int,</span><br><span class="line">    val url: String</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后，我们通过为应用实现 RoomDatabase 来创建一个数据库类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Database(entities = [Banner::class], version = 1)</span><br><span class="line">abstract class UserDatabase : RoomDatabase()</span><br></pre></td></tr></table></figure>
+<p>请注意，UserDatabase 是抽象类。Room 将自动提供它的实现。现在，我们需要一种将用户数据插入数据库的方法。为了完成此任务，我们创建一个数据访问对象 (DAO)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">interface ArticleDao &#123;</span><br><span class="line"></span><br><span class="line">   @Insert(onConflict = REPLACE)</span><br><span class="line">   fun insertBanner(banners: List&lt;Banner&gt;)</span><br><span class="line"></span><br><span class="line">   @Query(&quot;SELECT * FROM banner&quot;)</span><br><span class="line">   fun getLocalBanner(): LiveData&lt;List&lt;Banner&gt;&gt;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>请注意，getLocalBanner()方法将返回一个 LiveData&lt;List<banner> 类型的对象。Room 知道何时修改了数据库，并会自动在数据发生更改时通知所有活跃的观察者。由于 Room 使用 LiveData，因此此操作很高效；仅当至少有一个活跃的观察者时，它才会更新数据。</banner></p>
+<p>定义 ArticleDao 类后，从我们的数据库类引用该 DAO：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Database(entities = [User::class], version = 1)</span><br><span class="line">abstract class LbzDatabase : RoomDatabase() &#123;</span><br><span class="line">   abstract fun articleDao(): ArticleDao</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="SSOT-单一可信来源"><a href="#SSOT-单一可信来源" class="headerlink" title="SSOT(单一可信来源)"></a>SSOT(单一可信来源)</h4><p>不同的 REST API 端点返回相同的数据是一种很常见的现象。例如，如果我们的后端有其他端点返回Banner列表，则同一个用户对象可能来自两个不同的 API 端点，甚至可能使用不同的粒度级别。如果 UserRepository 按原样从 Webservice 请求返回响应，而不检查一致性，则界面可能会显示混乱的信息，因为来自存储区的数据的版本和格式将取决于最近调用的端点。</p>
+<p>因此，我们的 ArticleRepository 实现会将网络服务响应保存在数据库中。这样一来，对数据库的更改将触发对活跃 LiveData 对象的回调。使用此模型时，数据库会充当单一可信来源，应用的其他部分则使用 ArticleRepository 对其进行访问。无论您是否使用磁盘缓存，我们都建议您的存储区将某个数据源指定为应用其余部分的单一可信来源。</p>
+<p>现在，我们可以修改 ArticleRepository 纳入Room,并且将它设置唯一可信来源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class ArticleRepository @Inject constructor(</span><br><span class="line">    private val service: LbzService,</span><br><span class="line">    private val database: LbzDatabase</span><br><span class="line">) &#123;</span><br><span class="line"></span><br><span class="line">    val banner: LiveData&lt;List&lt;Banner&gt;&gt; = database.articleDao().getLocalBanner()</span><br><span class="line"></span><br><span class="line">    suspend fun getBanner() &#123;</span><br><span class="line">          try &#123;</span><br><span class="line">                val bannerFromNet = service.getBannerAsync()</span><br><span class="line">                //判断从网络上获取的和从数据库获取的是否相同，相同的就不返回了</span><br><span class="line">                val bannerFromDb = database.articleDao().getLocalBannerNotLiveData()</span><br><span class="line">                if (!CollectionUtil.compareTwoList(bannerFromDb, bannerFromNet.data)) &#123;</span><br><span class="line">                    database.articleDao().clearBanner()</span><br><span class="line">                    database.articleDao().insertBanner(bannerFromNet.data)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (e: Exception) &#123;</span><br><span class="line">                e.printStackTrace()</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相对应，ArticlesitoriesViewModel改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@ExperimentalCoroutinesApi</span><br><span class="line">class ArticlesitoriesViewModel @ViewModelInject constructor(private val repository: ArticleRepository) :</span><br><span class="line">    ViewModel() &#123;</span><br><span class="line">    </span><br><span class="line">    val banner: LiveData&lt;List&lt;Banner&gt;&gt; = repository.banner</span><br><span class="line"></span><br><span class="line">    fun getBanner() &#123;</span><br><span class="line">        viewModelScope.launch &#123;</span><br><span class="line">            repository.getBanner()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HomeFragemnt通过监听ArticlesitoriesViewModel中的 LiveData&lt;List<banner>&gt; 来更新UI,通过调用getBanner()实现数据的加载。</banner></p>
+<p>以上就是整个项目中获取Banner数据的一个小例子。</p>
+<h2 id="Paging"><a href="#Paging" class="headerlink" title="Paging"></a>Paging</h2><p>分页加载是Android开发中很常见的需求，我们需要以列表的形式加载大量的数据，来自net或者db，Paging就是Google为了方便开发者完成分页加载而设置的一个组件。Paging支持三种架构类型，分别是网络数据，数据库，网络数据+数据库。</p>
+<p>目前官方正式版是Paging2，但是我更喜欢还在beta版本的Paging3，因为相对于Paging2，可以检测列表数据的实时状态，另外还提供刷新和重试机制等</p>
+<p>使用Paging3的好处</p>
+<ol>
+<li>可以缓存分页数据，可确保应用在处理页面数据时有效的使用系统资源</li>
+<li>内置请求重复数据删除的功能，确保您的应用有效的使用宽带网络和资源系统</li>
+<li>可配置的 RecyclerView 适配器，当用户滚动到加载的数据的末尾时会自动请求数据。</li>
+<li>对Kotlin协程和Flow以及LiveDataRxJava 的一流支持 。</li>
+<li>内置的错误处理支持，包括刷新和重试功能。<br>提供反馈意见</li>
+</ol>
+<p><img src="http://lbz-blog.test.upcdn.net/post/paging3-library-architecture.svg" alt="image"></p>
+<p>下面，以首页的列表数据为例子，讲述一下分页列表的实现。</p>
+<ol>
+<li>PagingDataAdapter 适配器</li>
+</ol>
+<p>首先编写Adapter,需要继承PagingDataAdapter，注意一下需要实现系统方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">companion object &#123;</span><br><span class="line">     private val REPO_COMPARATOR = object : DiffUtil.ItemCallback&lt;Article&gt;() &#123;</span><br><span class="line">         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =</span><br><span class="line">             oldItem.id == newItem.id</span><br><span class="line"></span><br><span class="line">         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =</span><br><span class="line">             oldItem == newItem</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>编写ArticleRepository,如果只是实现网络数据的加载，不使用数据库，直接使用下面</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class ArticlePagingSource(private val service: LbzService) : PagingSource&lt;Int, Article&gt;() &#123;</span><br><span class="line">    override suspend fun load(params: LoadParams&lt;Int&gt;): LoadResult&lt;Int, Article&gt; &#123;</span><br><span class="line">        val position = params.key ?: ARTICLE_STARTING_PAGE_INDEX</span><br><span class="line">        return try &#123;</span><br><span class="line">            val response = service.getArticles(position)</span><br><span class="line">            val repos = response.data.datas</span><br><span class="line">            LoadResult.Page(</span><br><span class="line">                data = repos,</span><br><span class="line">                prevKey = null,</span><br><span class="line">                nextKey = if (repos.isEmpty()) null else position + 1</span><br><span class="line">            )</span><br><span class="line">        &#125; catch (exception: IOException) &#123;</span><br><span class="line">            LoadResult.Error(exception)</span><br><span class="line">        &#125; catch (exception: HttpException) &#123;</span><br><span class="line">            LoadResult.Error(exception)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再ArticleRepository调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class ArticleRepository @Inject constructor(</span><br><span class="line">    private val service: LbzService</span><br><span class="line">) &#123;</span><br><span class="line">    fun getArticles(articleType: Int): Flow&lt;PagingData&lt;Article&gt;&gt; &#123;</span><br><span class="line">        _articleType = articleType</span><br><span class="line">        return Pager(</span><br><span class="line">            config = PagingConfig(</span><br><span class="line">                pageSize = NETWORK_PAGE_SIZE,</span><br><span class="line">                enablePlaceholders = false,</span><br><span class="line">                initialLoadSize = 2 * NETWORK_PAGE_SIZE</span><br><span class="line">            ),</span><br><span class="line">            pagingSourceFactory = &#123; ArticlePagingSource(service)&#125;        </span><br><span class="line">        ).flow</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以实现一个单纯的网络分页加载的。如果需要实现一个网络加载+数据库缓存的分页列表，就要使用到Paging3 中RemoteMediator这个类。具体参考</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">class ArticleRemoteMediator(</span><br><span class="line">    private val service: ArticleService,</span><br><span class="line">    private val database: ArticleDatabase</span><br><span class="line">) : RemoteMediator&lt;Int, Article&gt;() &#123;</span><br><span class="line"></span><br><span class="line">    override suspend fun load(</span><br><span class="line">        loadType: LoadType,</span><br><span class="line">        state: PagingState&lt;Int, Article&gt;</span><br><span class="line">    ): MediatorResult &#123;</span><br><span class="line"></span><br><span class="line">        var page = when (loadType) &#123;</span><br><span class="line">            LoadType.REFRESH -&gt; &#123;</span><br><span class="line">                val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)</span><br><span class="line">                remoteKeys?.nextKey?.minus(1) ?: ARTICLE_STARTING_PAGE_INDEX</span><br><span class="line">            &#125;</span><br><span class="line">            LoadType.PREPEND -&gt; &#123;</span><br><span class="line">                val remoteKeys = getRemoteKeyForFirstItem(state)</span><br><span class="line">                    ?: throw InvalidObjectException(&quot;Remote key and the prevKey should not be null&quot;)</span><br><span class="line">                val prevKey = remoteKeys.prevKey ?: return MediatorResult.Success(</span><br><span class="line">                    endOfPaginationReached = true</span><br><span class="line">                )</span><br><span class="line">                remoteKeys.prevKey</span><br><span class="line">            &#125;</span><br><span class="line">            LoadType.APPEND -&gt; &#123;</span><br><span class="line">                val remoteKeys = getRemoteKeyForLastItem(state)</span><br><span class="line">                if (remoteKeys?.nextKey == null) &#123;</span><br><span class="line">                    throw InvalidObjectException(&quot;Remote key should not be null for $loadType&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">                remoteKeys.nextKey</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        var localArticleSize = 0 //本地数据库数据大小</span><br><span class="line"></span><br><span class="line">        database.withTransaction &#123;</span><br><span class="line">            localArticleSize = database.articleDao().getLocalArticleSize()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            val apiResponse = service.getArticles(page)</span><br><span class="line"></span><br><span class="line">            val articles = apiResponse.data.datas</span><br><span class="line">            val endOfPaginationReached = articles.isEmpty()</span><br><span class="line">            database.withTransaction &#123;</span><br><span class="line">                if (loadType == LoadType.REFRESH) &#123;</span><br><span class="line">                    database.remoteKeysDao().clearRemoteKeys()</span><br><span class="line">                    database.articleDao().clearArticles()</span><br><span class="line">                &#125;</span><br><span class="line">                val prevKey = if (page == ARTICLE_STARTING_PAGE_INDEX) null else page - 1</span><br><span class="line">                val nextKey = if (endOfPaginationReached) null else page + 1</span><br><span class="line">                val keys = articles.map &#123;</span><br><span class="line">                    RemoteKeys(articleId = it.id, prevKey = prevKey, nextKey = nextKey)</span><br><span class="line">                &#125;</span><br><span class="line">                database.remoteKeysDao().insertAll(keys)</span><br><span class="line">                database.articleDao().insertAll(articles)</span><br><span class="line">            &#125;</span><br><span class="line">            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)</span><br><span class="line">        &#125; catch (exception: IOException) &#123;</span><br><span class="line">            return if (loadType == LoadType.REFRESH) &#123;</span><br><span class="line">                if (localArticleSize &gt; 0) &#123;</span><br><span class="line">                    MediatorResult.Success(true)</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    MediatorResult.Error(exception)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                MediatorResult.Error(exception)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (exception: HttpException) &#123;</span><br><span class="line">            return if (loadType == LoadType.REFRESH) &#123;</span><br><span class="line">                if (localArticleSize &gt; 0) &#123;</span><br><span class="line">                    MediatorResult.Success(true)</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    MediatorResult.Error(exception)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                MediatorResult.Error(exception)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private suspend fun getRemoteKeyForLastItem(state: PagingState&lt;Int, Article&gt;): RemoteKeys? &#123;</span><br><span class="line">        return state.pages.lastOrNull() &#123; it.data.isNotEmpty() &#125;?.data?.lastOrNull()</span><br><span class="line">            ?.let &#123; repo -&gt;</span><br><span class="line">                database.remoteKeysDao().remoteKeysArticleId(repo.id)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private suspend fun getRemoteKeyForFirstItem(state: PagingState&lt;Int, Article&gt;): RemoteKeys? &#123;</span><br><span class="line">        return state.pages.firstOrNull &#123; it.data.isNotEmpty() &#125;?.data?.firstOrNull()</span><br><span class="line">            ?.let &#123; repo -&gt;</span><br><span class="line">                database.remoteKeysDao().remoteKeysArticleId(repo.id)</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private suspend fun getRemoteKeyClosestToCurrentPosition(</span><br><span class="line">        state: PagingState&lt;Int, Article&gt;</span><br><span class="line">    ): RemoteKeys? &#123;</span><br><span class="line">        return state.anchorPosition?.let &#123; position -&gt;</span><br><span class="line">            state.closestItemToPosition(position)?.id?.let &#123; repoId -&gt;</span><br><span class="line">                database.remoteKeysDao().remoteKeysArticleId(repoId)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的就是ArticleRemoteMediator中网络和数据库的一些操作，简单说一下，可以通过LoadType获取状态，他有三个，REFRESH，PREPEND，APPEND。根据不同状态获取对应的页码。然后读取数据库文章列表的数目，这个的作用就是如果数目数据库不为空，那么在离线的情况下，列表也可以正常显示数据，如果为空，那么就显示出错信息。然后获取接口请求数据，获取成功之后，如果是刷新。那么就删除本地数据库，插入最新的数据。此处，用了一个数据库表储存加载的页码（上一页，下一页）</p>
+<p>然后同样在ArticleRepository调用如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class ArticleRepository @Inject constructor(</span><br><span class="line">    private val service: LbzService,</span><br><span class="line">    private val database: LbzDatabase</span><br><span class="line">) &#123;</span><br><span class="line">    private val pagingSourceFactory = &#123; database.articleDao().getLocalArticles(_articleType) &#125;</span><br><span class="line"></span><br><span class="line">   fun getArticles(articleType: Int): Flow&lt;PagingData&lt;Article&gt;&gt; &#123;</span><br><span class="line">        _articleType = articleType</span><br><span class="line">        return Pager(</span><br><span class="line">            config = PagingConfig(</span><br><span class="line">                pageSize = NETWORK_PAGE_SIZE,</span><br><span class="line">                enablePlaceholders = false,</span><br><span class="line">                initialLoadSize = 2 * NETWORK_PAGE_SIZE</span><br><span class="line">            ),</span><br><span class="line">            remoteMediator = ArticleRemoteMediator(</span><br><span class="line">                service,</span><br><span class="line">                database,</span><br><span class="line">                articleType</span><br><span class="line">            ),</span><br><span class="line">            pagingSourceFactory = pagingSourceFactory</span><br><span class="line">        ).flow</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a>Navigation</h2><p>程序使用谷歌推荐的单Activity多Fragment模式，本实例使用JetPack中的Navigation组件结合底部BottomNavigationView实现页面导航，部分页面采用ViewPager2+TabLayout的布局实现滑动，如项目列表。</p>
+<h2 id="Kotlin-协程Coroutine"><a href="#Kotlin-协程Coroutine" class="headerlink" title="Kotlin 协程Coroutine"></a>Kotlin 协程Coroutine</h2><p>项目中多处使用kotlin协程,例如，在首页监听列表数据的时候</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private var job: Job? = null</span><br><span class="line"></span><br><span class="line">private fun getArticles() &#123;</span><br><span class="line">     job?.cancel()</span><br><span class="line">     job = lifecycleScope.launch &#123;</span><br><span class="line">         viewModel.getArticles().collectLatest &#123;</span><br><span class="line">             adapter.submitData(it)</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>例如在ViewModel中使用作用域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@ExperimentalCoroutinesApi</span><br><span class="line">class ArticlesitoriesViewModel @ViewModelInject constructor(private val repository: ArticleRepository) :</span><br><span class="line">    ViewModel() &#123;</span><br><span class="line"></span><br><span class="line">    fun getArticles(): Flow&lt;PagingData&lt;Article&gt;&gt; = repository.getArticles(ArticleType.HOME_ARTICLE)</span><br><span class="line">        .cachedIn(viewModelScope)</span><br><span class="line"></span><br><span class="line">    fun getBanner() &#123;</span><br><span class="line">        viewModelScope.launch &#123;</span><br><span class="line">            repository.getBanner()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还比如在Retrofi中使用协程两种方式：</p>
+<ol>
+<li>直接使用挂起函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@GET(&quot;/article/list/&#123;page&#125;/json&quot;)</span><br><span class="line">  suspend fun getArticles(@Path(&quot;page&quot;) page: Int): DataResponse&lt;PageBean&lt;Article&gt;&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>为原有Call类型添加await等类似的扩展以将其转成挂起函数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@GET(&quot;/banner/json&quot;)</span><br><span class="line">fun getBannerAsync(): Deferred&lt;DataResponse&lt;List&lt;Banner&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val bannerFromNet = service.getBannerAsync().await()</span><br></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>接口数据是使用<a href="https://www.wanandroid.com/blog/show/2" target="_blank" rel="noopener">鸿洋的网站开放API</a></p>
+<p>页面UI部分参考(<a href="https://github.com/hegaojian/JetpackMvvm" target="_blank" rel="noopener">https://github.com/hegaojian/JetpackMvvm</a>)</p>
+<h2 id="运行截图"><a href="#运行截图" class="headerlink" title="运行截图"></a>运行截图</h2><p><img src="https://s31.aconvert.com/convert/p3r68-cdx67/pu86h-6n1cj.gif" alt="image"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>项目地址：<a href="https://github.com/laibinzhi/GoogleArchitecture" target="_blank" rel="noopener">https://github.com/laibinzhi/GoogleArchitecture</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -206,19 +352,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2020/08/13/基于Jetpack-MVVM-Kotlin-Coroutine的App/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/07/Android-UI绘制流程及原理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android UI绘制流程及原理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -238,8 +471,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
