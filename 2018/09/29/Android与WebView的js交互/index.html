@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://laibinzhi.top">
+  <link rel="dns-prefetch" href="http://www.laibinzhi.top">
   <title>Android与WebView的js交互 | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="WebView调用调用Java方法 允许WebView加载js  1webView.getSettings().setJavaScriptEnabled(true);  编写js接口类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android与WebView的js交互">
-<meta property="og:url" content="https://laibinzhi.top/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/index.html">
+<meta property="og:url" content="http://www.laibinzhi.top/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/index.html">
 <meta property="og:site_name" content="智先森的博客">
 <meta property="og:description" content="WebView调用调用Java方法 允许WebView加载js  1webView.getSettings().setJavaScriptEnabled(true);  编写js接口类">
 <meta property="og:locale">
@@ -45,7 +45,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -187,49 +187,53 @@
 <li>编写js接口类</li>
 </ol>
 <a id="more"></a>
+
 <ol start="3">
 <li>给webview添加js接口</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.addJavascriptInterface(obj,interfaceName);</span><br></pre></td></tr></table></figure>
+
 <h1 id="Android-调用js方法"><a href="#Android-调用js方法" class="headerlink" title="Android 调用js方法"></a>Android 调用js方法</h1><p>使用loadUrl方法调用javascript</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//jsString是要调用的js代码的字符串</span><br><span class="line">webView.loadUrl(javascript:jsString);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;jsString是要调用的js代码的字符串</span><br><span class="line">webView.loadUrl(javascript:jsString);</span><br></pre></td></tr></table></figure>
 <h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><ol>
 <li>新建一个工程<em>WebViewDemo</em></li>
 <li><em>layout_main.xml</em>代码如下。分为上下两个部分，上部分为WebView，下部分为Native。两部分均有一个输入框和按钮，输入文字点击按钮，就会在对面的输入框显示。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;WebView</span><br><span class="line">        android:id=&quot;@+id/webview&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;0dp&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;0dp&quot;</span><br><span class="line">        android:orientation=&quot;vertical&quot;</span><br><span class="line">        android:layout_weight=&quot;1&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:textColor=&quot;@android:color/black&quot;</span><br><span class="line">            android:layout_marginLeft=&quot;10dp&quot;</span><br><span class="line">            android:layout_marginTop=&quot;20dp&quot;</span><br><span class="line">            android:textStyle=&quot;bold&quot;</span><br><span class="line">            android:textSize=&quot;30dp&quot;</span><br><span class="line">            android:text=&quot;Native&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot; /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id=&quot;@+id/et&quot;</span><br><span class="line">            android:layout_marginTop=&quot;20dp&quot;</span><br><span class="line">            android:hint=&quot;请输入内容&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;100px&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">            android:id=&quot;@+id/send&quot;</span><br><span class="line">            android:text=&quot;发送到WebView&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:orientation&#x3D;&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;WebView</span><br><span class="line">        android:id&#x3D;&quot;@+id&#x2F;webview&quot;</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;0dp&quot;</span><br><span class="line">        android:layout_weight&#x3D;&quot;1&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;0dp&quot;</span><br><span class="line">        android:orientation&#x3D;&quot;vertical&quot;</span><br><span class="line">        android:layout_weight&#x3D;&quot;1&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:textColor&#x3D;&quot;@android:color&#x2F;black&quot;</span><br><span class="line">            android:layout_marginLeft&#x3D;&quot;10dp&quot;</span><br><span class="line">            android:layout_marginTop&#x3D;&quot;20dp&quot;</span><br><span class="line">            android:textStyle&#x3D;&quot;bold&quot;</span><br><span class="line">            android:textSize&#x3D;&quot;30dp&quot;</span><br><span class="line">            android:text&#x3D;&quot;Native&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;EditText</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;et&quot;</span><br><span class="line">            android:layout_marginTop&#x3D;&quot;20dp&quot;</span><br><span class="line">            android:hint&#x3D;&quot;请输入内容&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;100px&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Button</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;send&quot;</span><br><span class="line">            android:text&#x3D;&quot;发送到WebView&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;LinearLayout&gt;</span><br><span class="line">&lt;&#x2F;LinearLayout&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>MainActivity实例化控件，并且允许WebView加载js</li>
 <li>编写js接口类<em>LbzJsInterface</em></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class LbzJsInterface &#123;</span><br><span class="line"></span><br><span class="line">    public static final String TAG = &quot;LbzJsInterface&quot;;</span><br><span class="line"></span><br><span class="line">    private JSBridge jsBridge;</span><br><span class="line"></span><br><span class="line">    public LbzJsInterface(JSBridge jsBridge)&#123;</span><br><span class="line">        this.jsBridge =jsBridge;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //这个方法不在主线程中</span><br><span class="line">    @JavascriptInterface</span><br><span class="line">    public void setValue(String value) &#123;</span><br><span class="line">        jsBridge.setTextViewValue(value);</span><br><span class="line">        Log.e(TAG, &quot;value=&quot; + value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class LbzJsInterface &#123;</span><br><span class="line"></span><br><span class="line">    public static final String TAG &#x3D; &quot;LbzJsInterface&quot;;</span><br><span class="line"></span><br><span class="line">    private JSBridge jsBridge;</span><br><span class="line"></span><br><span class="line">    public LbzJsInterface(JSBridge jsBridge)&#123;</span><br><span class="line">        this.jsBridge &#x3D;jsBridge;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;这个方法不在主线程中</span><br><span class="line">    @JavascriptInterface</span><br><span class="line">    public void setValue(String value) &#123;</span><br><span class="line">        jsBridge.setTextViewValue(value);</span><br><span class="line">        Log.e(TAG, &quot;value&#x3D;&quot; + value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface JSBridge &#123;</span><br><span class="line"></span><br><span class="line">    void setTextViewValue(String value);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="5">
 <li>给webview添加js接口</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.addJavascriptInterface(new LbzJsInterface(this), &quot;lbzLauncher&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">webView.addJavascriptInterface(new LbzJsInterface(this), &quot;lbzLauncher&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="6">
 <li>MainActivity实现<em>JSBridge</em></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void setTextViewValue(final String value) &#123;</span><br><span class="line">    mHandler.post(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            et.setText(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ol start="7">
 <li>WebView要加载<em>index.html</em></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;WebView&lt;/title&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        body&#123;</span><br><span class="line">        background: #7F7F7F;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .btn&#123;</span><br><span class="line">        line-height: 50px;</span><br><span class="line">        margin: 20px;</span><br><span class="line">        background: #cccccc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;WebView&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;input type=&quot;text&quot; id=&quot;input&quot; placeholder=&quot;请输入内容&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;div id=&quot;btn&quot;&gt;&lt;button &gt;发送到Native&lt;/button &gt;&lt;/div&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var btnEle = document.getElementById(&quot;btn&quot;);</span><br><span class="line">    var inputEle = document.getElementById(&quot;input&quot;);</span><br><span class="line"></span><br><span class="line">    btnEle.addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">      var str = inputEle.value;</span><br><span class="line">      if (window.lbzLauncher) &#123;</span><br><span class="line">        lbzLauncher.setValue(str);</span><br><span class="line">      &#125;else &#123;</span><br><span class="line">        alert(str);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    var remote = function(str)&#123;</span><br><span class="line">      inputEle.value = str</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;WebView&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style type&#x3D;&quot;text&#x2F;css&quot;&gt;</span><br><span class="line">        body&#123;</span><br><span class="line">        background: #7F7F7F;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .btn&#123;</span><br><span class="line">        line-height: 50px;</span><br><span class="line">        margin: 20px;</span><br><span class="line">        background: #cccccc;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;WebView&lt;&#x2F;h2&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;&lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;input&quot; placeholder&#x3D;&quot;请输入内容&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;br&#x2F;&gt;</span><br><span class="line">&lt;div id&#x3D;&quot;btn&quot;&gt;&lt;button &gt;发送到Native&lt;&#x2F;button &gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">    var btnEle &#x3D; document.getElementById(&quot;btn&quot;);</span><br><span class="line">    var inputEle &#x3D; document.getElementById(&quot;input&quot;);</span><br><span class="line"></span><br><span class="line">    btnEle.addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">      var str &#x3D; inputEle.value;</span><br><span class="line">      if (window.lbzLauncher) &#123;</span><br><span class="line">        lbzLauncher.setValue(str);</span><br><span class="line">      &#125;else &#123;</span><br><span class="line">        alert(str);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    var remote &#x3D; function(str)&#123;</span><br><span class="line">      inputEle.value &#x3D; str</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="8">
 <li>加载html</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.loadUrl(&quot;file:///android_asset/index.html&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.loadUrl(&quot;file:&#x2F;&#x2F;&#x2F;android_asset&#x2F;index.html&quot;);</span><br></pre></td></tr></table></figure>
 <ol start="9">
 <li>添加Native的监听事件，在监听中Android 调用js方法</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">send.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void onClick(View v) &#123;</span><br><span class="line">               String str =et.getText().toString();</span><br><span class="line">               String jsCode=&quot;if(window.remote)&#123;window.remote(&apos;&quot;+str+&quot;&apos;)&#125;&quot;;</span><br><span class="line">               webView.loadUrl(&quot;javascript:&quot;+jsCode);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">send.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void onClick(View v) &#123;</span><br><span class="line">               String str &#x3D;et.getText().toString();</span><br><span class="line">               String jsCode&#x3D;&quot;if(window.remote)&#123;window.remote(&#39;&quot;+str+&quot;&#39;)&#125;&quot;;</span><br><span class="line">               webView.loadUrl(&quot;javascript:&quot;+jsCode);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
 <ol start="10">
 <li>Demo的运行状态</li>
 </ol>
 <p><img src="http://lbz-blog.test.upcdn.net/post/webview_gif.gif" alt="image"></p>
 <ol start="11">
-<li><a href="https://github.com/laibinzhi/WebViewDemo" target="_blank" rel="noopener">最后附上项目地址</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/laibinzhi/WebViewDemo">最后附上项目地址</a></li>
 </ol>
 
       
@@ -334,7 +338,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://laibinzhi.top/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -486,10 +490,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MVP</a>
               </li>
              
@@ -506,23 +506,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jetpack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Room</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,10 +542,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -570,11 +554,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Room</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
               </li>
             
             <div class="clearfix"></div>

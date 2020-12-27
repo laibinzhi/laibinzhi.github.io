@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://laibinzhi.top">
+  <link rel="dns-prefetch" href="http://www.laibinzhi.top">
   <title>Jetpack-WorkManager了解和使用 | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="WorkManager是Android Jetpack库，可将可延期的执行的后台任务加入任务队列，并且仅在满足其约束条件时保证其任务执行。 在这篇博客中，我们需要掌握的是：  了解WorkManager及其内部运作方式？ 什么时候可以使用WorkManager？ WorkManager的用例 为什么要使用WorkManager 怎么实现WorkManager">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jetpack-WorkManager了解和使用">
-<meta property="og:url" content="https://laibinzhi.top/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:url" content="http://www.laibinzhi.top/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="智先森的博客">
 <meta property="og:description" content="WorkManager是Android Jetpack库，可将可延期的执行的后台任务加入任务队列，并且仅在满足其约束条件时保证其任务执行。 在这篇博客中，我们需要掌握的是：  了解WorkManager及其内部运作方式？ 什么时候可以使用WorkManager？ WorkManager的用例 为什么要使用WorkManager 怎么实现WorkManager">
 <meta property="og:locale">
@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://developer.android.com/reference/androidx/work/WorkManager" target="_blank" rel="noopener">WorkManager</a>是<a href="https://developer.android.com/jetpack/getting-started" target="_blank" rel="noopener">Android Jetpack</a>库，可将可延期的执行的后台任务加入任务队列，并且仅在满足其<a href="https://developer.android.com/reference/androidx/work/Constraints.Builder" target="_blank" rel="noopener">约束条件</a>时保证其任务执行。</p>
+        <p><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/WorkManager">WorkManager</a>是<a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/getting-started">Android Jetpack</a>库，可将可延期的执行的后台任务加入任务队列，并且仅在满足其<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/Constraints.Builder">约束条件</a>时保证其任务执行。</p>
 <p>在这篇博客中，我们需要掌握的是：</p>
 <ul>
 <li>了解WorkManager及其内部运作方式？</li>
@@ -187,12 +187,14 @@
 <li>怎么实现WorkManager</li>
 </ul>
 <a id="more"></a>
+
+
 <h2 id="了解WorkManager"><a href="#了解WorkManager" class="headerlink" title="了解WorkManager"></a>了解WorkManager</h2><p>考虑到Android的省点功能和用户的API级别，WorkManager是可延期的有保证的后台任务的统一解决方案。</p>
 <p>即使用户退出应用程序或者设备重新启用，WorkManager也会执行后台的任务</p>
 <p>我们已经有了Job Scheduler和Alarm Manager，那么为什么要使用WorkManager？</p>
 <p>使用Job Scheduler和Alarm Manager，我们需要找到设备API级别，然后检查哪个API可以处理特定设备级别并相应地使用它。代码变得冗长而复杂。使用WorkManager，我们开发人员不必担心它。WorkManager 向后兼容API级别14，可在有或没有Google Play服务的情况下运行。</p>
 <p>在内部，WorkManager使用这些API。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"></span><br><span class="line"> co[Device API Level?]</span><br><span class="line"> co --API 23+ --&gt;sub(JobScheduler)</span><br><span class="line">  co --API 14-22 --&gt;sub2(Device has access to Google Play Services and work-gcm?)</span><br><span class="line">  sub2 -- Yes --&gt; sub3(GcmNeworkManager)</span><br><span class="line">  sub2 -- NO --&gt; sub4(Custom AlarmManager and BroadCastReceiver)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line"></span><br><span class="line"> co[Device API Level?]</span><br><span class="line"> co --API 23+ --&gt;sub(JobScheduler)</span><br><span class="line">  co --API 14-22 --&gt;sub2(Device has access to Google Play Services and work-gcm?)</span><br><span class="line">  sub2 -- Yes --&gt; sub3(GcmNeworkManager)</span><br><span class="line">  sub2 -- NO --&gt; sub4(Custom AlarmManager and BroadCastReceiver)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="什么时候可以使用？"><a href="#什么时候可以使用？" class="headerlink" title="什么时候可以使用？"></a>什么时候可以使用？</h2><p>WorkManager并不依赖于应用程序的寿命，他可以在应用程序处于后台中，前台中，或者是前台进入后台中。</p>
 <p>如果可以将某项工作归类为保证执行和可延期执行，则可以使用WorkManager来完成。</p>
 <p>那什么是“保证和延期”呢？</p>
@@ -230,22 +232,22 @@
 <li>取消任务</li>
 </ul>
 <h4 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h4><p>在在app / build.gradle文件中，添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123; </span><br><span class="line">    def work_version = &quot;2.3.4&quot;</span><br><span class="line">    implementation &quot;androidx.work:work-runtime-ktx:$work_version&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>目前最新是2.3.4，点击<a href="https://developer.android.com/jetpack/androidx/releases/work" target="_blank" rel="noopener">此处</a>获取最新版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123; </span><br><span class="line">    def work_version &#x3D; &quot;2.3.4&quot;</span><br><span class="line">    implementation &quot;androidx.work:work-runtime-ktx:$work_version&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>目前最新是2.3.4，点击<a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/androidx/releases/work">此处</a>获取最新版本</p>
 <p>以上是针对于Kotlin语言，如果你使用的是Java，则添加以下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> dependencies &#123; </span><br><span class="line">    def work_version = &quot;2.3.4&quot;</span><br><span class="line">    implementation &quot;androidx.work:work-runtime:$work_version&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> dependencies &#123; </span><br><span class="line">    def work_version &#x3D; &quot;2.3.4&quot;</span><br><span class="line">    implementation &quot;androidx.work:work-runtime:$work_version&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="关键类"><a href="#关键类" class="headerlink" title="关键类"></a>关键类</h4><p>WorkManager通常包含4个类</p>
 <ol>
-<li><a href="https://developer.android.com/reference/androidx/work/Worker.html" target="_blank" rel="noopener">Worker</a> - 定义需要完成的工作</li>
-<li><a href="https://developer.android.com/reference/androidx/work/WorkRequest.html" target="_blank" rel="noopener">WorkRequest</a> - 在这里定义将要执行的Worker类</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/Worker.html">Worker</a> - 定义需要完成的工作</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/WorkRequest.html">WorkRequest</a> - 在这里定义将要执行的Worker类</li>
 </ol>
 <ul>
 <li>OneTimeWorkRequest 一次请求</li>
 <li>PeriodicWorkRequest 多次请求</li>
 </ul>
 <ol start="3">
-<li><a href="https://developer.android.com/reference/androidx/work/WorkManager.html" target="_blank" rel="noopener">WorkManager</a> 管理Worker请求和队列</li>
-<li><a href="https://developer.android.com/reference/androidx/work/WorkInfo" target="_blank" rel="noopener">WorkInfo</a> - 有关Worker的一些信息</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/WorkManager.html">WorkManager</a> 管理Worker请求和队列</li>
+<li><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/WorkInfo">WorkInfo</a> - 有关Worker的一些信息</li>
 </ol>
 <h4 id="开启任务"><a href="#开启任务" class="headerlink" title="开启任务"></a>开启任务</h4><p>下面，我们就来简单实现以下WorkManager。我们定义一个<em>NotificationWorker</em>类，它继承Worker类，他有一个showNotification()方法，在doWork()中被调用。</p>
 <p>在Activity中，我们创建一个按钮和一个文本，单击按钮后，WorkManager将进入排队工作请求，并将任务的一些状态显示在文本中。</p>
@@ -256,44 +258,44 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class NotificationWorker(context: Context, workerParameters: WorkerParameters) :</span><br><span class="line">    Worker(context, workerParameters) &#123;</span><br><span class="line">    </span><br><span class="line">    override fun doWork(): Result &#123;</span><br><span class="line">        showNotification(&quot;Test Title&quot;, &quot;Test Content&quot;)</span><br><span class="line">        return Result.success()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>doWork返回值有三个，Result.success()，Result.failure(),Result.retry(),我们可以定义任何一个告诉WorkManager现在任务的执行情况。</p>
 <p>接下来，我们用显示通知的方法，完善showNotification方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private fun showNotification(title: String, content: String) &#123;</span><br><span class="line">      val notificationManager: NotificationManager =</span><br><span class="line">          applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager</span><br><span class="line">      if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">          val notificationChannel: NotificationChannel =</span><br><span class="line">              NotificationChannel(&quot;a1&quot;, &quot;Work Manager&quot;, NotificationManager.IMPORTANCE_DEFAULT)</span><br><span class="line">          notificationManager.createNotificationChannel(notificationChannel)</span><br><span class="line">      &#125;</span><br><span class="line">      val notificationBuilder: NotificationCompat.Builder =</span><br><span class="line">          NotificationCompat.Builder(applicationContext, &quot;a1&quot;)</span><br><span class="line">              .setContentTitle(title)</span><br><span class="line">              .setContentText(content)</span><br><span class="line">      val notification: Notification = notificationBuilder.build()</span><br><span class="line">      notificationManager.notify(1, notification)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">private fun showNotification(title: String, content: String) &#123;</span><br><span class="line">      val notificationManager: NotificationManager &#x3D;</span><br><span class="line">          applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager</span><br><span class="line">      if (Build.VERSION.SDK_INT &gt;&#x3D; Build.VERSION_CODES.O) &#123;</span><br><span class="line">          val notificationChannel: NotificationChannel &#x3D;</span><br><span class="line">              NotificationChannel(&quot;a1&quot;, &quot;Work Manager&quot;, NotificationManager.IMPORTANCE_DEFAULT)</span><br><span class="line">          notificationManager.createNotificationChannel(notificationChannel)</span><br><span class="line">      &#125;</span><br><span class="line">      val notificationBuilder: NotificationCompat.Builder &#x3D;</span><br><span class="line">          NotificationCompat.Builder(applicationContext, &quot;a1&quot;)</span><br><span class="line">              .setContentTitle(title)</span><br><span class="line">              .setContentText(content)</span><br><span class="line">      val notification: Notification &#x3D; notificationBuilder.build()</span><br><span class="line">      notificationManager.notify(1, notification)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>步骤2：创建WorkRequest</li>
 </ul>
-<p>在Activity中，创建一个<a href="https://developer.android.com/reference/androidx/work/OneTimeWorkRequest" target="_blank" rel="noopener">OneTimeWorkRequest</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val request : OneTimeWorkRequest =</span><br><span class="line">        OneTimeWorkRequest.Builder(NotificationWorker::class.java)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
+<p>在Activity中，创建一个<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/OneTimeWorkRequest">OneTimeWorkRequest</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val request : OneTimeWorkRequest &#x3D;</span><br><span class="line">        OneTimeWorkRequest.Builder(NotificationWorker::class.java)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
 <ul>
 <li>步骤3：使用WorkManager，使工作入队。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">workManager = WorkManager.getInstance(applicationContext)</span><br><span class="line">notify_button.setOnClickListener &#123; </span><br><span class="line">      workManager.enqueue(request)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">workManager &#x3D; WorkManager.getInstance(applicationContext)</span><br><span class="line">notify_button.setOnClickListener &#123; </span><br><span class="line">      workManager.enqueue(request)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>步骤4：使用getWorkInfoByIdLiveData()观察任务工作的信息并显示在textview上</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workManager.getWorkInfoByIdLiveData(request.id)</span><br><span class="line">       .observe(this, Observer &#123; workInfo -&gt;</span><br><span class="line">           if (workInfo != null) &#123;</span><br><span class="line">               val status: String = workInfo.state.name</span><br><span class="line">               status_textview.append(status + &quot;\n&quot;)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">workManager.getWorkInfoByIdLiveData(request.id)</span><br><span class="line">       .observe(this, Observer &#123; workInfo -&gt;</span><br><span class="line">           if (workInfo !&#x3D; null) &#123;</span><br><span class="line">               val status: String &#x3D; workInfo.state.name</span><br><span class="line">               status_textview.append(status + &quot;\n&quot;)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure>
 <p>上面我们使用OneTimeWorkRequest是一次性任务，但是假设我们要重复执行一些任务，比如每隔1天，我们发送用户日志到服务器，我们就必须使用PeriodicWorkRequest加入队列，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val request : PeriodicWorkRequest = </span><br><span class="line">    PeriodicWorkRequest.Builder(NotificationWorker::class.java, 1, TimeUnit.Days)</span><br><span class="line">    .build()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val request : PeriodicWorkRequest &#x3D; </span><br><span class="line">    PeriodicWorkRequest.Builder(NotificationWorker::class.java, 1, TimeUnit.Days)</span><br><span class="line">    .build()</span><br></pre></td></tr></table></figure>
 <h4 id="发送和接受数据"><a href="#发送和接受数据" class="headerlink" title="发送和接受数据"></a>发送和接受数据</h4><ol>
 <li>在Activity发送数据并在Worker类中接收数据，使用setInputData()</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val data : Data = Data.Builder()</span><br><span class="line">            .putString(KEY_WORK_CONTENT, &quot;I am the content of notification&quot;)</span><br><span class="line">            .putString(KEY_WORK_TITLE, &quot;Work Manager Test&quot;)</span><br><span class="line">            .build()</span><br><span class="line">            </span><br><span class="line">val request : OneTimeWorkRequest = OneTimeWorkRequest.Builder(NotificationWorker::class.java)</span><br><span class="line">            .setInputData(data)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val data : Data &#x3D; Data.Builder()</span><br><span class="line">            .putString(KEY_WORK_CONTENT, &quot;I am the content of notification&quot;)</span><br><span class="line">            .putString(KEY_WORK_TITLE, &quot;Work Manager Test&quot;)</span><br><span class="line">            .build()</span><br><span class="line">            </span><br><span class="line">val request : OneTimeWorkRequest &#x3D; OneTimeWorkRequest.Builder(NotificationWorker::class.java)</span><br><span class="line">            .setInputData(data)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
 <p>在Worker类中，使用inputData来获取Activity或者Fragment的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val title : String = inputData.getString(MainActivity.KEY_WORK_TITLE).toString()</span><br><span class="line">val content : String = inputData.getString(MainActivity.KEY_WORK_CONTENT).toString()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val title : String &#x3D; inputData.getString(MainActivity.KEY_WORK_TITLE).toString()</span><br><span class="line">val content : String &#x3D; inputData.getString(MainActivity.KEY_WORK_CONTENT).toString()</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>从Worker发送数据，并在Activity使用getWorkInfoByIdLiveData()方法接收数据</li>
 </ol>
 <p>首先，Worker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val data : Data = Data.Builder()</span><br><span class="line">            .putString(KEY_OUTPUT_TEXT, &quot;Work finished!&quot;)</span><br><span class="line">            .build()</span><br><span class="line">return Result.success(data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val data : Data &#x3D; Data.Builder()</span><br><span class="line">            .putString(KEY_OUTPUT_TEXT, &quot;Work finished!&quot;)</span><br><span class="line">            .build()</span><br><span class="line">return Result.success(data)</span><br></pre></td></tr></table></figure>
 <p>然后Activity</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(workInfo.state.isFinished) &#123;</span><br><span class="line">    status_textview.append(&quot;\n&quot; + </span><br><span class="line">    workInfo.outputData</span><br><span class="line">   .getString(NotificationWorker.KEY_OUTPUT_TEXT) + &quot;\n&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，传递的对象是一个键值对，其中值可以是字符串或者数据或者原始类型，但是有大小限制。Constant Value: 10240 (0x00002800) 看<a href="https://developer.android.com/reference/androidx/work/Data#MAX_DATA_BYTES" target="_blank" rel="noopener">这里</a></p>
+<p>注意，传递的对象是一个键值对，其中值可以是字符串或者数据或者原始类型，但是有大小限制。Constant Value: 10240 (0x00002800) 看<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/Data#MAX_DATA_BYTES">这里</a></p>
 <h4 id="任务请求队列"><a href="#任务请求队列" class="headerlink" title="任务请求队列"></a>任务请求队列</h4><p>WorkManager使我们可以并行且顺序链接每一个WorkRequests。任务链可以把一个WorkRequest的结果传递给另一个WorkRequest</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workManager = WorkManager.getInstance(applicationContext)</span><br><span class="line">workManager</span><br><span class="line">    .beginWith(Arrays.asList(workRequest1, workRequest2))</span><br><span class="line">    .then(workRequest3)</span><br><span class="line">    .then(workRequest4)</span><br><span class="line">    .enqueue()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">workManager &#x3D; WorkManager.getInstance(applicationContext)</span><br><span class="line">workManager</span><br><span class="line">    .beginWith(Arrays.asList(workRequest1, workRequest2))</span><br><span class="line">    .then(workRequest3)</span><br><span class="line">    .then(workRequest4)</span><br><span class="line">    .enqueue()</span><br></pre></td></tr></table></figure>
 <p>在上面伪代码中，WorkManager将以并行运行的workRequest1和workRequest2开始工作。仅当workRequest1和workRequest2都完成时，workRequest3才会启动，然后是workRequest4</p>
-<p>为了从workRequest1和workRequest2的并行执行中接收workRequest3中的输入，我们可以使用<a href="https://developer.android.com/reference/androidx/work/InputMerger" target="_blank" rel="noopener">InputMerger</a>。</p>
+<p>为了从workRequest1和workRequest2的并行执行中接收workRequest3中的输入，我们可以使用<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/InputMerger">InputMerger</a>。</p>
 <h4 id="设定约束条件"><a href="#设定约束条件" class="headerlink" title="设定约束条件"></a>设定约束条件</h4><p>我们可以在WorkRequest添加一些约束条件，当满足约束条件的时候，工作任务才会开始执行，比如，我们希望仅在电池电量不低时执行工作，我们可以这么写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val constraints : Constraints = Constraints.Builder()</span><br><span class="line">            .setRequiresBatteryNotLow(true)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val constraints : Constraints &#x3D; Constraints.Builder()</span><br><span class="line">            .setRequiresBatteryNotLow(true)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
 <p>并将其设置为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val request : OneTimeWorkRequest = OneTimeWorkRequest.Builder(NotificationWorker::class.java)</span><br><span class="line">            .setInputData(data)</span><br><span class="line">            .setConstraints(constraints)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val request : OneTimeWorkRequest &#x3D; OneTimeWorkRequest.Builder(NotificationWorker::class.java)</span><br><span class="line">            .setInputData(data)</span><br><span class="line">            .setConstraints(constraints)</span><br><span class="line">            .build()</span><br></pre></td></tr></table></figure>
 <p>也有很多种不同的约束条件</p>
 <ul>
 <li>setRequiredNetworkType 它将特定的网络类型设置成要完成的工作的要求，比如，我们想有网络的情况下执行某些任务，我们就可以使用CONNECTED作为约束条件，网络类型其它选项分别是METERED，NOT_ROAMING，UNMETERED。默认值为NOT_REQUIRED。</li>
@@ -302,11 +304,11 @@
 <li>setRequiresDeviceIdle 如果为true，则设备处于空闲状态下才可以执行任务</li>
 <li>setRequiresStorageNotLow 如果为true，则要在存储空间充足时候才可以执行任务</li>
 </ul>
-<p>点击<a href="https://developer.android.com/reference/kotlin/androidx/work/Constraints.Builder" target="_blank" rel="noopener">这里</a>，查看更多约束条件</p>
+<p>点击<a target="_blank" rel="noopener" href="https://developer.android.com/reference/kotlin/androidx/work/Constraints.Builder">这里</a>，查看更多约束条件</p>
 <h4 id="取消工作"><a href="#取消工作" class="headerlink" title="取消工作"></a>取消工作</h4><p>我们可以使用id，tag取消任务</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workManager.cancelWorkById(id)</span><br></pre></td></tr></table></figure>
 <p>cancelAllWork，cancelAllWorkByTag，cancelUniqueWork和cancelWorkById</p>
-<h2 id="最终"><a href="#最终" class="headerlink" title="最终"></a>最终</h2><p>代码地址: <a href="https://github.com/laibinzhi/WorkManagerSample" target="_blank" rel="noopener">https://github.com/laibinzhi/WorkManagerSample</a></p>
+<h2 id="最终"><a href="#最终" class="headerlink" title="最终"></a>最终</h2><p>代码地址: <a target="_blank" rel="noopener" href="https://github.com/laibinzhi/WorkManagerSample">https://github.com/laibinzhi/WorkManagerSample</a></p>
 
       
 
@@ -410,7 +412,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://laibinzhi.top/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -562,10 +564,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MVP</a>
               </li>
              
@@ -582,23 +580,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jetpack</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Room</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,10 +616,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -646,11 +628,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Room</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
               </li>
             
             <div class="clearfix"></div>
