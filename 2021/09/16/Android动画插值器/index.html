@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.laibinzhi.top">
   <title>Android动画插值器Interpolator | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言Android常见的三种动画视图动画之帧动画帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable 12345678// res/drawable/frame_animation.xml&amp;lt;? xml version=&amp;">
-<meta name="keywords" content="Android,动画">
+  <meta name="description" content="前言Android常见的三种动画视图动画之帧动画帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable 12345678&#x2F;&#x2F; res&#x2F;drawable&#x2F;frame_animation.xm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android动画插值器Interpolator">
-<meta property="og:url" content="http://www.laibinzhi.top/2021/09/16/Android动画插值器/index.html">
+<meta property="og:url" content="http://www.laibinzhi.top/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/index.html">
 <meta property="og:site_name" content="智先森的博客">
-<meta property="og:description" content="前言Android常见的三种动画视图动画之帧动画帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable 12345678// res/drawable/frame_animation.xml&amp;lt;? xml version=&amp;">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="前言Android常见的三种动画视图动画之帧动画帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable 12345678&#x2F;&#x2F; res&#x2F;drawable&#x2F;frame_animation.xm">
+<meta property="og:locale">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/LinearInterpolator.gif">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/LinearOutSlowInInterpolator.gif">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/AccelerateInterpolator.gif">
@@ -28,10 +27,12 @@
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/BounceInterpolator.gif">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/PathInterpolator.gif">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/HesitateInterpolator.gif">
-<meta property="og:updated_time" content="2021-09-16T10:23:20.076Z">
+<meta property="article:published_time" content="2021-09-16T10:23:47.000Z">
+<meta property="article:modified_time" content="2021-09-16T10:23:20.076Z">
+<meta property="article:author" content="智先森">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="动画">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android动画插值器Interpolator">
-<meta name="twitter:description" content="前言Android常见的三种动画视图动画之帧动画帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable 12345678// res/drawable/frame_animation.xml&amp;lt;? xml version=&amp;">
 <meta name="twitter:image" content="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/LinearInterpolator.gif">
   
     <link rel="alternative" href="/atom.xml" title="智先森的博客" type="application/atom+xml">
@@ -50,8 +51,12 @@
 
   
 
-</head>
-</html>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -64,10 +69,8 @@
 			<img src="http://lbz-blog.test.upcdn.net/post/touxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">智先森</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">怀着乐观总有转机</p>
 		
 
 		<nav class="header-menu">
@@ -75,7 +78,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 				<li><a href="/photos/">相册</a></li>
 	        
@@ -120,10 +123,8 @@
 				<img src="http://lbz-blog.test.upcdn.net/post/touxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">智先森</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>怀着乐观总有转机<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -151,7 +152,7 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 					<li style="width: 33.333333333333336%"><a href="/photos/">相册</a></li>
 		        
@@ -180,7 +181,7 @@
   
 
         
-        <a href="/2021/09/16/Android动画插值器/" class="archive-article-date">
+        <a href="/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/" class="archive-article-date">
   	<time datetime="2021-09-16T10:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-16</time>
 </a>
         
@@ -189,14 +190,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="Android常见的三种动画"><a href="#Android常见的三种动画" class="headerlink" title="Android常见的三种动画"></a>Android常见的三种动画</h4><h5 id="视图动画之帧动画"><a href="#视图动画之帧动画" class="headerlink" title="视图动画之帧动画"></a>视图动画之帧动画</h5><p>帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// res/drawable/frame_animation.xml</span><br><span class="line">&lt;? xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;? &gt;</span><br><span class="line">&lt;animation-list xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:oneshot=&quot;false&quot;&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/image1&quot; android:duration=&quot;500&quot; /&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/image2&quot; android:duration=&quot;500&quot; /&gt;</span><br><span class="line">    &lt;item android:drawable=&quot;@drawable/image3&quot; android:duration=&quot;500&quot; /&gt;</span><br><span class="line">&lt;/animation-list&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; res&#x2F;drawable&#x2F;frame_animation.xml</span><br><span class="line">&lt;? xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;? &gt;</span><br><span class="line">&lt;animation-list xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    android:oneshot&#x3D;&quot;false&quot;&gt;</span><br><span class="line">    &lt;item android:drawable&#x3D;&quot;@drawable&#x2F;image1&quot; android:duration&#x3D;&quot;500&quot; &#x2F;&gt;</span><br><span class="line">    &lt;item android:drawable&#x3D;&quot;@drawable&#x2F;image2&quot; android:duration&#x3D;&quot;500&quot; &#x2F;&gt;</span><br><span class="line">    &lt;item android:drawable&#x3D;&quot;@drawable&#x2F;image3&quot; android:duration&#x3D;&quot;500&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;animation-list&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>然后将上述的Drawable作为View的背景并通过Drawable来播放动画即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Button mButton = (Button)findViewById(R.id.button1);</span><br><span class="line">mButton.setBackgroundResource(R.drawable.frame_animation);</span><br><span class="line">AnimationDrawable drawable = (AnimationDrawable) mButton.getBackground();</span><br><span class="line">drawable.start();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Button mButton &#x3D; (Button)findViewById(R.id.button1);</span><br><span class="line">mButton.setBackgroundResource(R.drawable.frame_animation);</span><br><span class="line">AnimationDrawable drawable &#x3D; (AnimationDrawable) mButton.getBackground();</span><br><span class="line">drawable.start();</span><br></pre></td></tr></table></figure>
 <p>帧动画的使用比较简单，但是比较容易引起OOM，所以在使用帧动画时应尽量避免使用过多尺寸较大的图片。</p>
 <h5 id="视图动画之补间动画"><a href="#视图动画之补间动画" class="headerlink" title="视图动画之补间动画"></a>视图动画之补间动画</h5><p>tween 动画也叫作补间动画，它可以在一定的时间内使 View 完成四种基本的动画，即平移、缩放、透明度、旋转，也可以将它们组合到一起播放出来。这里先提一下未来会研究的属性动画，值得注意的是，无论是帧动画还是补间动画，都是把动画效果作用到 View 上，如果一个不是View的元素想实现动画，那这两种就无能为力了，只能请属性动画帮忙了。并且补间动画仅仅是给View增加了动画的“假象”，比如一个按钮从左侧跑到了右侧，你在右侧是无法点击它的，但是这不代表补间动画就没有用武之地了，当你需要的动画效果无外乎上面那四种动画，并且仅仅是展示的时候，补间动画就再合适不过了。同样，补间动画的实现依然可以有两种方式，xml定义或者是纯代码的方式，这里依然是建议使用 xml 的方式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> // res/anim/alpha_anim.xml</span><br><span class="line">&lt;alpha xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:duration=&quot;200&quot;</span><br><span class="line">    android:fillAfter=&quot;true&quot;</span><br><span class="line">    android:fromAlpha=&quot;0&quot;</span><br><span class="line">    android:interpolator=&quot;@android:anim/linear_interpolator&quot;</span><br><span class="line">    android:repeatCount=&quot;-1&quot;</span><br><span class="line">    android:repeatMode=&quot;reverse&quot;</span><br><span class="line">    android:shareInterpolator=&quot;false&quot;</span><br><span class="line">    android:toAlpha=&quot;1&quot;&gt;</span><br><span class="line">&lt;/alpha&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Animation alpha = AnimationUtils.loadAnimation(this, R.anim.alpha_anim);</span><br><span class="line">ivFrame.startAnimation(alpha);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F; res&#x2F;anim&#x2F;alpha_anim.xml</span><br><span class="line">&lt;alpha xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    android:duration&#x3D;&quot;200&quot;</span><br><span class="line">    android:fillAfter&#x3D;&quot;true&quot;</span><br><span class="line">    android:fromAlpha&#x3D;&quot;0&quot;</span><br><span class="line">    android:interpolator&#x3D;&quot;@android:anim&#x2F;linear_interpolator&quot;</span><br><span class="line">    android:repeatCount&#x3D;&quot;-1&quot;</span><br><span class="line">    android:repeatMode&#x3D;&quot;reverse&quot;</span><br><span class="line">    android:shareInterpolator&#x3D;&quot;false&quot;</span><br><span class="line">    android:toAlpha&#x3D;&quot;1&quot;&gt;</span><br><span class="line">&lt;&#x2F;alpha&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Animation alpha &#x3D; AnimationUtils.loadAnimation(this, R.anim.alpha_anim);</span><br><span class="line">ivFrame.startAnimation(alpha);</span><br></pre></td></tr></table></figure>
 <h5 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h5><p>属性动画系统是一个强健的框架，用于为几乎任何内容添加动画效果。您可以定义一个随时间更改任何对象属性的动画，无论其是否绘制到屏幕上。属性动画会在指定时长内更改属性（对象中的字段）的值。要添加动画效果，请指定要添加动画效果的对象属性，例如对象在屏幕上的位置、动画效果持续多长时间以及要在哪些值之间添加动画效果。</p>
 <h5 id="属性动画与视图动画的区别"><a href="#属性动画与视图动画的区别" class="headerlink" title="属性动画与视图动画的区别"></a>属性动画与视图动画的区别</h5><p>视图动画系统仅提供为 View 对象添加动画效果的功能，因此，如果您想为非 对象添加动画效果，则必须实现自己的代码才能做到。视图动画系统也存在一些限制，因为它仅公开 对象的部分方面来供您添加动画效果；例如，您可以对视图的缩放和旋转添加动画效果，但无法对背景颜色这样做。</p>
 <p>视图动画系统的另一个缺点是它只会在绘制视图的位置进行修改，而不会修改实际的视图本身。例如，如果您为某个按钮添加了动画效果，使其可以在屏幕上移动，该按钮会正确绘制，但能够点击按钮的实际位置并不会更改，因此您必须通过实现自己的逻辑来处理此事件。</p>
@@ -210,11 +211,12 @@
 <h4 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h4><h5 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h5><ul>
 <li>xml</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:interpolator=&quot;@android:anim/overshoot_interpolator&quot;</span><br><span class="line">    // 通过资源ID设置插值器</span><br><span class="line">    android:duration=&quot;3000&quot;</span><br><span class="line">    android:fromXScale=&quot;0.0&quot;</span><br><span class="line">    android:fromYScale=&quot;0.0&quot;</span><br><span class="line">    android:pivotX=&quot;50%&quot;</span><br><span class="line">    android:pivotY=&quot;50%&quot;</span><br><span class="line">    android:toXScale=&quot;2&quot;</span><br><span class="line">    android:toYScale=&quot;2&quot; /&gt;</span><br><span class="line">————————————————</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;scale xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    android:interpolator&#x3D;&quot;@android:anim&#x2F;overshoot_interpolator&quot;</span><br><span class="line">    &#x2F;&#x2F; 通过资源ID设置插值器</span><br><span class="line">    android:duration&#x3D;&quot;3000&quot;</span><br><span class="line">    android:fromXScale&#x3D;&quot;0.0&quot;</span><br><span class="line">    android:fromYScale&#x3D;&quot;0.0&quot;</span><br><span class="line">    android:pivotX&#x3D;&quot;50%&quot;</span><br><span class="line">    android:pivotY&#x3D;&quot;50%&quot;</span><br><span class="line">    android:toXScale&#x3D;&quot;2&quot;</span><br><span class="line">    android:toYScale&#x3D;&quot;2&quot; &#x2F;&gt;</span><br><span class="line">————————————————</span><br></pre></td></tr></table></figure>
 <ul>
 <li>代码</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ObjectAnimator  animatorOut = ObjectAnimator.ofFloat(followLayout, View.TRANSLATION_X,</span><br><span class="line">             startX, endX);</span><br><span class="line"> animatorOut.setDuration(500);</span><br><span class="line"> animatorOut.setInterpolator(new AccelerateInterpolator());</span><br><span class="line"> animatorOut.addListener(new AnimatorListenerAdapter() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         public void onAnimationEnd(Animator animation) &#123;</span><br><span class="line">         &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> animatorOut.start();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ObjectAnimator  animatorOut &#x3D; ObjectAnimator.ofFloat(followLayout, View.TRANSLATION_X,</span><br><span class="line">             startX, endX);</span><br><span class="line"> animatorOut.setDuration(500);</span><br><span class="line"> animatorOut.setInterpolator(new AccelerateInterpolator());</span><br><span class="line"> animatorOut.addListener(new AnimatorListenerAdapter() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         public void onAnimationEnd(Animator animation) &#123;</span><br><span class="line">         &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> animatorOut.start();</span><br></pre></td></tr></table></figure>
+
 <h5 id="系统内置的插值器"><a href="#系统内置的插值器" class="headerlink" title="系统内置的插值器"></a>系统内置的插值器</h5><ul>
 <li>LinearInterpolator</li>
 </ul>
@@ -297,14 +299,14 @@
 <li>补间动画 实现 Interpolator接口</li>
 <li>属性动画实现TimeInterpolator接口<br>TimeInterpolator接口是属性动画中新增的，用于兼容Interpolator接口，这使得所有过去的Interpolator实现类都可以直接在属性动画使用</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface TimeInterpolator &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 参数：输入值变化范围是0-1，且随着动画进度（0% - 100% ）均匀变化</span><br><span class="line">     * 即动画开始时，input值=0；动画结束时input=1，而中间的值则是随着动画的进* 度（0% - 100%）在0到1之间均匀增加</span><br><span class="line">     * 返回：用于估值器继续计算的fraction值</span><br><span class="line">     */</span><br><span class="line">    float getInterpolation(float input);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public interface TimeInterpolator &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 参数：输入值变化范围是0-1，且随着动画进度（0% - 100% ）均匀变化</span><br><span class="line">     * 即动画开始时，input值&#x3D;0；动画结束时input&#x3D;1，而中间的值则是随着动画的进* 度（0% - 100%）在0到1之间均匀增加</span><br><span class="line">     * 返回：用于估值器继续计算的fraction值</span><br><span class="line">     *&#x2F;</span><br><span class="line">    float getInterpolation(float input);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ul>
 <li>实例</li>
 </ul>
 <p>创建一个以全速开始，然后减慢一半然后再次加速到最后的插值器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class HesitateInterpolator implements Interpolator &#123;</span><br><span class="line">  public HesitateInterpolator() &#123;&#125;</span><br><span class="line">  public float getInterpolation(float t) &#123;</span><br><span class="line">    float x=2.0f*t-1.0f;</span><br><span class="line">    return 0.5f*(x*x*x + 1.0f);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class HesitateInterpolator implements Interpolator &#123;</span><br><span class="line">  public HesitateInterpolator() &#123;&#125;</span><br><span class="line">  public float getInterpolation(float t) &#123;</span><br><span class="line">    float x&#x3D;2.0f*t-1.0f;</span><br><span class="line">    return 0.5f*(x*x*x + 1.0f);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="http://lbz-blog.test.upcdn.net/post/android%20animation%20interpolator/HesitateInterpolator.gif" alt="image"></p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>附上项目的代码地址<a href="https://github.com/laibinzhi/AndroidAnimationInterpolator" target="_blank" rel="noopener">https://github.com/laibinzhi/AndroidAnimationInterpolator</a></p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>附上项目的代码地址<a target="_blank" rel="noopener" href="https://github.com/laibinzhi/AndroidAnimationInterpolator">https://github.com/laibinzhi/AndroidAnimationInterpolator</a></p>
 
       
 
@@ -404,7 +406,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2021/09/16/Android动画插值器/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -418,8 +420,17 @@
   
 <nav id="article-nav">
   
+    <a href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Kotlin-委托
+        
+      </div>
+    </a>
   
-    <a href="/2020/12/28/重学泛型/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2020/12/28/%E9%87%8D%E5%AD%A6%E6%B3%9B%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">重学泛型</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -463,7 +474,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 智先森
+    		&copy; 2022 智先森
     	</div>
     </div>
   </div>
@@ -543,10 +554,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动画</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安卓</a>
               </li>
              
@@ -563,7 +570,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color3">动画</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,7 +578,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jetpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,31 +610,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jetpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Room</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RxJava2</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热更新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,11 +646,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+                <a href="javascript:void(0)" class="js-tag color5">Room</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">热更新</a>
+                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
               </li>
             
             <div class="clearfix"></div>

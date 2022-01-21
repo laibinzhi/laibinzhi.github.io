@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.laibinzhi.top">
   <title>Android插件化原理简述 | 智先森的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="插件化技术出现背景 APP体积越来越庞大，功能模块越来越多 模块耦合度高，协同开发沟通成本极大 方法数可能查过65535，占用内存过大">
-<meta name="keywords" content="Android,安卓,插件化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android插件化原理简述">
-<meta property="og:url" content="http://www.laibinzhi.top/2018/08/17/Android插件化原理简述/index.html">
+<meta property="og:url" content="http://www.laibinzhi.top/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/index.html">
 <meta property="og:site_name" content="智先森的博客">
 <meta property="og:description" content="插件化技术出现背景 APP体积越来越庞大，功能模块越来越多 模块耦合度高，协同开发沟通成本极大 方法数可能查过65535，占用内存过大">
-<meta property="og:locale" content="default">
+<meta property="og:locale">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94.png">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/Manifest%E5%A4%84%E7%90%86.jpg">
 <meta property="og:image" content="http://lbz-blog.test.upcdn.net/post/%E6%8F%92%E4%BB%B6%E7%B1%BB%E5%8A%A0%E8%BD%BD.jpg">
-<meta property="og:updated_time" content="2020-08-13T10:01:39.763Z">
+<meta property="article:published_time" content="2018-08-17T07:18:34.000Z">
+<meta property="article:modified_time" content="2020-08-13T10:01:39.763Z">
+<meta property="article:author" content="智先森">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="安卓">
+<meta property="article:tag" content="插件化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android插件化原理简述">
-<meta name="twitter:description" content="插件化技术出现背景 APP体积越来越庞大，功能模块越来越多 模块耦合度高，协同开发沟通成本极大 方法数可能查过65535，占用内存过大">
 <meta name="twitter:image" content="http://lbz-blog.test.upcdn.net/post/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94.png">
   
     <link rel="alternative" href="/atom.xml" title="智先森的博客" type="application/atom+xml">
@@ -41,8 +43,12 @@
 
   
 
-</head>
-</html>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -55,10 +61,8 @@
 			<img src="http://lbz-blog.test.upcdn.net/post/touxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">智先森</a></h1>
+		  <h1 class="header-author"><a href="/"></a></h1>
 		</hgroup>
-		
-		<p class="header-subtitle">怀着乐观总有转机</p>
 		
 
 		<nav class="header-menu">
@@ -66,7 +70,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 				<li><a href="/photos/">相册</a></li>
 	        
@@ -111,10 +115,8 @@
 				<img src="http://lbz-blog.test.upcdn.net/post/touxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">智先森</h1>
+			  <h1 class="header-author js-header-author"></h1>
 			</hgroup>
-			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>怀着乐观总有转机<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -142,7 +144,7 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 					<li style="width: 33.333333333333336%"><a href="/photos/">相册</a></li>
 		        
@@ -171,7 +173,7 @@
   
 
         
-        <a href="/2018/08/17/Android插件化原理简述/" class="archive-article-date">
+        <a href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" class="archive-article-date">
   	<time datetime="2018-08-17T07:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
 </a>
         
@@ -233,16 +235,16 @@
 <ol start="3">
 <li>实现App module中的代码</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package com.lbz.classloader;</span><br><span class="line"></span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">import dalvik.system.DexClassLoader;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        //声明一个apk path，代表我们当前插件bundle.apk存放的位置</span><br><span class="line">        String apkPath = getExternalCacheDir().getAbsolutePath() + &quot;/bundle.apk&quot;;</span><br><span class="line">        //加载apk</span><br><span class="line">        loadApk(apkPath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void loadApk(String apkPath) &#123;</span><br><span class="line">        File optDir = getDir(&quot;opt&quot;, MODE_PRIVATE);</span><br><span class="line">        //创建一个DexClassLoader对象，通过它加载插件apk中class文件</span><br><span class="line">        //1.apk path要加载apk文件路径</span><br><span class="line">        //2.要将我们解压出来的文件放在哪里？apk是一个压缩文件，classLoader不能直接处理压缩文件，它会将apk文件解压到一个路径中，而第二个参数就是指定我们解压到哪个目录中，必须是内部目录/data</span><br><span class="line">        //3.查找的关联路径，null即可</span><br><span class="line">        //4.当前classLoader它的父classLoader,直接去当前classLoader即可</span><br><span class="line">        DexClassLoader classLoader = new DexClassLoader(apkPath, optDir.getAbsolutePath(), null, this.getClassLoader());</span><br><span class="line">        try &#123;</span><br><span class="line">            //传入插件apk中的类名获取Class字节码对象</span><br><span class="line">            Class cls = classLoader.loadClass(&quot;com.lbz.bundle.BundleUtil&quot;);</span><br><span class="line">            if (cls != null) &#123;</span><br><span class="line">                //通过反射创建它的实例对象</span><br><span class="line">                Object instance = cls.newInstance();</span><br><span class="line">                //通过反射获取它的方法</span><br><span class="line">                Method method = cls.getMethod(&quot;printLog&quot;);</span><br><span class="line">                //通过反射 method.invoke()调用，如果该方法 没有什么异常，他就会打印出BundleUtil中的printLog方法()</span><br><span class="line">                method.invoke(instance);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">package com.lbz.classloader;</span><br><span class="line"></span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line">import dalvik.system.DexClassLoader;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        &#x2F;&#x2F;声明一个apk path，代表我们当前插件bundle.apk存放的位置</span><br><span class="line">        String apkPath &#x3D; getExternalCacheDir().getAbsolutePath() + &quot;&#x2F;bundle.apk&quot;;</span><br><span class="line">        &#x2F;&#x2F;加载apk</span><br><span class="line">        loadApk(apkPath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void loadApk(String apkPath) &#123;</span><br><span class="line">        File optDir &#x3D; getDir(&quot;opt&quot;, MODE_PRIVATE);</span><br><span class="line">        &#x2F;&#x2F;创建一个DexClassLoader对象，通过它加载插件apk中class文件</span><br><span class="line">        &#x2F;&#x2F;1.apk path要加载apk文件路径</span><br><span class="line">        &#x2F;&#x2F;2.要将我们解压出来的文件放在哪里？apk是一个压缩文件，classLoader不能直接处理压缩文件，它会将apk文件解压到一个路径中，而第二个参数就是指定我们解压到哪个目录中，必须是内部目录&#x2F;data</span><br><span class="line">        &#x2F;&#x2F;3.查找的关联路径，null即可</span><br><span class="line">        &#x2F;&#x2F;4.当前classLoader它的父classLoader,直接去当前classLoader即可</span><br><span class="line">        DexClassLoader classLoader &#x3D; new DexClassLoader(apkPath, optDir.getAbsolutePath(), null, this.getClassLoader());</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;&#x2F;传入插件apk中的类名获取Class字节码对象</span><br><span class="line">            Class cls &#x3D; classLoader.loadClass(&quot;com.lbz.bundle.BundleUtil&quot;);</span><br><span class="line">            if (cls !&#x3D; null) &#123;</span><br><span class="line">                &#x2F;&#x2F;通过反射创建它的实例对象</span><br><span class="line">                Object instance &#x3D; cls.newInstance();</span><br><span class="line">                &#x2F;&#x2F;通过反射获取它的方法</span><br><span class="line">                Method method &#x3D; cls.getMethod(&quot;printLog&quot;);</span><br><span class="line">                &#x2F;&#x2F;通过反射 method.invoke()调用，如果该方法 没有什么异常，他就会打印出BundleUtil中的printLog方法()</span><br><span class="line">                method.invoke(instance);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="4">
 <li>在module Bundle 中打一个包apk文件，然后把这个包通过adb push命令上传到我们指定的文件目录中</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ adb push E:/zhiLearn/test/ClassLoader/bundle/build/outputs/apk/debug/bundle.apk \storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[  4%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[  8%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 13%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 17%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 22%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 26%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 30%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 35%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 39%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 44%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 48%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 52%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 57%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 61%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 66%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 70%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 74%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 79%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 83%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 88%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 92%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[ 97%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">[100%] storage/emulated/0/Android/data/com.lbz.classloader/cache/bundle.apk</span><br><span class="line">E:/zhiLearn/test/ClassLoader/bundle/build/outputs/apk/debug/bundle.apk: 1 file pushed. 4.5 MB/s (1485932 bytes in 0.313s)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ adb push E:&#x2F;zhiLearn&#x2F;test&#x2F;ClassLoader&#x2F;bundle&#x2F;build&#x2F;outputs&#x2F;apk&#x2F;debug&#x2F;bundle.apk \storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[  4%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[  8%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 13%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 17%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 22%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 26%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 30%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 35%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 39%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 44%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 48%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 52%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 57%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 61%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 66%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 70%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 74%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 79%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 83%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 88%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 92%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[ 97%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">[100%] storage&#x2F;emulated&#x2F;0&#x2F;Android&#x2F;data&#x2F;com.lbz.classloader&#x2F;cache&#x2F;bundle.apk</span><br><span class="line">E:&#x2F;zhiLearn&#x2F;test&#x2F;ClassLoader&#x2F;bundle&#x2F;build&#x2F;outputs&#x2F;apk&#x2F;debug&#x2F;bundle.apk: 1 file pushed. 4.5 MB&#x2F;s (1485932 bytes in 0.313s)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="5">
-<li>运行宿主app，发现Log打印,成功表明我们的宿主调用我们的插件apk中的类，是在我们没有添加app和bundle联系的情况下通过<em>DexClassLoader</em>加载指定目录下的apk文件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">08-16 14:59:11.675 21886-21886/com.lbz.classloader I/bundle: I am a class in the bundle</span><br></pre></td></tr></table></figure>
-</li>
+<li>运行宿主app，发现Log打印,成功表明我们的宿主调用我们的插件apk中的类，是在我们没有添加app和bundle联系的情况下通过<em>DexClassLoader</em>加载指定目录下的apk文件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">08-16 14:59:11.675 21886-21886&#x2F;com.lbz.classloader I&#x2F;bundle: I am a class in the bundle</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="自定义ClassLoader"><a href="#自定义ClassLoader" class="headerlink" title="自定义ClassLoader"></a>自定义ClassLoader</h4></li>
 </ol>
-<h4 id="自定义ClassLoader"><a href="#自定义ClassLoader" class="headerlink" title="自定义ClassLoader"></a>自定义ClassLoader</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package com.lbz.bundle;</span><br><span class="line"></span><br><span class="line">import java.io.ByteArrayOutputStream;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">import dalvik.system.DexClassLoader;</span><br><span class="line"></span><br><span class="line">public class CustomClassLoader extends DexClassLoader &#123;</span><br><span class="line"></span><br><span class="line">    public CustomClassLoader(String dexPath, String optimizedDirectory, String librarySearchPath, ClassLoader parent) &#123;</span><br><span class="line">        super(dexPath, optimizedDirectory, librarySearchPath, parent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 定义了我们这个CustomClassLoader定义我们要以何种什么策略加载我们的class文件，当然我们这个demo没有什么策略，</span><br><span class="line">     * 就是实现一个流程。</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException &#123;</span><br><span class="line">        byte[] classData = getClassData(name);</span><br><span class="line">        if (classData != null) &#123;</span><br><span class="line">            return defineClass(name, classData, 0, classData.length);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            throw new ClassNotFoundException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private byte[] getClassData(String name) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            InputStream inputStream = new FileInputStream(name);</span><br><span class="line">            ByteArrayOutputStream baos = new ByteArrayOutputStream();</span><br><span class="line">            int bufferSize = 4096;</span><br><span class="line">            byte[] buffer = new byte[bufferSize];</span><br><span class="line">            int bytesNumRead = -1;</span><br><span class="line">            while ((bytesNumRead = inputStream.read(buffer)) != -1) &#123;</span><br><span class="line">                baos.write(buffer, 0, bytesNumRead);</span><br><span class="line">            &#125;</span><br><span class="line">            return baos.toByteArray();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package com.lbz.bundle;</span><br><span class="line"></span><br><span class="line">import java.io.ByteArrayOutputStream;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.InputStream;</span><br><span class="line"></span><br><span class="line">import dalvik.system.DexClassLoader;</span><br><span class="line"></span><br><span class="line">public class CustomClassLoader extends DexClassLoader &#123;</span><br><span class="line"></span><br><span class="line">    public CustomClassLoader(String dexPath, String optimizedDirectory, String librarySearchPath, ClassLoader parent) &#123;</span><br><span class="line">        super(dexPath, optimizedDirectory, librarySearchPath, parent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 定义了我们这个CustomClassLoader定义我们要以何种什么策略加载我们的class文件，当然我们这个demo没有什么策略，</span><br><span class="line">     * 就是实现一个流程。</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Override</span><br><span class="line">    protected Class&lt;?&gt; findClass(String name) throws ClassNotFoundException &#123;</span><br><span class="line">        byte[] classData &#x3D; getClassData(name);</span><br><span class="line">        if (classData !&#x3D; null) &#123;</span><br><span class="line">            return defineClass(name, classData, 0, classData.length);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            throw new ClassNotFoundException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private byte[] getClassData(String name) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            InputStream inputStream &#x3D; new FileInputStream(name);</span><br><span class="line">            ByteArrayOutputStream baos &#x3D; new ByteArrayOutputStream();</span><br><span class="line">            int bufferSize &#x3D; 4096;</span><br><span class="line">            byte[] buffer &#x3D; new byte[bufferSize];</span><br><span class="line">            int bytesNumRead &#x3D; -1;</span><br><span class="line">            while ((bytesNumRead &#x3D; inputStream.read(buffer)) !&#x3D; -1) &#123;</span><br><span class="line">                baos.write(buffer, 0, bytesNumRead);</span><br><span class="line">            &#125;</span><br><span class="line">            return baos.toByteArray();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>我们这个类仅仅模拟如何定义一个自己的classLoader，并没有属于自己的策略，只是简单完成一个通过指定路径完成classes字节码的加载。以及通过获取的字节码转化成的对应class对象。</p>
 <h4 id="是不是要为每一个插件apk都要创建一个classLoader？"><a href="#是不是要为每一个插件apk都要创建一个classLoader？" class="headerlink" title="是不是要为每一个插件apk都要创建一个classLoader？"></a><strong>是不是要为每一个插件apk都要创建一个classLoader</strong>？</h4><p>答案是肯定的。原因：</p>
 <ol>
@@ -261,9 +263,10 @@
 <li>为每个插件apk创建对应的类加载器，资源管理器</li>
 </ol>
 <p>下面通过一个简单的类来模拟为插件apk创建对应的类加载器，资源加载器，为最核心最基本的实现。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">package com.lbz.bundle.plugin;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.res.AssetManager;</span><br><span class="line">import android.content.res.Resources;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line"></span><br><span class="line">import dalvik.system.DexClassLoader;</span><br><span class="line"></span><br><span class="line">public class PluginManager &#123;</span><br><span class="line"></span><br><span class="line">    private static PluginManager mInstance;</span><br><span class="line"></span><br><span class="line">    private static Context mContext;</span><br><span class="line"></span><br><span class="line">    private static File mOptFile;</span><br><span class="line"></span><br><span class="line">    private static HashMap&lt;String, PluginInfo&gt; mPluginMap;</span><br><span class="line"></span><br><span class="line">    private PluginManager(Context context) &#123;</span><br><span class="line">        mContext = context;</span><br><span class="line">        mOptFile = mContext.getDir(&quot;opt&quot;, context.MODE_PRIVATE);</span><br><span class="line">        mPluginMap = new HashMap&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //单例模式</span><br><span class="line">    public static PluginManager getInstance(Context context) &#123;</span><br><span class="line">        if (mInstance == null) &#123;</span><br><span class="line">            synchronized (PluginManager.class) &#123;</span><br><span class="line">                if (mInstance == null) &#123;</span><br><span class="line">                    mInstance = new PluginManager(context);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return mInstance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static DexClassLoader createPluginDexClassLoader(String apkPath) &#123;</span><br><span class="line">        DexClassLoader classLoader = new DexClassLoader(apkPath, mOptFile.getAbsolutePath(), null, null);</span><br><span class="line">        return classLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //为对应的插件创建AssetManager</span><br><span class="line">    private static AssetManager createPluginAssetManager(String apkPath) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            AssetManager assetManager = AssetManager.class.newInstance();</span><br><span class="line">            Method addAssetPath = assetManager.getClass().getMethod(&quot;addAssetPath&quot;, String.class);</span><br><span class="line">            addAssetPath.invoke(assetManager, apkPath);</span><br><span class="line">            return assetManager;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //为对应的插件创建Resources</span><br><span class="line">    private static Resources createPluginResources(String apkPath) &#123;</span><br><span class="line">        AssetManager assetManager = createPluginAssetManager(apkPath);</span><br><span class="line">        Resources superResources = mContext.getResources();</span><br><span class="line">        Resources pluginResources = new Resources(assetManager, superResources.getDisplayMetrics(), superResources.getConfiguration());</span><br><span class="line">        return pluginResources;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static PluginInfo loadApk(String apkPath) &#123;</span><br><span class="line">        if (mPluginMap.get(apkPath) != null) &#123;</span><br><span class="line">            return mPluginMap.get(apkPath);</span><br><span class="line">        &#125;</span><br><span class="line">        PluginInfo pluginInfo = new PluginInfo();</span><br><span class="line">        pluginInfo.mDexClassLoader = createPluginDexClassLoader(apkPath);</span><br><span class="line">        pluginInfo.mAssetManager = createPluginAssetManager(apkPath);</span><br><span class="line">        pluginInfo.mResources = createPluginResources(apkPath);</span><br><span class="line">        mPluginMap.put(apkPath, pluginInfo);</span><br><span class="line">        return pluginInfo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static class PluginInfo &#123;</span><br><span class="line">        public DexClassLoader mDexClassLoader;</span><br><span class="line">        public AssetManager mAssetManager;</span><br><span class="line">        public Resources mResources;</span><br><span class="line">        //</span><br><span class="line">        //...</span><br><span class="line">        //</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插件化框架"><a href="#插件化框架" class="headerlink" title="插件化框架"></a>插件化框架</h2><h3 id="框架对比"><a href="#框架对比" class="headerlink" title="框架对比"></a>框架对比</h3><p>参考Small官方比较：<a href="https://github.com/wequick/Small/blob/master/Android/COMPARISION.md" target="_blank" rel="noopener">COMPARISION.md</a></p>
-<p>为方便列表，简写如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DyLA  : Dynamic-load-apk          @singwhatiwanna, 百度</span><br><span class="line">DiLA  : Direct-Load-apk           @FinalLody</span><br><span class="line">APF   : Android-Plugin-Framework  @limpoxe</span><br><span class="line">ACDD  : ACDD                      @bunnyblue</span><br><span class="line">DyAPK : DynamicAPK                @TediWang, 携程</span><br><span class="line">DPG   : DroidPlugin               @cmzy, 360</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">package com.lbz.bundle.plugin;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.content.res.AssetManager;</span><br><span class="line">import android.content.res.Resources;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line"></span><br><span class="line">import dalvik.system.DexClassLoader;</span><br><span class="line"></span><br><span class="line">public class PluginManager &#123;</span><br><span class="line"></span><br><span class="line">    private static PluginManager mInstance;</span><br><span class="line"></span><br><span class="line">    private static Context mContext;</span><br><span class="line"></span><br><span class="line">    private static File mOptFile;</span><br><span class="line"></span><br><span class="line">    private static HashMap&lt;String, PluginInfo&gt; mPluginMap;</span><br><span class="line"></span><br><span class="line">    private PluginManager(Context context) &#123;</span><br><span class="line">        mContext &#x3D; context;</span><br><span class="line">        mOptFile &#x3D; mContext.getDir(&quot;opt&quot;, context.MODE_PRIVATE);</span><br><span class="line">        mPluginMap &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;单例模式</span><br><span class="line">    public static PluginManager getInstance(Context context) &#123;</span><br><span class="line">        if (mInstance &#x3D;&#x3D; null) &#123;</span><br><span class="line">            synchronized (PluginManager.class) &#123;</span><br><span class="line">                if (mInstance &#x3D;&#x3D; null) &#123;</span><br><span class="line">                    mInstance &#x3D; new PluginManager(context);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return mInstance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static DexClassLoader createPluginDexClassLoader(String apkPath) &#123;</span><br><span class="line">        DexClassLoader classLoader &#x3D; new DexClassLoader(apkPath, mOptFile.getAbsolutePath(), null, null);</span><br><span class="line">        return classLoader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;为对应的插件创建AssetManager</span><br><span class="line">    private static AssetManager createPluginAssetManager(String apkPath) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            AssetManager assetManager &#x3D; AssetManager.class.newInstance();</span><br><span class="line">            Method addAssetPath &#x3D; assetManager.getClass().getMethod(&quot;addAssetPath&quot;, String.class);</span><br><span class="line">            addAssetPath.invoke(assetManager, apkPath);</span><br><span class="line">            return assetManager;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;为对应的插件创建Resources</span><br><span class="line">    private static Resources createPluginResources(String apkPath) &#123;</span><br><span class="line">        AssetManager assetManager &#x3D; createPluginAssetManager(apkPath);</span><br><span class="line">        Resources superResources &#x3D; mContext.getResources();</span><br><span class="line">        Resources pluginResources &#x3D; new Resources(assetManager, superResources.getDisplayMetrics(), superResources.getConfiguration());</span><br><span class="line">        return pluginResources;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static PluginInfo loadApk(String apkPath) &#123;</span><br><span class="line">        if (mPluginMap.get(apkPath) !&#x3D; null) &#123;</span><br><span class="line">            return mPluginMap.get(apkPath);</span><br><span class="line">        &#125;</span><br><span class="line">        PluginInfo pluginInfo &#x3D; new PluginInfo();</span><br><span class="line">        pluginInfo.mDexClassLoader &#x3D; createPluginDexClassLoader(apkPath);</span><br><span class="line">        pluginInfo.mAssetManager &#x3D; createPluginAssetManager(apkPath);</span><br><span class="line">        pluginInfo.mResources &#x3D; createPluginResources(apkPath);</span><br><span class="line">        mPluginMap.put(apkPath, pluginInfo);</span><br><span class="line">        return pluginInfo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static class PluginInfo &#123;</span><br><span class="line">        public DexClassLoader mDexClassLoader;</span><br><span class="line">        public AssetManager mAssetManager;</span><br><span class="line">        public Resources mResources;</span><br><span class="line">        &#x2F;&#x2F;</span><br><span class="line">        &#x2F;&#x2F;...</span><br><span class="line">        &#x2F;&#x2F;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="插件化框架"><a href="#插件化框架" class="headerlink" title="插件化框架"></a>插件化框架</h2><h3 id="框架对比"><a href="#框架对比" class="headerlink" title="框架对比"></a>框架对比</h3><p>参考Small官方比较：<a target="_blank" rel="noopener" href="https://github.com/wequick/Small/blob/master/Android/COMPARISION.md">COMPARISION.md</a></p>
+<p>为方便列表，简写如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DyLA  : Dynamic-load-apk          @singwhatiwanna, 百度</span><br><span class="line">DiLA  : Direct-Load-apk           @FinalLody</span><br><span class="line">APF   : Android-Plugin-Framework  @limpoxe</span><br><span class="line">ACDD  : ACDD                      @bunnyblue</span><br><span class="line">DyAPK : DynamicAPK                @TediWang, 携程</span><br><span class="line">DPG   : DroidPlugin               @cmzy, 360</span><br></pre></td></tr></table></figure>
 <ul>
 <li>功能</li>
 </ul>
@@ -280,9 +283,8 @@
 <th>Small</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td>  加载非独立插件<sup>[1]</sup></td>
+<tbody><tr>
+<td>加载非独立插件<sup>[1]</sup></td>
 <td>×</td>
 <td>x</td>
 <td>√</td>
@@ -292,7 +294,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  加载.so后缀插件</td>
+<td>加载.so后缀插件</td>
 <td>×</td>
 <td>×</td>
 <td>! <sup>[2]</sup></td>
@@ -302,7 +304,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  Activity生命周期</td>
+<td>Activity生命周期</td>
 <td>√</td>
 <td>√</td>
 <td>√</td>
@@ -312,7 +314,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  Service动态注册</td>
+<td>Service动态注册</td>
 <td>×</td>
 <td>×</td>
 <td>√</td>
@@ -322,7 +324,7 @@
 <td>x <sup>[3]</sup></td>
 </tr>
 <tr>
-<td>  资源分包共享<sup>[4]</sup></td>
+<td>资源分包共享<sup>[4]</sup></td>
 <td>×</td>
 <td>×</td>
 <td>! <sup>[5]</sup></td>
@@ -332,7 +334,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  公共插件打包共享<sup>[7]</sup></td>
+<td>公共插件打包共享<sup>[7]</sup></td>
 <td>×</td>
 <td>×</td>
 <td>×</td>
@@ -342,7 +344,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  支持AppCompat<sup>[8]</sup></td>
+<td>支持AppCompat<sup>[8]</sup></td>
 <td>×</td>
 <td>×</td>
 <td>×</td>
@@ -352,7 +354,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  支持本地网页组件</td>
+<td>支持本地网页组件</td>
 <td>×</td>
 <td>×</td>
 <td>×</td>
@@ -362,7 +364,7 @@
 <td>√</td>
 </tr>
 <tr>
-<td>  支持联调插件<sup>[9]</sup></td>
+<td>支持联调插件<sup>[9]</sup></td>
 <td>×</td>
 <td>x</td>
 <td>×</td>
@@ -371,13 +373,12 @@
 <td>×</td>
 <td>√</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
-<p>[1] 独立插件：一个完整的apk包，可以独立运行。比如从你的程序跑起淘宝、QQ，但这加载起来是要闹哪样？<br><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非独立插件：依赖于宿主，宿主是个壳，插件可使用其资源代码并分离之以最小化，这才是业务需要嘛。<br><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;– <em>“所有不能加载非独立插件的插件化框架都是耍流氓”</em>。</p>
+<p>[1] 独立插件：一个完整的apk包，可以独立运行。比如从你的程序跑起淘宝、QQ，但这加载起来是要闹哪样？<br/><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非独立插件：依赖于宿主，宿主是个壳，插件可使用其资源代码并分离之以最小化，这才是业务需要嘛。<br/><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;– _“所有不能加载非独立插件的插件化框架都是耍流氓”_。</p>
 </blockquote>
 <blockquote>
-<p>[2] ACDD加载.so用了Native方法(libdexopt.so)，不是Java层，源码见<a href="https://github.com/bunnyblue/ACDD/blob/master/ACDDCore/jni/dexopt.cpp" target="_blank" rel="noopener">dexopt.cpp</a>。</p>
+<p>[2] ACDD加载.so用了Native方法(libdexopt.so)，不是Java层，源码见<a target="_blank" rel="noopener" href="https://github.com/bunnyblue/ACDD/blob/master/ACDDCore/jni/dexopt.cpp">dexopt.cpp</a>。</p>
 </blockquote>
 <blockquote>
 <p>[3] Service更新频度低，可预先注册在宿主的manifest中，如果没有很好的理由说服我，现不支持。</p>
@@ -386,13 +387,13 @@
 <p>[4] 要实现宿主、各个插件资源可互相访问，需要对他们的资源进行分段处理以避免冲突。</p>
 </blockquote>
 <blockquote>
-<p>[5] 这些框架修改aapt源码、重编、覆盖SDK Manager下载的aapt，我只想说<em>“杀(wan)鸡(de)焉(kai)用(xin)牛(jiu)刀(hao)”</em>。<br><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Small使用gradle-small-plugin，在后期修改二进制文件，实现了<em><strong>PP</strong></em>段分区。</p>
+<p>[5] 这些框架修改aapt源码、重编、覆盖SDK Manager下载的aapt，我只想说_“杀(wan)鸡(de)焉(kai)用(xin)牛(jiu)刀(hao)”<em>。<br/><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Small使用gradle-small-plugin，在后期修改二进制文件，实现了</em><strong>PP</strong>_段分区。</p>
 </blockquote>
 <blockquote>
-<p>[6] 使用public-padding对资源id的<em><strong>TT</strong></em>段进行分区，分开了宿主和插件。但是插件之间无法分段。</p>
+<p>[6] 使用public-padding对资源id的_<strong>TT</strong>_段进行分区，分开了宿主和插件。但是插件之间无法分段。</p>
 </blockquote>
 <blockquote>
-<p>[7] 除了宿主提供一些公共资源与代码外，我们仍需封装一些业务层面的公共库，这些库被其他插件所依赖。<br><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共插件打包的目的就是可以单独更新公共库插件，并且相关插件不需要动到。</p>
+<p>[7] 除了宿主提供一些公共资源与代码外，我们仍需封装一些业务层面的公共库，这些库被其他插件所依赖。<br/><br>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共插件打包的目的就是可以单独更新公共库插件，并且相关插件不需要动到。</p>
 </blockquote>
 <blockquote>
 <p>[8] AppCompat: Android Studio默认添加的主题包，Google主推的Metrial Design包也依赖于此。大势所趋。</p>
@@ -406,39 +407,37 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">ACDD</th>
-<th style="text-align:center">DyAPK</th>
-<th style="text-align:center">APF</th>
-<th style="text-align:center">Small</th>
+<th align="center"></th>
+<th align="center">ACDD</th>
+<th align="center">DyAPK</th>
+<th align="center">APF</th>
+<th align="center">Small</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">插件Activity代码无需修改</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
-<td style="text-align:center">√</td>
+<tbody><tr>
+<td align="center">插件Activity代码无需修改</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
 </tr>
 <tr>
-<td style="text-align:center">插件引用外部资源无需修改name</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">√</td>
+<td align="center">插件引用外部资源无需修改name</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
 </tr>
 <tr>
-<td style="text-align:center">插件模块无需修改build.gradle</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">×</td>
-<td style="text-align:center">√</td>
+<td align="center">插件模块无需修改build.gradle</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>如何选择？</p>
-<p><strong>只有Small和Atlas更新比较频繁，其余的基本超过一年两年没有更新了，不建议再使用，small对比于atlas较为简单，容易集成，建议使用<a href="https://github.com/wequick/Small" target="_blank" rel="noopener">small</a></strong></p>
+<p><strong>只有Small和Atlas更新比较频繁，其余的基本超过一年两年没有更新了，不建议再使用，small对比于atlas较为简单，容易集成，建议使用<a target="_blank" rel="noopener" href="https://github.com/wequick/Small">small</a></strong></p>
 
       
 
@@ -542,7 +541,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2018/08/17/Android插件化原理简述/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.laibinzhi.top/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -556,7 +555,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/14/在Android应用程序配置Segment/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/09/14/%E5%9C%A8Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AESegment/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -566,7 +565,7 @@
     </a>
   
   
-    <a href="/2018/08/03/基于RxJava2的轻量级图片缓存框架/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">基于RxJava2的轻量级图片缓存框架</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -610,7 +609,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 智先森
+    		&copy; 2022 智先森
     	</div>
     </div>
   </div>
@@ -690,10 +689,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">动画</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安卓</a>
               </li>
              
@@ -710,7 +705,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color3">动画</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,7 +713,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jetpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,31 +745,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jetpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Room</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">RxJava2</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">热更新</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">插件化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -782,11 +781,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">热修复</a>
+                <a href="javascript:void(0)" class="js-tag color5">Room</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">热更新</a>
+                <a href="javascript:void(0)" class="js-tag color2">WorkManager</a>
               </li>
             
             <div class="clearfix"></div>
