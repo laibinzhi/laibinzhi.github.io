@@ -72,7 +72,7 @@ google_analytics: ''
 favicon: '/assets/img/favicon.png'
 
 #你的头像url
-avatar: http://lbz-blog.test.upcdn.net/post/touxiang.jpg
+avatar: https://avatars.githubusercontent.com/u/19219954?s=400&u=e69319821b62a190ea27be95c6b0905832b622cc&v=4
 
 #是否开启分享
 share_jia: true
