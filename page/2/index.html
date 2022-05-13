@@ -154,6 +154,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Jetpack-WorkManager了解和使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/">Jetpack-WorkManager了解和使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-08-14T03:38:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/WorkManager">WorkManager</a>是<a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/getting-started">Android Jetpack</a>库，可将可延期的执行的后台任务加入任务队列，并且仅在满足其<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/Constraints.Builder">约束条件</a>时保证其任务执行。</p>
+<p>在这篇博客中，我们需要掌握的是：</p>
+<ul>
+<li>了解WorkManager及其内部运作方式？</li>
+<li>什么时候可以使用WorkManager？</li>
+<li>WorkManager的用例</li>
+<li>为什么要使用WorkManager</li>
+<li>怎么实现WorkManager</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jetpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-基于Jetpack-MVVM-Kotlin-Coroutine的App" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -932,94 +1024,6 @@
 
 
   
-    <article id="post-基于RxJava2的轻量级图片缓存框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/">基于RxJava2的轻量级图片缓存框架</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2018-08-03T03:51:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>Android的图片缓存框架有很多，在<a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">Universal-Image-Loader</a>断更之后，就经常使用<a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a>和<a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a>。基于RxJava2的框架实现一个轻量级的图片缓存（三级缓存），加载图片的流程图如图所示:</p>
-        
-          <a class="article-more-a" href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RxJava2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1239,6 +1243,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Gson</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
               </li>
             
             <div class="clearfix"></div>
