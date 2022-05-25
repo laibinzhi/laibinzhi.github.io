@@ -154,6 +154,113 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Android-UI绘制流程及原理2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/">Android-UI绘制流程及原理2</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/" class="archive-article-date">
+  	<time datetime="2022-05-25T02:36:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前面<a href="https://www.laibinzhi.top/2019/08/07/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86/">Android-UI绘制流程及原理</a>中我们了解到View的绘制流程三大步骤：测量，布局，绘制，我们接着去看他们每一步又干了什么事情</p>
+<h2 id="UI绘制详细步骤"><a href="#UI绘制详细步骤" class="headerlink" title="UI绘制详细步骤"></a>UI绘制详细步骤</h2><ul>
+<li><p>测量performMeasure</p>
+<blockquote>
+<p>view.measure  —&gt; view.onMeasure —&gt; view.setMeasuredDimension </p>
+<p>—&gt;setMeasuredDimensionRaw</p>
+</blockquote>
+</li>
+<li><p>布局performLayout</p>
+<blockquote>
+<p>view.layout —&gt; view.onLayout</p>
+</blockquote>
+</li>
+<li><p>绘制performDraw</p>
+<blockquote>
+<p>ViewRootImpl.draw(fullRedrawNeeded) —&gt; ViewRootImpl.drawSoftware</p>
+<p>—&gt;view.draw(Canvas)</p>
+</blockquote>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android虚拟机以及类加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1000,89 +1107,6 @@
 
 
   
-    <article id="post-Kotlin-委托" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/">Kotlin-委托</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/" class="archive-article-date">
-  	<time datetime="2022-01-21T14:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目地址<a target="_blank" rel="noopener" href="https://github.com/laibinzhi/KotlinDelegation">https://github.com/laibinzhi/KotlinDelegation</a></p>
-<h1 id="类委托"><a href="#类委托" class="headerlink" title="类委托"></a>类委托</h1><h3 id="首先从类委托开始"><a href="#首先从类委托开始" class="headerlink" title="首先从类委托开始"></a>首先从类委托开始</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">interface IWork &#123;</span><br><span class="line">    fun work()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Teacher : IWork &#123;</span><br><span class="line">    override fun work() &#123;</span><br><span class="line">        println(&quot;I am a teacher&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Police : IWork &#123;</span><br><span class="line">    override fun work() &#123;</span><br><span class="line">        println(&quot;I am a Police&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Tony(work: IWork) : IWork by work</span><br><span class="line"></span><br><span class="line">fun main() &#123;</span><br><span class="line">    Tony(Teacher()).work()</span><br><span class="line">    Tony(Police()).work()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打印:</span><br><span class="line">I am a teacher</span><br><span class="line">I am a Police</span><br></pre></td></tr></table></figure>
-<p>以上的代码当中，我们定义了一个 IWork 接口，它的 work() 方法用于表示该工作，Teacher 和 Police 都实现了这个接口。接着，我们的 Tony 也实现了这个接口，同时通过 by 这个关键字，将接口的实现委托给了它的参数 work。这种委托模式在我们的实际编程中十分常见，Tony 相当于一个壳，它虽然实现了 IWork 这个接口，但并不关心它怎么实现。具体是用 Teacher 还是 Police，传不同的委托对象进去，它就会有不同的行为。另外，以上委托类的写法，等价于以下 Java 代码，我们可以再进一步来看下：</p>
-        
-          <a class="article-more-a" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1310,6 +1334,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">View</a>
               </li>
             
             <div class="clearfix"></div>

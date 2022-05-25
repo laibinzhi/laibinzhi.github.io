@@ -154,6 +154,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Kotlin-委托" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/">Kotlin-委托</a>
+    </h1>
+  
+
+        
+        <a href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/" class="archive-article-date">
+  	<time datetime="2022-01-21T14:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目地址<a target="_blank" rel="noopener" href="https://github.com/laibinzhi/KotlinDelegation">https://github.com/laibinzhi/KotlinDelegation</a></p>
+<h1 id="类委托"><a href="#类委托" class="headerlink" title="类委托"></a>类委托</h1><h3 id="首先从类委托开始"><a href="#首先从类委托开始" class="headerlink" title="首先从类委托开始"></a>首先从类委托开始</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">interface IWork &#123;</span><br><span class="line">    fun work()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Teacher : IWork &#123;</span><br><span class="line">    override fun work() &#123;</span><br><span class="line">        println(&quot;I am a teacher&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Police : IWork &#123;</span><br><span class="line">    override fun work() &#123;</span><br><span class="line">        println(&quot;I am a Police&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Tony(work: IWork) : IWork by work</span><br><span class="line"></span><br><span class="line">fun main() &#123;</span><br><span class="line">    Tony(Teacher()).work()</span><br><span class="line">    Tony(Police()).work()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打印:</span><br><span class="line">I am a teacher</span><br><span class="line">I am a Police</span><br></pre></td></tr></table></figure>
+<p>以上的代码当中，我们定义了一个 IWork 接口，它的 work() 方法用于表示该工作，Teacher 和 Police 都实现了这个接口。接着，我们的 Tony 也实现了这个接口，同时通过 by 这个关键字，将接口的实现委托给了它的参数 work。这种委托模式在我们的实际编程中十分常见，Tony 相当于一个壳，它虽然实现了 IWork 这个接口，但并不关心它怎么实现。具体是用 Teacher 还是 Police，传不同的委托对象进去，它就会有不同的行为。另外，以上委托类的写法，等价于以下 Java 代码，我们可以再进一步来看下：</p>
+        
+          <a class="article-more-a" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android动画插值器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -789,9 +872,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="源码讲解"><a href="#源码讲解" class="headerlink" title="源码讲解"></a>源码讲解</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="源码讲解"><a href="#源码讲解" class="headerlink" title="源码讲解"></a>源码讲解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>我们加载view的时候会在onCreate()调用setContentView()传入布局资源ID,我们点进去这个方法，看看我们的view是怎么被投放在屏幕窗口上的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">     * Set the activity content from a layout resource.  The resource will be</span><br><span class="line">     * inflated, adding all top-level views to the activity.</span><br><span class="line">     *</span><br><span class="line">     * @param layoutResID Resource ID to be inflated.</span><br><span class="line">     *</span><br><span class="line">     * @see #setContentView(android.view.View)</span><br><span class="line">     * @see #setContentView(android.view.View, android.view.ViewGroup.LayoutParams)</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void setContentView(@LayoutRes int layoutResID) &#123;</span><br><span class="line">        getWindow().setContentView(layoutResID);</span><br><span class="line">        initWindowDecorActionBar();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(<span class="meta">@LayoutRes</span> <span class="keyword">int</span> layoutResID)</span> </span>&#123;</span><br><span class="line">    getWindow().setContentView(layoutResID);</span><br><span class="line">    initWindowDecorActionBar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2019/08/07/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86/#more">more >></a>
         
@@ -816,6 +899,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
         		</li>
       		
 		</ul>
@@ -984,92 +1071,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/12/03/Android%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E5%B0%81%E8%A3%85%E5%BA%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-封装第三方登录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/19/%E5%B0%81%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/">封装第三方登录</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/19/%E5%B0%81%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2018-11-19T01:59:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>封装QQ,WeChat,WeiBo第三方登录的一个库（不包含分享）</p>
-<h1 id="快速集成"><a href="#快速集成" class="headerlink" title="快速集成"></a>快速集成</h1><ol>
-<li>引入库</li>
-</ol>
-<ul>
-<li>方法一，下载整个<a target="_blank" rel="noopener" href="https://github.com/laibinzhi/SocialLoginDemo">项目</a>,把moudle模块*<strong>third_party_login**<em>整个文件夹复制到你项目根目录，在app的build.gradle中的</em></strong>dependencies***添加如下代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation project(&#39;:third_party_login&#39;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>然后在settings.gradle中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include &#39;:app&#39;, &#39;:third_party_login&#39;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>然后rebuild一下就ok了。</p>
-        
-          <a class="article-more-a" href="/2018/11/19/%E5%B0%81%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/19/%E5%B0%81%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95/">展开全文 >></a>
         </p>
       
 
@@ -1326,6 +1327,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">View</a>
               </li>
             
             <div class="clearfix"></div>
