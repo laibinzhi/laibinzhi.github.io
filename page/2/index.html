@@ -154,6 +154,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-注解与反射以及动态代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">注解与反射以及动态代理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="archive-article-date">
+  	<time datetime="2022-04-22T09:58:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注解与反射以及动态代理"><a href="#注解与反射以及动态代理" class="headerlink" title="注解与反射以及动态代理"></a>注解与反射以及动态代理</h1><h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="注解的定义"><a href="#注解的定义" class="headerlink" title="注解的定义"></a>注解的定义</h3><p>Annotation（注解）就是Java提供了一种元程序中的元素关联任何信息和着任何元数据（metadata）的途径和方法。</p>
+<p>基本规则：Annotation不能影响程序代码的执行，无论增加、删除 Annotation，代码都始终如一的执行。</p>
+<h3 id="什么是元数据"><a href="#什么是元数据" class="headerlink" title="什么是元数据"></a>什么是元数据</h3><ol>
+<li>元数据以标签的形式存在于Java代码中。</li>
+<li>元数据描述的信息是类型安全的，即元数据内部的字段都是有明确类型的。</li>
+<li>元数据需要编译器之外的工具额外的处理用来生成其它的程序部件。</li>
+<li>元数据可以只存在于Java源代码级别，也可以存在于编译之后的Class文件内部。</li>
+</ol>
+<h3 id="注解的原理"><a href="#注解的原理" class="headerlink" title="注解的原理"></a>注解的原理</h3><p>当Java源代码被编译时，编译器的一个插件annotation处理器则会处理这些annotation。处理器可以产生报告信息，或者创建附加的Java源文件或资源。如果annotation本身被加上了RententionPolicy的运行时类，则Java编译器则会将annotation的元数据存储到class文件中。然后，Java虚拟机或其他的程序可以查找这些元数据并做相应的处理。当然除了annotation处理器可以处理annotation外，我们也可以使用反射自己来处理annotation</p>
+<h3 id="注解的分类"><a href="#注解的分类" class="headerlink" title="注解的分类"></a>注解的分类</h3><h4 id="系统内置标准注解"><a href="#系统内置标准注解" class="headerlink" title="系统内置标准注解"></a>系统内置标准注解</h4><ol>
+<li>@Override(标记注解类型)</li>
+<li>@Deprecated(标志已过时)，</li>
+<li>@SuppressWarnings(抑制编译器警告)</li>
+</ol>
+        
+          <a class="article-more-a" href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">注解</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">代理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Kotlin-委托" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1022,87 +1127,9 @@
 
 
   
-    <article id="post-Android微信支付宝支付封装库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/03/Android%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E5%B0%81%E8%A3%85%E5%BA%93/">Android微信支付宝支付封装库</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/03/Android%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E5%B0%81%E8%A3%85%E5%BA%93/" class="archive-article-date">
-  	<time datetime="2018-12-03T08:31:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>封装支付宝和微信第三方支付的一个库</p>
-<h1 id="快速集成"><a href="#快速集成" class="headerlink" title="快速集成"></a>快速集成</h1><p>1.在项目根目录build.gradle中allprojects添加对aar的支持。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        &#x2F;&#x2F; 添加下面的内容</span><br><span class="line">        flatDir &#123;</span><br><span class="line">            dirs &#39;libs&#39;</span><br><span class="line">        &#125;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">        maven &#123; url &quot;https:&#x2F;&#x2F;jitpack.io&quot; &#125;</span><br><span class="line">        maven &#123; url &quot;https:&#x2F;&#x2F;dl.bintray.com&#x2F;thelasterstar&#x2F;maven&#x2F;&quot; &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url &#39;https:&#x2F;&#x2F;dl.bintray.com&#x2F;laibinzhi&#x2F;maven&#x2F;&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/12/03/Android%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E5%B0%81%E8%A3%85%E5%BA%93/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/03/Android%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%E5%B0%81%E8%A3%85%E5%BA%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
