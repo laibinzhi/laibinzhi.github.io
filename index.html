@@ -154,6 +154,292 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Binder源码解析（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">Binder源码解析（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2022-06-02T02:07:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Binder源码解析（二）"><a href="#Binder源码解析（二）" class="headerlink" title="Binder源码解析（二）"></a>Binder源码解析（二）</h1><h3 id="Binder系列传送门"><a href="#Binder系列传送门" class="headerlink" title="Binder系列传送门"></a>Binder系列传送门</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104338528439369758">Android Framework Binder 总结</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104343457610596360/">Binder源码解析（一）</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104340048920707080">Binder源码解析（二）</a></p>
+<h3 id="ServiceManager的启动流程"><a href="#ServiceManager的启动流程" class="headerlink" title="ServiceManager的启动流程"></a>ServiceManager的启动流程</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">system\core\roodir\init.rc：</span><br><span class="line">service servicemanager /system/bin/servicemanager       <span class="comment">//可知孵化器的目录为servicemanager</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">core</span></span></span><br><span class="line"><span class="class">    <span class="title">user</span> <span class="title">system</span></span></span><br><span class="line"><span class="class">    <span class="title">group</span> <span class="title">system</span></span></span><br><span class="line"><span class="class">    <span class="title">critical</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">healthd</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">zygote</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">media</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">surfaceflinger</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">drm</span></span></span><br></pre></td></tr></table></figure>
+<p>分析Android启动流程可知，Android启动时会解析init.rc，servicemanager 服务的孵化器的目录为/system/bin/servicemanager，在此目录下有service_manager.c、binder.c</p>
+        
+          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Binder源码解析（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">Binder源码解析（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2022-06-02T02:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Binder源码解析（一）"><a href="#Binder源码解析（一）" class="headerlink" title="Binder源码解析（一）"></a>Binder源码解析（一）</h1><h3 id="Binder系列传送门"><a href="#Binder系列传送门" class="headerlink" title="Binder系列传送门"></a>Binder系列传送门</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104338528439369758">Android Framework Binder 总结</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104343457610596360/">Binder源码解析（一）</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104340048920707080">Binder源码解析（二）</a></p>
+<h3 id="Binder的jni方法注册"><a href="#Binder的jni方法注册" class="headerlink" title="Binder的jni方法注册"></a>Binder的jni方法注册</h3><h4 id="1-zygote启动"><a href="#1-zygote启动" class="headerlink" title="1. zygote启动"></a>1. zygote启动</h4><h5 id="1-1-启动zygote进程"><a href="#1-1-启动zygote进程" class="headerlink" title="1.1 启动zygote进程"></a>1.1 启动zygote进程</h5><p><strong>zygote</strong>是由init进程通过解析 init.zygote.rc 文件而创建的，zygote所对应的可执行程序app_process，所对应的源文件是 app_main.cpp ，进程名为zygote。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; system&#x2F;core&#x2F;rootdir&#x2F;init.zygote32.rc </span><br><span class="line">service zygote &#x2F;system&#x2F;bin&#x2F;app_process -Xzygote &#x2F;system&#x2F;bin --zygote --start-system-server</span><br><span class="line">    class main</span><br><span class="line">    socket zygote stream 660 root system</span><br><span class="line">    onrestart write &#x2F;sys&#x2F;android_power&#x2F;request_state wake</span><br><span class="line">    onrestart write &#x2F;sys&#x2F;power&#x2F;state on</span><br><span class="line">    onrestart restart media</span><br><span class="line">    onrestart restart netd</span><br><span class="line">    writepid &#x2F;dev&#x2F;cpuset&#x2F;foreground&#x2F;tasks</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android-Framework-Binder-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/">Android Framework Binder 总结</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2022-06-02T02:07:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-Framework-Binder-总结"><a href="#Android-Framework-Binder-总结" class="headerlink" title="Android Framework Binder 总结"></a>Android Framework Binder 总结</h1><h3 id="Binder系列传送门"><a href="#Binder系列传送门" class="headerlink" title="Binder系列传送门"></a>Binder系列传送门</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104338528439369758">Android Framework Binder 总结</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104343457610596360/">Binder源码解析（一）</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104340048920707080">Binder源码解析（二）</a></p>
+<h2 id="一，Binder的定义"><a href="#一，Binder的定义" class="headerlink" title="一，Binder的定义"></a>一，Binder的定义</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>定义</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>从机制、模型角度</td>
+<td>Binder是一种Android的实现跨进程通信（IPC）的方式（即<strong>Binder机制</strong>模型）</td>
+<td>在Android中实现跨进程通信</td>
+</tr>
+<tr>
+<td>从模型的结构、组成角度</td>
+<td>Binder是一种虚拟的物理设备驱动（即<strong>Binder驱动</strong>）</td>
+<td>连接Service、Client和Service Manager进程</td>
+</tr>
+<tr>
+<td>从Android代码的实现角度</td>
+<td>Binder是一个类，实现了IBinder接口（即<strong>Binder</strong>类）</td>
+<td>将Binder机制模型以代码的形式具体是现在Android中</td>
+</tr>
+</tbody></table>
+        
+          <a class="article-more-a" href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android异步消息处理机制完全解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -791,286 +1077,6 @@
 
 
   
-    <article id="post-JVM总结一：内存管理深度解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%80%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">JVM总结一：内存管理深度解析</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%80%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2022-05-24T08:25:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JVM总结一：内存管理深度解析"><a href="#JVM总结一：内存管理深度解析" class="headerlink" title="JVM总结一：内存管理深度解析"></a>JVM总结一：内存管理深度解析</h1><h2 id="一，JVM基础知识以及和操作系统的关系"><a href="#一，JVM基础知识以及和操作系统的关系" class="headerlink" title="一，JVM基础知识以及和操作系统的关系"></a>一，JVM基础知识以及和操作系统的关系</h2><h4 id="Java-Virtual-Machine"><a href="#Java-Virtual-Machine" class="headerlink" title="Java Virtual Machine"></a>Java Virtual Machine</h4><p>JVM 全称 <strong>Java Virtual Machine</strong>，也就是我们耳熟能详的 Java 虚拟机。它能识别 .class后缀的文件，并且能够解析它的指令，最终调用操作系统上的函数，完成我们想要的操作。</p>
-<p>我们所说的 JVM，狭义上指的就 <strong>HotSpot</strong>（因为JVM有很多版本，但是使用最多的是<strong>HotSpot</strong>）。如非特殊说明，我们都以 HotSpot 为准。</p>
-<h4 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h4><p>Java 程序不一样，使用 javac 编译成 .class 文件之后，还需要使用 Java 命令去主动执行它，操作系统并不认识这些 .class 文件。所以JVM就是一个翻译。</p>
-<p><img src="https://s2.loli.net/2022/05/23/MDsdQOKinGRJBek.png" alt="JVM和操作系统的关系.drawio"></p>
-        
-          <a class="article-more-a" href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%80%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%80%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RxJava源码解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/13/RxJava%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">RxJava源码解析</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/13/RxJava%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2022-05-13T02:03:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="RxJava源码解析"><a href="#RxJava源码解析" class="headerlink" title="RxJava源码解析"></a>RxJava源码解析</h1><h2 id="一，简单使用"><a href="#一，简单使用" class="headerlink" title="一，简单使用"></a>一，简单使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(<span class="meta">@NonNull</span> ObservableEmitter&lt;String&gt; emitter)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">             emitter.onNext(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br><span class="line">     Observer&lt;String&gt; observer = <span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(<span class="meta">@NonNull</span> Disposable d)</span> </span>&#123;</span><br><span class="line">             Log.d(TAG, <span class="string">&quot;onSubscribe() called with: d = [&quot;</span> + d + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(<span class="meta">@NonNull</span> String s)</span> </span>&#123;</span><br><span class="line">             Log.d(TAG, <span class="string">&quot;onNext() called with: s = [&quot;</span> + s + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(<span class="meta">@NonNull</span> Throwable e)</span> </span>&#123;</span><br><span class="line">             Log.d(TAG, <span class="string">&quot;onError() called with: e = [&quot;</span> + e + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">             Log.d(TAG, <span class="string">&quot;onComplete() called&quot;</span>);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;;</span><br><span class="line">     observable.subscribe(observer);</span><br></pre></td></tr></table></figure>
-<p><strong>目标：</strong></p>
-<ul>
-<li><p>被观察者 Observable 如何生产事件的？</p>
-</li>
-<li><p>被观察者 Observable 何时生产事件的？</p>
-</li>
-<li><p>观察者 Observer 是何时接收到上游事件的？</p>
-</li>
-<li><p>Observable 与 Observer 是如何关联在一起的？</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2022/05/13/RxJava%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">RxJava</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/13/RxJava%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Gson源码解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/09/Gson%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">Gson源码解析</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/09/Gson%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2022-05-09T02:23:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Gson源码解析"><a href="#Gson源码解析" class="headerlink" title="Gson源码解析"></a>Gson源码解析</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Gson 是一个 Java 库，可用于将 Java 对象转换为其 JSON 表示形式。它还可用于将 JSON 字符串转换为等效的 Java 对象。</p>
-<p><strong>地址</strong><a target="_blank" rel="noopener" href="https://github.com/google/gson">https://github.com/google/gson</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">  implementation &#39;com.google.code.gson:gson:2.9.0&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2022/05/09/Gson%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">序列化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Gson</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/09/Gson%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1310,6 +1316,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FrameWork</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binder</a>
               </li>
             
             <div class="clearfix"></div>

@@ -154,6 +154,296 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Jetpack-Room-WorkManager在Android架构组件下的实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/">Jetpack Room+WorkManager在Android架构组件下的实战</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  	<time datetime="2020-08-19T02:53:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在空闲的时候，就要写代码来巩固以下自己的知识体系。所以呢，使用Room和WorkManager在Android架构组件下，实现一个查看Task列表，左滑右滑删除item，新建附带提醒功能的Task的App。</p>
+<p>本文会牵涉以下知识点</p>
+<ul>
+<li>Android架构组件</li>
+<li>Jetpack - Room</li>
+<li>Jetpack - WorkManager</li>
+<li>Kotlin Coroutines</li>
+<li>Recyclerview 自定义左滑右滑事件的实现</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jetpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Room</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">WorkManager</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/19/Jetpack-Room-WorkManager%E5%9C%A8Android%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%AE%9E%E6%88%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Jetpack-WorkManager了解和使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/">Jetpack-WorkManager了解和使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-08-14T03:38:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/WorkManager">WorkManager</a>是<a target="_blank" rel="noopener" href="https://developer.android.com/jetpack/getting-started">Android Jetpack</a>库，可将可延期的执行的后台任务加入任务队列，并且仅在满足其<a target="_blank" rel="noopener" href="https://developer.android.com/reference/androidx/work/Constraints.Builder">约束条件</a>时保证其任务执行。</p>
+<p>在这篇博客中，我们需要掌握的是：</p>
+<ul>
+<li>了解WorkManager及其内部运作方式？</li>
+<li>什么时候可以使用WorkManager？</li>
+<li>WorkManager的用例</li>
+<li>为什么要使用WorkManager</li>
+<li>怎么实现WorkManager</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jetpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/14/Jetpack-WorkManager%E4%BA%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-基于Jetpack-MVVM-Kotlin-Coroutine的App" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/13/%E5%9F%BA%E4%BA%8EJetpack-MVVM-Kotlin-Coroutine%E7%9A%84App/">基于Jetpack+MVVM+Kotlin Coroutine的App</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/13/%E5%9F%BA%E4%BA%8EJetpack-MVVM-Kotlin-Coroutine%E7%9A%84App/" class="archive-article-date">
+  	<time datetime="2020-08-13T09:36:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Architecture Components</p>
+<ul>
+<li>Jetpack</li>
+<li>Room</li>
+<li>Paging3</li>
+<li>DataBinding</li>
+<li>ViewModel</li>
+<li>LiveData</li>
+<li>Hilt</li>
+<li>Kotlin Coroutine</li>
+<li>ViewPager2
+        
+          <a class="article-more-a" href="/2020/08/13/%E5%9F%BA%E4%BA%8EJetpack-MVVM-Kotlin-Coroutine%E7%9A%84App/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jetpack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MVVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/13/%E5%9F%BA%E4%BA%8EJetpack-MVVM-Kotlin-Coroutine%E7%9A%84App/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android-UI绘制流程及原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -751,273 +1041,6 @@
 
 
   
-    <article id="post-Android插件化原理简述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/">Android插件化原理简述</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/" class="archive-article-date">
-  	<time datetime="2018-08-17T07:18:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="插件化技术出现背景"><a href="#插件化技术出现背景" class="headerlink" title="插件化技术出现背景"></a>插件化技术出现背景</h2><ul>
-<li><h4 id="APP体积越来越庞大，功能模块越来越多"><a href="#APP体积越来越庞大，功能模块越来越多" class="headerlink" title="APP体积越来越庞大，功能模块越来越多"></a>APP体积越来越庞大，功能模块越来越多</h4></li>
-<li><h4 id="模块耦合度高，协同开发沟通成本极大"><a href="#模块耦合度高，协同开发沟通成本极大" class="headerlink" title="模块耦合度高，协同开发沟通成本极大"></a>模块耦合度高，协同开发沟通成本极大</h4></li>
-<li><h4 id="方法数可能查过65535，占用内存过大"><a href="#方法数可能查过65535，占用内存过大" class="headerlink" title="方法数可能查过65535，占用内存过大"></a>方法数可能查过65535，占用内存过大</h4>
-        
-          <a class="article-more-a" href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">插件化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/17/Android%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86%E7%AE%80%E8%BF%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于RxJava2的轻量级图片缓存框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/">基于RxJava2的轻量级图片缓存框架</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2018-08-03T03:51:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h1><p>Android的图片缓存框架有很多，在<a target="_blank" rel="noopener" href="https://github.com/nostra13/Android-Universal-Image-Loader">Universal-Image-Loader</a>断更之后，就经常使用<a target="_blank" rel="noopener" href="https://github.com/bumptech/glide">Glide</a>和<a target="_blank" rel="noopener" href="https://github.com/square/picasso">Picasso</a>。基于RxJava2的框架实现一个轻量级的图片缓存（三级缓存），加载图片的流程图如图所示:</p>
-        
-          <a class="article-more-a" href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">RxJava2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/03/%E5%9F%BA%E4%BA%8ERxJava2%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%A1%86%E6%9E%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android-MVP框架的项目分享" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/Android-MVP%E6%A1%86%E6%9E%B6%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/">Android MVP框架的项目分享</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/03/Android-MVP%E6%A1%86%E6%9E%B6%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/" class="archive-article-date">
-  	<time datetime="2018-08-03T03:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h1><p>一个AppStore，基于 Material Design + MVP + Retrofit +Dagger2+Rx全家桶，基本涵盖了当前 Android 端开发最常用的主流框架，基于此框架可以快速开发一个app。</p>
-        
-          <a class="article-more-a" href="/2018/08/03/Android-MVP%E6%A1%86%E6%9E%B6%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MVP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dagger2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/03/Android-MVP%E6%A1%86%E6%9E%B6%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1257,6 +1280,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">FrameWork</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binder</a>
               </li>
             
             <div class="clearfix"></div>
