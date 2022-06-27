@@ -154,32 +154,37 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Android系统启动流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-性能优化-卡顿分析以及布局优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/02/Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">Android系统启动流程</a>
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%8D%A1%E9%A1%BF%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96/">性能优化-卡顿分析以及布局优化</a>
     </h1>
   
 
         
-        <a href="/2022/06/02/Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2022-06-02T11:22:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%8D%A1%E9%A1%BF%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:56:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android系统启动流程"><a href="#Android系统启动流程" class="headerlink" title="Android系统启动流程"></a>Android系统启动流程</h1><h2 id="一，序言"><a href="#一，序言" class="headerlink" title="一，序言"></a>一，序言</h2><p>Android是谷歌开发的一款基于Linux的开源操作系统，下图所示为 Android 平台的主要组件</p>
-<p><img src="https://s2.loli.net/2022/06/02/1JjIc3UQdMg2oBD.png" alt="android-stack"></p>
-<h3 id="Linux-内核"><a href="#Linux-内核" class="headerlink" title="Linux 内核"></a>Linux 内核</h3><p>Android 平台的基础是 Linux 内核。例如，Android Runtime (ART) 依靠 Linux 内核来执行底层功能，例如线程和低层内存管理。</p>
-<p>使用 Linux 内核可让 Android 利用主要安全功能，并且允许设备制造商为著名的内核开发硬件驱动程序。</p>
+        <h1 id="性能优化-卡顿分析以及布局优化"><a href="#性能优化-卡顿分析以及布局优化" class="headerlink" title="性能优化-卡顿分析以及布局优化"></a>性能优化-卡顿分析以及布局优化</h1><p>大多数用户感知到的卡顿等性能问题的最主要根源都是因为渲染性能。Android系统每隔大概16.6ms发出VSYNC信号，触发对UI进行渲染，如果每次渲染都成功，这样就能够达到流畅的画面所需要的60fps，为了能够实现60fps，这意味着程序的大多数操作都必须在16ms内完成。</p>
+<blockquote>
+<p>我们通常都会提到60fps与16ms，可是知道为何会是以程序是否达到60fps来作为App性能的衡量标准吗？这是因为人眼与大脑之间的协作无法感知超过60fps的画面更新。</p>
+<p>12fps大概类似手动快速翻动书籍的帧率，这明显是可以感知到不够顺滑的。24fps使得人眼感知的是连续线性的运动，这其实是归功于运动模糊的效果。24fps是电影胶圈通常使用的帧率，因为这个帧率已经足够支撑大部分电影画面需要表达的内容，同时能够最大的减少费用支出。但是低于30fps是无法顺畅表现绚丽的画面内容的，此时就需要用到60fps来达到想要的效果，当然超过60fps是没有必要的。</p>
+<p>开发app的性能目标就是保持60fps，这意味着每一帧你只有16ms=1000/60的时间来处理所有的任务。</p>
+</blockquote>
+<p>如果某个操作花费时间是24ms，系统在得到VSYNC信号的时候就无法进行正常渲染，这样就发生了丢帧现象。那么用户在32ms内看到的会是同一帧画面</p>
+<p>有很多原因可以导致丢帧， 一般主线程过多的UI绘制、大量的IO操作或是大量的计算操作占用CPU，都会导致App界面卡顿。</p>
+<p>一般主线程过多的UI绘制、大量的IO操作或是大量的计算操作占用CPU，导致App界面卡顿。</p>
         
-          <a class="article-more-a" href="/2022/06/02/Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%8D%A1%E9%A1%BF%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96/#more">more >></a>
         
       
 
@@ -199,6 +204,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -207,7 +216,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/02/Android%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%8D%A1%E9%A1%BF%E5%88%86%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%83%E5%B1%80%E4%BC%98%E5%8C%96/">展开全文 >></a>
         </p>
       
 
@@ -237,33 +246,30 @@
 
 
   
-    <article id="post-Binder源码解析（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-性能优化-Crash监控" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">Binder源码解析（二）</a>
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Crash%E7%9B%91%E6%8E%A7/">性能优化-Crash监控</a>
     </h1>
   
 
         
-        <a href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2022-06-02T02:07:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Crash%E7%9B%91%E6%8E%A7/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:15:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Binder源码解析（二）"><a href="#Binder源码解析（二）" class="headerlink" title="Binder源码解析（二）"></a>Binder源码解析（二）</h1><h3 id="Binder系列传送门"><a href="#Binder系列传送门" class="headerlink" title="Binder系列传送门"></a>Binder系列传送门</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104338528439369758">Android Framework Binder 总结</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104343457610596360/">Binder源码解析（一）</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104340048920707080">Binder源码解析（二）</a></p>
-<h3 id="ServiceManager的启动流程"><a href="#ServiceManager的启动流程" class="headerlink" title="ServiceManager的启动流程"></a>ServiceManager的启动流程</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">system\core\roodir\init.rc：</span><br><span class="line">service servicemanager /system/bin/servicemanager       <span class="comment">//可知孵化器的目录为servicemanager</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">core</span></span></span><br><span class="line"><span class="class">    <span class="title">user</span> <span class="title">system</span></span></span><br><span class="line"><span class="class">    <span class="title">group</span> <span class="title">system</span></span></span><br><span class="line"><span class="class">    <span class="title">critical</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">healthd</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">zygote</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">media</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">surfaceflinger</span></span></span><br><span class="line"><span class="class">    <span class="title">onrestart</span> <span class="title">restart</span> <span class="title">drm</span></span></span><br></pre></td></tr></table></figure>
-<p>分析Android启动流程可知，Android启动时会解析init.rc，servicemanager 服务的孵化器的目录为/system/bin/servicemanager，在此目录下有service_manager.c、binder.c</p>
+        <h1 id="性能优化-Crash监控"><a href="#性能优化-Crash监控" class="headerlink" title="性能优化-Crash监控"></a>性能优化-Crash监控</h1><p>Crash（应用崩溃）是由于代码异常而导致 App 非正常退出，导致应用程序无法继续使用，所有工作都停止的现象。发生 Crash 后需要重新启动应用（有些情况会自动重启），而且不管应用在开发阶段做得多么优秀，也无法避免 Crash 发生，特别是在 Android 系统中，系统碎片化严重、各 ROM 之间的差异，甚至系统Bug，都可能会导致Crash的发生。</p>
+<p>在 Android 应用中发生的 Crash 有两种类型，Java 层的 Crash 和 Native 层 Crash。这两种Crash 的监控和获取堆栈信息有所不同。</p>
         
-          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Crash%E7%9B%91%E6%8E%A7/#more">more >></a>
         
       
 
@@ -285,7 +291,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
         		</li>
       		
 		</ul>
@@ -295,7 +301,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Crash%E7%9B%91%E6%8E%A7/">展开全文 >></a>
         </p>
       
 
@@ -325,33 +331,52 @@
 
 
   
-    <article id="post-Binder源码解析（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-性能优化-App启动优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">Binder源码解析（一）</a>
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-App%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/">性能优化-App启动优化</a>
     </h1>
   
 
         
-        <a href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2022-06-02T02:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-App%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:14:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Binder源码解析（一）"><a href="#Binder源码解析（一）" class="headerlink" title="Binder源码解析（一）"></a>Binder源码解析（一）</h1><h3 id="Binder系列传送门"><a href="#Binder系列传送门" class="headerlink" title="Binder系列传送门"></a>Binder系列传送门</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104338528439369758">Android Framework Binder 总结</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104343457610596360/">Binder源码解析（一）</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104340048920707080">Binder源码解析（二）</a></p>
-<h3 id="Binder的jni方法注册"><a href="#Binder的jni方法注册" class="headerlink" title="Binder的jni方法注册"></a>Binder的jni方法注册</h3><h4 id="1-zygote启动"><a href="#1-zygote启动" class="headerlink" title="1. zygote启动"></a>1. zygote启动</h4><h5 id="1-1-启动zygote进程"><a href="#1-1-启动zygote进程" class="headerlink" title="1.1 启动zygote进程"></a>1.1 启动zygote进程</h5><p><strong>zygote</strong>是由init进程通过解析 init.zygote.rc 文件而创建的，zygote所对应的可执行程序app_process，所对应的源文件是 app_main.cpp ，进程名为zygote。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; system&#x2F;core&#x2F;rootdir&#x2F;init.zygote32.rc </span><br><span class="line">service zygote &#x2F;system&#x2F;bin&#x2F;app_process -Xzygote &#x2F;system&#x2F;bin --zygote --start-system-server</span><br><span class="line">    class main</span><br><span class="line">    socket zygote stream 660 root system</span><br><span class="line">    onrestart write &#x2F;sys&#x2F;android_power&#x2F;request_state wake</span><br><span class="line">    onrestart write &#x2F;sys&#x2F;power&#x2F;state on</span><br><span class="line">    onrestart restart media</span><br><span class="line">    onrestart restart netd</span><br><span class="line">    writepid &#x2F;dev&#x2F;cpuset&#x2F;foreground&#x2F;tasks</span><br></pre></td></tr></table></figure>
+        <h1 id="性能优化-App启动优化"><a href="#性能优化-App启动优化" class="headerlink" title="性能优化-App启动优化"></a>性能优化-App启动优化</h1><h2 id="启动状态"><a href="#启动状态" class="headerlink" title="启动状态"></a>启动状态</h2><p>应用有三种启动状态，每种状态都会影响应用向用户显示所需的时间：冷启动、温启动与热启动。在冷启动中，应用从头开始启动。在另外两种状态中，系统需要将后台运行的应用带入前台。建议始终在假定冷启动的基础上进行优化。这样做也可以提升温启动和热启动的性能。</p>
+<blockquote>
+<ul>
+<li><p>冷启动</p>
+<ul>
+<li>冷启动是指应用从头开始启动：系统进程在冷启动后才创建应用进程。发生冷启动的情况包括应用自设备启动后或系统终止应用后首次启动。</li>
+</ul>
+</li>
+<li><p>热启动：</p>
+<ul>
+<li>在热启动中，系统的所有工作就是将 Activity 带到前台。只要应用的所有 Activity 仍驻留在内存中，应用就不必重复执行对象初始化、布局加载和绘制。</li>
+</ul>
+</li>
+<li><p>温启动</p>
+<ul>
+<li>温启动包含了在冷启动期间发生的部分操作；同时，它的开销要比热启动高。有许多潜在状态可视为温启动。例如：<ul>
+<li>用户在退出应用后又重新启动应用。进程可能未被销毁，继续运行，但应用需要执行onCreate() 从头开始重新创建 Activity。</li>
+<li>系统将应用从内存中释放，然后用户又重新启动它。进程和 Activity 需要重启，但传递到onCreate() 的已保存的实例 state bundle 对于完成此任务有一定助益。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
         
-          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-App%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/#more">more >></a>
         
       
 
@@ -373,7 +398,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
         		</li>
       		
 		</ul>
@@ -383,7 +408,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/02/Binder%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-App%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96/">展开全文 >></a>
         </p>
       
 
@@ -413,141 +438,46 @@
 
 
   
-    <article id="post-Android-Framework-Binder-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-性能优化-Apk瘦身" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/">Android Framework Binder 总结</a>
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Apk%E7%98%A6%E8%BA%AB/">性能优化-Apk瘦身</a>
     </h1>
   
 
         
-        <a href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-06-02T02:07:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-02</time>
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Apk%E7%98%A6%E8%BA%AB/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:12:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android-Framework-Binder-总结"><a href="#Android-Framework-Binder-总结" class="headerlink" title="Android Framework Binder 总结"></a>Android Framework Binder 总结</h1><h3 id="Binder系列传送门"><a href="#Binder系列传送门" class="headerlink" title="Binder系列传送门"></a>Binder系列传送门</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104338528439369758">Android Framework Binder 总结</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104343457610596360/">Binder源码解析（一）</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7104340048920707080">Binder源码解析（二）</a></p>
-<h2 id="一，Binder的定义"><a href="#一，Binder的定义" class="headerlink" title="一，Binder的定义"></a>一，Binder的定义</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>定义</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>从机制、模型角度</td>
-<td>Binder是一种Android的实现跨进程通信（IPC）的方式（即<strong>Binder机制</strong>模型）</td>
-<td>在Android中实现跨进程通信</td>
-</tr>
-<tr>
-<td>从模型的结构、组成角度</td>
-<td>Binder是一种虚拟的物理设备驱动（即<strong>Binder驱动</strong>）</td>
-<td>连接Service、Client和Service Manager进程</td>
-</tr>
-<tr>
-<td>从Android代码的实现角度</td>
-<td>Binder是一个类，实现了IBinder接口（即<strong>Binder</strong>类）</td>
-<td>将Binder机制模型以代码的形式具体是现在Android中</td>
-</tr>
-</tbody></table>
-        
-          <a class="article-more-a" href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/02/Android-Framework-Binder-%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Android异步消息处理机制完全解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/30/Android%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/">Android异步消息处理机制完全解析</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/30/Android%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2022-05-30T03:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android异步消息处理机制完全解析"><a href="#Android异步消息处理机制完全解析" class="headerlink" title="Android异步消息处理机制完全解析"></a>Android异步消息处理机制完全解析</h1><h2 id="Handle"><a href="#Handle" class="headerlink" title="Handle"></a>Handle</h2><h3 id="Handle的使用"><a href="#Handle的使用" class="headerlink" title="Handle的使用"></a>Handle的使用</h3><ul>
-<li>Handler.sendMessage</li>
+        <h1 id="性能优化-Apk瘦身"><a href="#性能优化-Apk瘦身" class="headerlink" title="性能优化-Apk瘦身"></a>性能优化-Apk瘦身</h1><h2 id="APK-结构"><a href="#APK-结构" class="headerlink" title="APK 结构"></a><strong>APK</strong> 结构</h2><p>在讨论如何缩减应用的大小之前，有必要了解下应用 APK 的结构。APK 文件由一个 Zip 压缩文件组成，其中包含</p>
+<p>构成应用的所有文件。这些文件包括 Java 类文件、资源文件和包含已编译资源的文件。</p>
+<p>APK 包含以下目录：</p>
+<ul>
+<li><strong>META-INF/</strong> ：包含 CERT.SF 和 CERT.RSA 签名文件，以及 MANIFEST.MF 清单文件。</li>
+<li><strong>assets/</strong> ：包含应用的资源；应用可以使用 AssetManager 对象检索这些资源。</li>
+<li><strong>res/</strong> ：包含未编译到 resources.arsc 中的资源（图片、音视频等）。</li>
+<li><strong>lib/</strong> ：包含特定于处理器软件层的已编译代码。此目录包含每种平台类型的子目录，如 armeabi 、 armeabi-v7a 、 arm64-v8a 、 x86 、 x86_64 和 mips 。</li>
+</ul>
+<p>APK 还包含以下文件。在这些文件中，只有 <strong>AndroidManifest.xml</strong> 是必需的。</p>
+<ul>
+<li><p><strong>resources.arsc</strong> ：包含已编译的资源。此文件包含 res/values/ 文件夹的所有配置中的 XML 内容。打包工具会提取此 XML 内容，将其编译为二进制文件形式，并压缩内容。此内容包括语言字符串和样式，以及未直接包含在 resources.arsc 文件中的内容（例如布局文件和图片）的路径。</p>
+</li>
+<li><p><strong>classes.dex</strong> ：包含以 Dalvik/ART 虚拟机可理解的 DEX 文件格式编译的类。</p>
+</li>
+<li><p><strong>AndroidManifest.xml</strong> ：包含核心 Android 清单文件。此文件列出了应用的名称、版本、访问权限和引用的库文件。该文件使用 Android 的二进制 XML 格式。</p>
+</li>
 </ul>
         
-          <a class="article-more-a" href="/2022/05/30/Android%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Apk%E7%98%A6%E8%BA%AB/#more">more >></a>
         
       
 
@@ -567,6 +497,10 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -575,7 +509,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/30/Android%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-Apk%E7%98%A6%E8%BA%AB/">展开全文 >></a>
         </p>
       
 
@@ -605,34 +539,214 @@
 
 
   
-    <article id="post-HashMap常见问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-性能优化-ANR" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">HashMap常见问题</a>
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-ANR/">性能优化-ANR</a>
     </h1>
   
 
         
-        <a href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2022-05-27T13:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-ANR/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:11:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="HashMap常见问题"><a href="#HashMap常见问题" class="headerlink" title="HashMap常见问题"></a>HashMap常见问题</h1><h2 id="HashMap与HashTable的区别？"><a href="#HashMap与HashTable的区别？" class="headerlink" title="HashMap与HashTable的区别？"></a>HashMap与HashTable的区别？</h2><ul>
-<li>HashMap没有考虑同步，是线程不安全的；Hashtable使用了synchronized关键字，是线程安全的；</li>
-<li>HashMap允许K/V都为null；后者K/V都不允许为null；</li>
-<li>HashMap继承自AbstractMap类；而Hashtable继承自Dictionary类；</li>
+        <h1 id="性能优化-ANR"><a href="#性能优化-ANR" class="headerlink" title="性能优化-ANR"></a>性能优化-ANR</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>ANR(Application Not responding)，是指应用程序未响应，Android系统对于一些事件需要在一定的时间范围内完成，如果超过预定时间能未能得到有效响应或者响应时间过长，都会造成ANR</p>
+<p>在 Android 里，应用程序的响应性是由 Activity Manager 和 WindowManager 系统服务监视的。当它监测到以下情况中的一个时，Android 就会针对特定的应用程序显示 ANR： </p>
+        
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-ANR/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-ANR/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-性能优化-屏幕适配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/">性能优化-屏幕适配</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:10:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="性能优化-屏幕适配"><a href="#性能优化-屏幕适配" class="headerlink" title="性能优化-屏幕适配"></a>性能优化-屏幕适配</h1><h2 id="几个重要的概念"><a href="#几个重要的概念" class="headerlink" title="几个重要的概念"></a><strong>几个重要的概念</strong></h2><h3 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a><strong>屏幕尺寸</strong></h3><p>屏幕尺寸指屏幕的对角线的长度，单位是英寸，1英寸=2.54厘米</p>
+<blockquote>
+<p>比如常见的屏幕尺寸有2.4、2.8、3.5、3.7、4.2、5.0、5.5、6.0等</p>
+</blockquote>
+<h3 id="屏幕分辨率"><a href="#屏幕分辨率" class="headerlink" title="屏幕分辨率"></a><strong>屏幕分辨率</strong></h3><p>屏幕分辨率是指在横纵向上的像素点数，单位是px，1px=1个像素点。一般以纵向像素<em>横向像素，如1960</em>1080。表示宽度方向上有1080个像素点，在高度方向上有1920个像素点</p>
+<blockquote>
+<p>单位：px（pixel），1px=1像素点</p>
+<p>Android手机常见的分辨率：320x480、480x800、720x1280、1080x1920\</p>
+<p>UI设计师的设计图会以px作为统一的计量单位</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-性能优化-内存优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/">性能优化-内存优化</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2022-06-27T17:09:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="性能优化-内存优化"><a href="#性能优化-内存优化" class="headerlink" title="性能优化-内存优化"></a>性能优化-内存优化</h1><h2 id="内存管理基础"><a href="#内存管理基础" class="headerlink" title="内存管理基础"></a>内存管理基础</h2><h3 id="App内存组成以及限制"><a href="#App内存组成以及限制" class="headerlink" title="App内存组成以及限制"></a>App内存组成以及限制</h3><p><code>Android</code>给每个<code>App</code>分配一个<code>VM</code>，让App运行在<code>dalvik</code>上，这样即使<code>App</code>崩溃也不会影响到系统。系统给<code>VM</code>分配了一定的内存大小，<code>App</code>可以申请使用的内存大小不能超过此硬性逻辑限制，就算物理内存富余，如果应用超出<code>VM</code>最大内存，就会出现内存溢出<code>crash</code>。</p>
+<p>由程序控制操作的内存空间在<code>heap</code>上，分<code>java heapsize</code>和<code>native heapsize</code></p>
+<ul>
+<li><p>Java申请的内存在<code>vm heap</code>上，所以如果<code>java</code>申请的内存大小超过<code>VM</code>的逻辑内存限制,就会出现内存溢出的异常。</p>
+</li>
+<li><p><strong>native层内存申请不受其限制</strong>,<code>native</code>层受<code>native process</code>对内存大小的限制</p>
+</li>
 </ul>
-<h2 id="2-Put的实现原理"><a href="#2-Put的实现原理" class="headerlink" title="2. Put的实现原理"></a>2. Put的实现原理</h2>
         
-          <a class="article-more-a" href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/#more">more >></a>
         
       
 
@@ -650,11 +764,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
         		</li>
       		
 		</ul>
@@ -664,7 +778,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/">展开全文 >></a>
         </p>
       
 
@@ -694,30 +808,32 @@
 
 
   
-    <article id="post-Android事件分发机制总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android-Framework之WMS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/">Android事件分发机制总结</a>
+      <a class="article-title" href="/2022/06/28/Android-Framework%E4%B9%8BWMS/">Android Framework之WMS</a>
     </h1>
   
 
         
-        <a href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-05-27T03:12:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
+        <a href="/2022/06/28/Android-Framework%E4%B9%8BWMS/" class="archive-article-date">
+  	<time datetime="2022-06-27T16:59:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android事件分发机制总结"><a href="#Android事件分发机制总结" class="headerlink" title="Android事件分发机制总结"></a>Android事件分发机制总结</h1><h2 id="三个角色"><a href="#三个角色" class="headerlink" title="三个角色"></a>三个角色</h2><h4 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h4><p>Activity：只有分发<strong>dispatchTouchEvent</strong>和消费<strong>onTouchEvent</strong>两个方法。 事件由ViewRootImpl中DecorView  dispatchTouchEvent分发Touch事件-&gt;Activity的dispatchTouchEvent()- DecorView。superDispatchTouchEvent-&gt;ViewGroup的dispatchTouchEvent()。 如果返回false直接掉用onTouchEvent，true表示被消费</p>
-<h4 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h4><p>拥有分发、拦截和消费三个方法。：对应一个根ViewGroup来说，点击事件产生后，首先会传递给它，dispatchTouchEvent就会被调用，如果这个ViewGroup的onInterceptTouchEvent方法返回true就表示它要拦截当前事件， 事件就会交给这个ViewGroup的onTouchEvent处理。如果这个ViewGroup的onInterceptTouchEvent方法返回false就表示它不拦截当前事件，这时当前事件就会继续传递给它的子元素，接着子元素的dispatchTouchEvent方法就会被调用。</p>
+        <h1 id="Android-Framework之WMS"><a href="#Android-Framework之WMS" class="headerlink" title="Android Framework之WMS"></a>Android Framework之WMS</h1><h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7101608284439707662">Android-UI绘制流程及原理1</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7101608589353025544">Android-UI绘制流程及原理2</a></li>
+</ul>
         
-          <a class="article-more-a" href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BWMS/#more">more >></a>
         
       
 
@@ -732,10 +848,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -743,7 +855,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
         		</li>
       		
 		</ul>
@@ -753,7 +865,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BWMS/">展开全文 >></a>
         </p>
       
 
@@ -783,48 +895,39 @@
 
 
   
-    <article id="post-Android-UI绘制流程及原理2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android-Framework之PKMS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/">Android-UI绘制流程及原理2</a>
+      <a class="article-title" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/">Android Framework之PKMS</a>
     </h1>
   
 
         
-        <a href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/" class="archive-article-date">
-  	<time datetime="2022-05-25T02:36:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-25</time>
+        <a href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/" class="archive-article-date">
+  	<time datetime="2022-06-27T16:59:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前面<a href="https://www.laibinzhi.top/2019/08/07/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86/">Android-UI绘制流程及原理</a>中我们了解到View的绘制流程三大步骤：测量，布局，绘制，我们接着去看他们每一步又干了什么事情</p>
-<h2 id="UI绘制详细步骤"><a href="#UI绘制详细步骤" class="headerlink" title="UI绘制详细步骤"></a>UI绘制详细步骤</h2><ul>
-<li><p>测量performMeasure</p>
-<blockquote>
-<p>view.measure  —&gt; view.onMeasure —&gt; view.setMeasuredDimension </p>
-<p>—&gt;setMeasuredDimensionRaw</p>
-</blockquote>
-</li>
-<li><p>布局performLayout</p>
-<blockquote>
-<p>view.layout —&gt; view.onLayout</p>
-</blockquote>
-</li>
-<li><p>绘制performDraw</p>
-<blockquote>
-<p>ViewRootImpl.draw(fullRedrawNeeded) —&gt; ViewRootImpl.drawSoftware</p>
-<p>—&gt;view.draw(Canvas)</p>
-</blockquote>
-</li>
+        <h1 id="Android-Framework之PKMS"><a href="#Android-Framework之PKMS" class="headerlink" title="Android Framework之PKMS"></a>Android Framework之PKMS</h1><h2 id="一，定义"><a href="#一，定义" class="headerlink" title="一，定义"></a>一，定义</h2><p><strong>PackageManagerService</strong>（简称 PKMS），是 Android 系统中核心服务之一，负责应用程序的<strong>安装</strong>，<strong>卸载</strong>，<strong>信息查询</strong>等工作。</p>
+<ul>
+<li>Android系统启动时，会启动（应用程序管理服务器PKMS），此服务负责扫描系统中特定的目录，寻找里面的APK格式的文件，并对这些文件进行解析，然后得到应用程序相关信息，最后完成应用程序的安装</li>
+<li>PKMS在安装应用过程中, 会全面解析应用程序的AndroidManifest.xml文件, 来得到Activity,Service, BroadcastReceiver, ContextProvider等信息,在结合PKMS服务就可以在OS中正常的使用应用程序了</li>
+<li>在Android系统中, 系统启动时由SystemServer启动PKMS服务,启动该服务后会执行应用程序的安装过程</li>
 </ul>
+<blockquote>
+<p>1.解析AndroidNanifest.xml清单文件，解析清单文件中的所有节点信息</p>
+<p>2.扫描.apk文件，安装系统应用，安装本地应用等</p>
+<p>3.管理本地应用，主要有， 安装，卸载，应用信息查询 等</p>
+</blockquote>
         
-          <a class="article-more-a" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/#more">more >></a>
         
       
 
@@ -839,10 +942,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -850,7 +949,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
         		</li>
       		
 		</ul>
@@ -860,7 +959,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/">展开全文 >></a>
         </p>
       
 
@@ -890,34 +989,34 @@
 
 
   
-    <article id="post-Android虚拟机以及类加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Android-Framework之AMS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/">Android虚拟机以及类加载</a>
+      <a class="article-title" href="/2022/06/28/Android-Framework%E4%B9%8BAMS/">Android Framework之AMS</a>
     </h1>
   
 
         
-        <a href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/" class="archive-article-date">
-  	<time datetime="2022-05-24T08:30:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-24</time>
+        <a href="/2022/06/28/Android-Framework%E4%B9%8BAMS/" class="archive-article-date">
+  	<time datetime="2022-06-27T16:59:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android虚拟机以及类加载"><a href="#Android虚拟机以及类加载" class="headerlink" title="Android虚拟机以及类加载"></a>Android虚拟机以及类加载</h1><h2 id="Android虚拟机"><a href="#Android虚拟机" class="headerlink" title="Android虚拟机"></a>Android虚拟机</h2><h3 id="JVM与Dalvik"><a href="#JVM与Dalvik" class="headerlink" title="JVM与Dalvik"></a>JVM与Dalvik</h3><ul>
-<li>Android应用程序运行在Dalvik/ART虚拟机，并且每一个应用程序对应有一个单独的Dalvik虚拟机实例。Dalvik虚拟机实则也算是一个Java虚拟机，只不过它执行的不是class文件，而是dex文件。</li>
-<li>Dalvik虚拟机与Java虚拟机（JVM）共享有差不多的特性，差别在于两者执行的指令集是不一样的，前者的指令集是基于<strong>寄存器</strong>的，而后者的指令集是基于<strong>堆栈</strong>的。</li>
-</ul>
-<h3 id="JVM基于栈的"><a href="#JVM基于栈的" class="headerlink" title="JVM基于栈的"></a>JVM基于栈的</h3><p>对于基于栈的虚拟机来说，每一个运行时的线程，都有一个独立的栈。栈中记录了方法调用的历史，每有一次方法调用，栈中便会多一个<strong>栈桢</strong>。最顶部的栈桢称作当前栈桢，其代表着当前执行的方法。基于栈的虚拟机通过操作数栈进行所有操作。 </p>
-<p><img src="https://s2.loli.net/2022/05/24/Sez4mZA1KHYJPVn.png" alt="JVM基于栈"></p>
+        <h1 id="Android-Framework之AMS"><a href="#Android-Framework之AMS" class="headerlink" title="Android Framework之AMS"></a>Android Framework之AMS</h1><h2 id="一，定义"><a href="#一，定义" class="headerlink" title="一，定义"></a>一，定义</h2><ol>
+<li><p>从java角度来看，ams就是一个java对象，实现了Ibinder接口，所以它是一个用于进程之间通信的接口，这个对象初始化是在systemServer.java 的run()方法里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Lifecycle</span><span class="params">(Context context)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">super</span>(context);</span><br><span class="line">    mService = <span class="keyword">new</span> ActivityManagerService(context); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
         
-          <a class="article-more-a" href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/#more">more >></a>
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BAMS/#more">more >></a>
         
       
 
@@ -935,11 +1034,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
         		</li>
       		
 		</ul>
@@ -949,98 +1048,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JVM总结三：垃圾回收机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%89%EF%BC%9A%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">JVM总结三：垃圾回收机制</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%89%EF%BC%9A%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2022-05-24T08:26:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JVM总结三：垃圾回收机制"><a href="#JVM总结三：垃圾回收机制" class="headerlink" title="JVM总结三：垃圾回收机制"></a>JVM总结三：垃圾回收机制</h1><h2 id="分代收集理论"><a href="#分代收集理论" class="headerlink" title="分代收集理论"></a>分代收集理论</h2><p><img src="https://s2.loli.net/2022/05/23/bWn4AhdDFOPoHuz.png" alt="分代收集理论"></p>
-<p>当前商业虚拟机的垃圾收集器，大多遵循“分代收集”的理论来进行设计，这个理论大体上是这么描述的：</p>
-<p>1、 绝大部分的对象都是朝生夕死</p>
-<p>2、 熬过多次垃圾回收的对象就越难回收。</p>
-<p>根据以上两个理论，朝生夕死的对象放一个区域，难回收的对象放另外一个区域，这个就构成了新生代和老年代。</p>
-<h2 id="GC种类"><a href="#GC种类" class="headerlink" title="GC种类"></a>GC种类</h2><p>1、 <strong>新生代回收</strong>（Minor GC/Young GC）:指只是进行新生代的回收。</p>
-<p>2、 <strong>老年代回收</strong>（Major GC/Old GC）:指只是进行老年代的回收。目前只有CMS垃圾回收器会有这个单独的收集老年代的行为。（Major GC定义是比较混乱，有说指是老年代，有的说是做整个堆的收集，这个需要你根据别人的场景来定，没有固定的说法）</p>
-<p>3、 <strong>整堆收集</strong>（Full GC）:收集整个Java堆和<strong>方法区</strong>(注意包含方法区)</p>
-        
-          <a class="article-more-a" href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%89%EF%BC%9A%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/24/JVM%E6%80%BB%E7%BB%93%E4%B8%89%EF%BC%9A%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BAMS/">展开全文 >></a>
         </p>
       
 
@@ -1072,7 +1080,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1313,6 +1321,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
             
             <div class="clearfix"></div>
