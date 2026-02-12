@@ -16,7 +16,7 @@
 <meta property="og:description" content="如果你手里是一个已经上线很久的 Android 项目，不要把 KMP&#x2F;CMP 当成“重写项目”的理由。真正可行的路径是：保留现有 Android 业务节奏，把可共享的部分一点点搬到 shared。 迁移可以拆成三步：先迁数据层，再迁状态层，最后才碰 UI。  先定一个现实目标一开始别追“复用率 80%”。这个目标听上去很美，但会逼着你把不该共享的东西硬塞进 shared，最后两端都难受。 更实用的">
 <meta property="og:locale">
 <meta property="article:published_time" content="2026-02-12T03:35:00.000Z">
-<meta property="article:modified_time" content="2026-02-12T03:08:47.037Z">
+<meta property="article:modified_time" content="2026-02-12T04:01:24.105Z">
 <meta property="article:author" content="智先森">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="Kotlin">
@@ -189,6 +189,9 @@
 <li>迁移过程可以随时停、随时回滚</li>
 </ul>
 <hr>
+<span id="more"></span>
+
+
 <h2 id="第一步：先动数据层，不动-UI"><a href="#第一步：先动数据层，不动-UI" class="headerlink" title="第一步：先动数据层，不动 UI"></a>第一步：先动数据层，不动 UI</h2><p>最先迁的是网络 + 仓库层。这个阶段的原则很简单：Android 页面逻辑先不改，只把数据来源替换成 shared。</p>
 <p>项目结构可以先变成这样：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">├── androidApp          # 现有 Android app，先继续用</span><br><span class="line">├── iosApp              # iOS 壳（后面接入）</span><br><span class="line">└── shared</span><br><span class="line">    ├── model</span><br><span class="line">    ├── network</span><br><span class="line">    └── repository</span><br></pre></td></tr></table></figure>
