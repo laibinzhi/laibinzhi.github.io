@@ -1,0 +1,2 @@
+
+14245c132954d12a99a78057e950e226c21cd94c	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.1.tgz","integrity":null,"time":1770819023244,"size":"262","metadata":{"time":1770819023244,"url":"http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/bluebird/download/bluebird-3.5.1.tgz"},"options":{"compress":true},"status":301}}

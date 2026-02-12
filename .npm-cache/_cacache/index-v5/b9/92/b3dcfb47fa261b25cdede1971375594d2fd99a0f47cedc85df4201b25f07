@@ -1,0 +1,2 @@
+
+6b40edcc033858e202cd8b5f50d0fa9f4280e379	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/no-case/download/no-case-2.3.2.tgz","integrity":null,"time":1770819022991,"size":"262","metadata":{"time":1770819022991,"url":"http://registry.npm.taobao.org/no-case/download/no-case-2.3.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/no-case/download/no-case-2.3.2.tgz"},"options":{"compress":true},"status":301}}

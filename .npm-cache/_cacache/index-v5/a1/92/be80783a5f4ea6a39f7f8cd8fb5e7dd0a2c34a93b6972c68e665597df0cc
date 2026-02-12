@@ -1,0 +1,2 @@
+
+f219ed2da09490a1013d89c0a3dd4fb68da81e8e	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/chokidar/download/chokidar-1.7.0.tgz","integrity":null,"time":1770819023243,"size":"262","metadata":{"time":1770819023243,"url":"http://registry.npm.taobao.org/chokidar/download/chokidar-1.7.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/chokidar/download/chokidar-1.7.0.tgz"},"options":{"compress":true},"status":301}}

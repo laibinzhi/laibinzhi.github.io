@@ -1,0 +1,2 @@
+
+1629c553cf4bf0646defc7786cbf7c6a31169fa6	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/extglob/download/extglob-0.3.2.tgz","integrity":null,"time":1770819023180,"size":"262","metadata":{"time":1770819023180,"url":"http://registry.npm.taobao.org/extglob/download/extglob-0.3.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/extglob/download/extglob-0.3.2.tgz"},"options":{"compress":true},"status":301}}

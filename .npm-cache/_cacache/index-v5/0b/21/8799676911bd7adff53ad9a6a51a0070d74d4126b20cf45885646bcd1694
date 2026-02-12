@@ -1,0 +1,2 @@
+
+b2f1545d7f0011b4ccf3de9f482b555e419759fb	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/compression/download/compression-1.7.3.tgz","integrity":null,"time":1770819023243,"size":"262","metadata":{"time":1770819023243,"url":"http://registry.npm.taobao.org/compression/download/compression-1.7.3.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/compression/download/compression-1.7.3.tgz"},"options":{"compress":true},"status":301}}

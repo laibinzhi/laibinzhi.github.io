@@ -1,0 +1,2 @@
+
+52bb4a60337d932b50a90458404677cc65267416	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/is-primitive/download/is-primitive-2.0.0.tgz","integrity":null,"time":1770819023038,"size":"262","metadata":{"time":1770819023038,"url":"http://registry.npm.taobao.org/is-primitive/download/is-primitive-2.0.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/is-primitive/download/is-primitive-2.0.0.tgz"},"options":{"compress":true},"status":301}}

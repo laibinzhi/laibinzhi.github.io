@@ -1,0 +1,2 @@
+
+480efb9f76304006d04d899d821cafe249d2e414	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/connect/download/connect-3.6.6.tgz","integrity":null,"time":1770819023242,"size":"262","metadata":{"time":1770819023242,"url":"http://registry.npm.taobao.org/connect/download/connect-3.6.6.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/connect/download/connect-3.6.6.tgz"},"options":{"compress":true},"status":301}}

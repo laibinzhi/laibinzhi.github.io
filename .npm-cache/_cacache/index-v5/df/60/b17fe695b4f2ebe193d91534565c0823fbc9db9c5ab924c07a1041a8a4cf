@@ -1,0 +1,2 @@
+
+5ec746cfa81eee2bc415bed4073c2e62c5a31b40	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/braces/download/braces-1.8.5.tgz","integrity":null,"time":1770819023243,"size":"262","metadata":{"time":1770819023243,"url":"http://registry.npm.taobao.org/braces/download/braces-1.8.5.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/braces/download/braces-1.8.5.tgz"},"options":{"compress":true},"status":301}}

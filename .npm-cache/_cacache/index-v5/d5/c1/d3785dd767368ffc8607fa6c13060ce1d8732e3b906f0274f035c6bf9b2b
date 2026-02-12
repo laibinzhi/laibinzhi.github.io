@@ -1,0 +1,2 @@
+
+afcd5a1b001fd766db924bc6f23af1ac26c2ec6c	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/preserve/download/preserve-0.2.0.tgz","integrity":null,"time":1770819022950,"size":"262","metadata":{"time":1770819022950,"url":"http://registry.npm.taobao.org/preserve/download/preserve-0.2.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/preserve/download/preserve-0.2.0.tgz"},"options":{"compress":true},"status":301}}

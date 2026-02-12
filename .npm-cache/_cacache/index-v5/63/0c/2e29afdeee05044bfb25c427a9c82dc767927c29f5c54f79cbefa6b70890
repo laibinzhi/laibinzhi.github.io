@@ -1,0 +1,2 @@
+
+46a45f9e9ae6253598cb2be268f4c73849991a3d	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/opn/download/opn-4.0.2.tgz","integrity":null,"time":1770819022968,"size":"262","metadata":{"time":1770819022968,"url":"http://registry.npm.taobao.org/opn/download/opn-4.0.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/opn/download/opn-4.0.2.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+10d3ae5740d530039de9b436fd199f3eabb87a62	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/statuses/download/statuses-1.3.1.tgz","integrity":null,"time":1770819022825,"size":"262","metadata":{"time":1770819022825,"url":"http://registry.npm.taobao.org/statuses/download/statuses-1.3.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/statuses/download/statuses-1.3.1.tgz"},"options":{"compress":true},"status":301}}

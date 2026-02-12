@@ -1,0 +1,2 @@
+
+399940634da3e347af6c7e6147e084dc756a22b9	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/debug/download/debug-2.6.9.tgz","integrity":null,"time":1770819023182,"size":"262","metadata":{"time":1770819023182,"url":"http://registry.npm.taobao.org/debug/download/debug-2.6.9.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/debug/download/debug-2.6.9.tgz"},"options":{"compress":true},"status":301}}

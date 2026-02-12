@@ -1,0 +1,2 @@
+
+5c778c6684b60932af9424c81b5482468a2f87f7	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.3.6.tgz","integrity":null,"time":1770819022830,"size":"262","metadata":{"time":1770819022830,"url":"http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.3.6.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/readable-stream/download/readable-stream-2.3.6.tgz"},"options":{"compress":true},"status":301}}

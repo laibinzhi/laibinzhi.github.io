@@ -1,3 +1,13 @@
+---
+title: 应用MSF域内渗透检测Android手机
+date: 2020-02-11 00:00:00
+tags:
+  - Android
+  - 逆向
+categories:
+  - Android
+---
+
 ### 安装msf
 
 是什么？Metasploit Framework

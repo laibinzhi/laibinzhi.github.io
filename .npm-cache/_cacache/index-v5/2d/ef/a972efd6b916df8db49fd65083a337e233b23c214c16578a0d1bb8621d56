@@ -1,0 +1,2 @@
+
+676b0c89e403b4bb31c55fc5b08f367edcc9dbe3	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/micromatch/download/micromatch-2.3.11.tgz","integrity":null,"time":1770819023003,"size":"262","metadata":{"time":1770819023003,"url":"http://registry.npm.taobao.org/micromatch/download/micromatch-2.3.11.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/micromatch/download/micromatch-2.3.11.tgz"},"options":{"compress":true},"status":301}}

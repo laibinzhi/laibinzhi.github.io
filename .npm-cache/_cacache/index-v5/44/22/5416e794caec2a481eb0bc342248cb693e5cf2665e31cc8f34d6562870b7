@@ -1,0 +1,2 @@
+
+fe6d3d55ce75108be67f38ed7fdb05ad58a04142	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/pinkie-promise/download/pinkie-promise-2.0.1.tgz","integrity":null,"time":1770819022951,"size":"262","metadata":{"time":1770819022951,"url":"http://registry.npm.taobao.org/pinkie-promise/download/pinkie-promise-2.0.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/pinkie-promise/download/pinkie-promise-2.0.1.tgz"},"options":{"compress":true},"status":301}}

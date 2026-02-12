@@ -1,0 +1,2 @@
+
+5f42e7d7cef31a1552b373c2dfc53b2e32978e09	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/ansi-regex/download/ansi-regex-2.1.1.tgz","integrity":null,"time":1770819023287,"size":"262","metadata":{"time":1770819023287,"url":"http://registry.npm.taobao.org/ansi-regex/download/ansi-regex-2.1.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/ansi-regex/download/ansi-regex-2.1.1.tgz"},"options":{"compress":true},"status":301}}

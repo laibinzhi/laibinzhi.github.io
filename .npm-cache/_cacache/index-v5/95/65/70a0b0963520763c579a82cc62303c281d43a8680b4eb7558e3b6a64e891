@@ -1,0 +1,2 @@
+
+09425cda425b15530031d113c05c6adfd7dda439	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/ncp/download/ncp-2.0.0.tgz","integrity":null,"time":1770819022999,"size":"262","metadata":{"time":1770819022999,"url":"http://registry.npm.taobao.org/ncp/download/ncp-2.0.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/ncp/download/ncp-2.0.0.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+0fc367f83f7159b08d278c34977a823060a872dd	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz","integrity":null,"time":1770819023245,"size":"262","metadata":{"time":1770819023245,"url":"http://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/balanced-match/download/balanced-match-1.0.0.tgz"},"options":{"compress":true},"status":301}}

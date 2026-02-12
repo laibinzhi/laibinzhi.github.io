@@ -1,0 +1,2 @@
+
+a448008dcc56a66fd67591d0e36064b2d4b8922b	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/negotiator/download/negotiator-0.6.1.tgz","integrity":null,"time":1770819022992,"size":"262","metadata":{"time":1770819022992,"url":"http://registry.npm.taobao.org/negotiator/download/negotiator-0.6.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/negotiator/download/negotiator-0.6.1.tgz"},"options":{"compress":true},"status":301}}

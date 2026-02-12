@@ -1,0 +1,2 @@
+
+d51b7d24ec3f2327d40f8ccaddfbc33af29c678d	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/ejs/download/ejs-2.6.1.tgz","integrity":null,"time":1770819023180,"size":"262","metadata":{"time":1770819023180,"url":"http://registry.npm.taobao.org/ejs/download/ejs-2.6.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/ejs/download/ejs-2.6.1.tgz"},"options":{"compress":true},"status":301}}

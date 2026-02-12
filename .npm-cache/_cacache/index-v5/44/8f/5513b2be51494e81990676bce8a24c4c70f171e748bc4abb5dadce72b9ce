@@ -1,0 +1,2 @@
+
+cb61b4e5ac0b573f119cab58953d562c87a7a60b	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/expand-range/download/expand-range-1.8.2.tgz","integrity":null,"time":1770819023177,"size":"262","metadata":{"time":1770819023177,"url":"http://registry.npm.taobao.org/expand-range/download/expand-range-1.8.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/expand-range/download/expand-range-1.8.2.tgz"},"options":{"compress":true},"status":301}}

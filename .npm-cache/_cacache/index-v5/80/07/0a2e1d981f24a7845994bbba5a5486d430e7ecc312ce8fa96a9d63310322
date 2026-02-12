@@ -1,0 +1,2 @@
+
+759d6c15fa38f3f4b1ca5155ac7d91b9e6ebf7f1	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz","integrity":null,"time":1770819023054,"size":"262","metadata":{"time":1770819023054,"url":"http://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/is-buffer/download/is-buffer-1.1.6.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+5856a89afdfb6fd4790e59e800559906cd546eda	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/mv/download/mv-2.1.1.tgz","integrity":null,"time":1770819022992,"size":"262","metadata":{"time":1770819022992,"url":"http://registry.npm.taobao.org/mv/download/mv-2.1.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/mv/download/mv-2.1.1.tgz"},"options":{"compress":true},"status":301}}

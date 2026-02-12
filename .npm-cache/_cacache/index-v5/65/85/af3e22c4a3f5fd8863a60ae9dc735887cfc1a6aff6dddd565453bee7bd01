@@ -1,0 +1,2 @@
+
+f6a4cd0d1e91df5679e896119a4db51eec7d4298	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/fsevents/download/fsevents-1.2.4.tgz","integrity":null,"time":1770819021956,"size":"262","metadata":{"time":1770819021956,"url":"http://registry.npm.taobao.org/fsevents/download/fsevents-1.2.4.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:21 GMT","location":"https://registry.npmmirror.com/fsevents/download/fsevents-1.2.4.tgz"},"options":{"compress":true},"status":301}}

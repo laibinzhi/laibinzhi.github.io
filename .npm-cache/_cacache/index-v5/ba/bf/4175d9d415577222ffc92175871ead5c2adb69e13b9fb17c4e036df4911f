@@ -1,0 +1,2 @@
+
+53bae794b4c51845f5133ed04290c485ba176ca0	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz","integrity":null,"time":1770819023085,"size":"262","metadata":{"time":1770819023085,"url":"http://registry.npm.taobao.org/html-entities/download/html-entities-1.2.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/html-entities/download/html-entities-1.2.1.tgz"},"options":{"compress":true},"status":301}}

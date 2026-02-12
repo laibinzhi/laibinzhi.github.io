@@ -1,0 +1,2 @@
+
+e54cb6aad9603c7aafaa7af07ef2038dd00136e8	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz","integrity":null,"time":1770819023141,"size":"262","metadata":{"time":1770819023141,"url":"http://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/fs.realpath/download/fs.realpath-1.0.0.tgz"},"options":{"compress":true},"status":301}}

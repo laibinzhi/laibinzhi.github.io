@@ -1,0 +1,2 @@
+
+0311220f3f79d9d2498a151d4794a8a18c649fad	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/repeat-string/download/repeat-string-1.6.1.tgz","integrity":null,"time":1770819022829,"size":"262","metadata":{"time":1770819022829,"url":"http://registry.npm.taobao.org/repeat-string/download/repeat-string-1.6.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/repeat-string/download/repeat-string-1.6.1.tgz"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+61c43beb1522bbceb9229ca9416dc0bbad9f7ee1	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/yallist/download/yallist-2.1.2.tgz","integrity":null,"time":1770819022754,"size":"262","metadata":{"time":1770819022754,"url":"http://registry.npm.taobao.org/yallist/download/yallist-2.1.2.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/yallist/download/yallist-2.1.2.tgz"},"options":{"compress":true},"status":301}}

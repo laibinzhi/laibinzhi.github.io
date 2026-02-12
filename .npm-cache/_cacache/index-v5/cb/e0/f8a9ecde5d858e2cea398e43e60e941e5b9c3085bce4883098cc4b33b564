@@ -1,0 +1,2 @@
+
+3ab592148b739454d9a7657baad3a27ccd29d3cf	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/randomatic/download/randomatic-3.0.0.tgz","integrity":null,"time":1770819022952,"size":"262","metadata":{"time":1770819022952,"url":"http://registry.npm.taobao.org/randomatic/download/randomatic-3.0.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/randomatic/download/randomatic-3.0.0.tgz"},"options":{"compress":true},"status":301}}

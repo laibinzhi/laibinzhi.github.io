@@ -1,0 +1,2 @@
+
+258133a8963e0fa8dc3c7a4ab10a41b04de2fa63	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/rimraf/download/rimraf-2.4.5.tgz","integrity":null,"time":1770819022825,"size":"262","metadata":{"time":1770819022825,"url":"http://registry.npm.taobao.org/rimraf/download/rimraf-2.4.5.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/rimraf/download/rimraf-2.4.5.tgz"},"options":{"compress":true},"status":301}}

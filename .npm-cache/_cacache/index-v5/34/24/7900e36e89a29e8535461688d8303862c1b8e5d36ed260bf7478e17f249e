@@ -1,0 +1,2 @@
+
+a0fdef5981d7886e38e4dbaf360f3b7e4cc6caea	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/glob-base/download/glob-base-0.3.0.tgz","integrity":null,"time":1770819023140,"size":"262","metadata":{"time":1770819023140,"url":"http://registry.npm.taobao.org/glob-base/download/glob-base-0.3.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/glob-base/download/glob-base-0.3.0.tgz"},"options":{"compress":true},"status":301}}

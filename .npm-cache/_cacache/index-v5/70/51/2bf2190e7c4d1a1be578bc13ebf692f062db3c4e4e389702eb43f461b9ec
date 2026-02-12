@@ -1,0 +1,2 @@
+
+1fb4f950d8c14ab41ddeff23e9e708a11738dcda	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/is-number/download/is-number-2.1.0.tgz","integrity":null,"time":1770819023039,"size":"262","metadata":{"time":1770819023039,"url":"http://registry.npm.taobao.org/is-number/download/is-number-2.1.0.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/is-number/download/is-number-2.1.0.tgz"},"options":{"compress":true},"status":301}}

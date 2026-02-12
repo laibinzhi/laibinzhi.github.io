@@ -1,0 +1,2 @@
+
+ea7c64ca470ae967f79d245f7967558dc561253a	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/math-random/download/math-random-1.0.1.tgz","integrity":null,"time":1770819023018,"size":"262","metadata":{"time":1770819023018,"url":"http://registry.npm.taobao.org/math-random/download/math-random-1.0.1.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:23 GMT","location":"https://registry.npmmirror.com/math-random/download/math-random-1.0.1.tgz"},"options":{"compress":true},"status":301}}

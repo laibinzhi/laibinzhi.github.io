@@ -1,0 +1,2 @@
+
+9e1041d8dd72a822cd8f4260b96e356cbc9d9181	{"key":"make-fetch-happen:request-cache:http://registry.npm.taobao.org/pinkie/download/pinkie-2.0.4.tgz","integrity":null,"time":1770819022951,"size":"262","metadata":{"time":1770819022951,"url":"http://registry.npm.taobao.org/pinkie/download/pinkie-2.0.4.tgz","reqHeaders":{},"resHeaders":{"content-type":"text/html","date":"Wed, 11 Feb 2026 14:10:22 GMT","location":"https://registry.npmmirror.com/pinkie/download/pinkie-2.0.4.tgz"},"options":{"compress":true},"status":301}}
