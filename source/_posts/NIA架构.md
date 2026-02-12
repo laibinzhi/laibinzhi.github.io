@@ -29,6 +29,9 @@ categories:
 
 ---
 
+<!--more-->
+
+
 ## 为什么选择 NIA 架构
 
 Google 在 2022 年推出了 [Now in Android](https://github.com/android/nowinandroid) 示例项目，它不是一个简单的 Demo，而是 Google 对「现代 Android 应用该怎么写」这个问题给出的官方答案。
