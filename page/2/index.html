@@ -154,6 +154,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Android-Framework之PKMS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/">Android Framework之PKMS</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/" class="archive-article-date">
+  	<time datetime="2022-06-27T16:59:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android-Framework之PKMS"><a href="#Android-Framework之PKMS" class="headerlink" title="Android Framework之PKMS"></a>Android Framework之PKMS</h1><h2 id="一，定义"><a href="#一，定义" class="headerlink" title="一，定义"></a>一，定义</h2><p><strong>PackageManagerService</strong>（简称 PKMS），是 Android 系统中核心服务之一，负责应用程序的<strong>安装</strong>，<strong>卸载</strong>，<strong>信息查询</strong>等工作。</p>
+<ul>
+<li>Android系统启动时，会启动（应用程序管理服务器PKMS），此服务负责扫描系统中特定的目录，寻找里面的APK格式的文件，并对这些文件进行解析，然后得到应用程序相关信息，最后完成应用程序的安装</li>
+<li>PKMS在安装应用过程中, 会全面解析应用程序的AndroidManifest.xml文件, 来得到Activity,Service, BroadcastReceiver, ContextProvider等信息,在结合PKMS服务就可以在OS中正常的使用应用程序了</li>
+<li>在Android系统中, 系统启动时由SystemServer启动PKMS服务,启动该服务后会执行应用程序的安装过程</li>
+</ul>
+<blockquote>
+<p>1.解析AndroidNanifest.xml清单文件，解析清单文件中的所有节点信息</p>
+<p>2.扫描.apk文件，安装系统应用，安装本地应用等</p>
+<p>3.管理本地应用，主要有， 安装，卸载，应用信息查询 等</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android-Framework之AMS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -981,95 +1075,6 @@
 
 
   
-    <article id="post-Android虚拟机以及类加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/">Android虚拟机以及类加载</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/" class="archive-article-date">
-  	<time datetime="2022-05-24T08:30:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android虚拟机以及类加载"><a href="#Android虚拟机以及类加载" class="headerlink" title="Android虚拟机以及类加载"></a>Android虚拟机以及类加载</h1><h2 id="Android虚拟机"><a href="#Android虚拟机" class="headerlink" title="Android虚拟机"></a>Android虚拟机</h2><h3 id="JVM与Dalvik"><a href="#JVM与Dalvik" class="headerlink" title="JVM与Dalvik"></a>JVM与Dalvik</h3><ul>
-<li>Android应用程序运行在Dalvik/ART虚拟机，并且每一个应用程序对应有一个单独的Dalvik虚拟机实例。Dalvik虚拟机实则也算是一个Java虚拟机，只不过它执行的不是class文件，而是dex文件。</li>
-<li>Dalvik虚拟机与Java虚拟机（JVM）共享有差不多的特性，差别在于两者执行的指令集是不一样的，前者的指令集是基于<strong>寄存器</strong>的，而后者的指令集是基于<strong>堆栈</strong>的。</li>
-</ul>
-<h3 id="JVM基于栈的"><a href="#JVM基于栈的" class="headerlink" title="JVM基于栈的"></a>JVM基于栈的</h3><p>对于基于栈的虚拟机来说，每一个运行时的线程，都有一个独立的栈。栈中记录了方法调用的历史，每有一次方法调用，栈中便会多一个<strong>栈桢</strong>。最顶部的栈桢称作当前栈桢，其代表着当前执行的方法。基于栈的虚拟机通过操作数栈进行所有操作。 </p>
-<p><img src="https://s2.loli.net/2022/05/24/Sez4mZA1KHYJPVn.png" alt="JVM基于栈"></p>
-        
-          <a class="article-more-a" href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/24/Android%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%8A%A0%E8%BD%BD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1321,6 +1326,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CMP</a>
               </li>
             
             <div class="clearfix"></div>

@@ -154,6 +154,166 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-KMP与CMP生产级落地：架构、并发、性能与发布实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2026/02/12/KMP%E4%B8%8ECMP%E7%94%9F%E4%BA%A7%E7%BA%A7%E8%90%BD%E5%9C%B0%EF%BC%9A%E6%9E%B6%E6%9E%84%E3%80%81%E5%B9%B6%E5%8F%91%E3%80%81%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%91%E5%B8%83%E5%AE%9E%E8%B7%B5/">从纯 Android 到 KMP + CMP：一次真实迁移的做法和坑点</a>
+    </h1>
+  
+
+        
+        <a href="/2026/02/12/KMP%E4%B8%8ECMP%E7%94%9F%E4%BA%A7%E7%BA%A7%E8%90%BD%E5%9C%B0%EF%BC%9A%E6%9E%B6%E6%9E%84%E3%80%81%E5%B9%B6%E5%8F%91%E3%80%81%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%91%E5%B8%83%E5%AE%9E%E8%B7%B5/" class="archive-article-date">
+  	<time datetime="2026-02-12T03:35:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-02-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果你手里是一个已经上线很久的 Android 项目，不要把 KMP/CMP 当成“重写项目”的理由。真正可行的路径是：保留现有 Android 业务节奏，把可共享的部分一点点搬到 shared。</p>
+<p>迁移可以拆成三步：先迁数据层，再迁状态层，最后才碰 UI。</p>
+<hr>
+<h2 id="先定一个现实目标"><a href="#先定一个现实目标" class="headerlink" title="先定一个现实目标"></a>先定一个现实目标</h2><p>一开始别追“复用率 80%”。这个目标听上去很美，但会逼着你把不该共享的东西硬塞进 shared，最后两端都难受。</p>
+<p>更实用的目标是这三个：</p>
+<ul>
+<li>Android 和 iOS 的业务结果一致（成功、失败、重试策略一致）</li>
+<li>关键页面状态流转一致（加载、空态、错误态一致）</li>
+<li>迁移过程可以随时停、随时回滚</li>
+</ul>
+<hr>
+<h2 id="第一步：先动数据层，不动-UI"><a href="#第一步：先动数据层，不动-UI" class="headerlink" title="第一步：先动数据层，不动 UI"></a>第一步：先动数据层，不动 UI</h2><p>最先迁的是网络 + 仓库层。这个阶段的原则很简单：Android 页面逻辑先不改，只把数据来源替换成 shared。</p>
+<p>项目结构可以先变成这样：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">├── androidApp          # 现有 Android app，先继续用</span><br><span class="line">├── iosApp              # iOS 壳（后面接入）</span><br><span class="line">└── shared</span><br><span class="line">    ├── model</span><br><span class="line">    ├── network</span><br><span class="line">    └── repository</span><br></pre></td></tr></table></figure>
+
+<p><code>shared/build.gradle.kts</code> 先保持最小可用：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">kotlin &#123;</span><br><span class="line">    androidTarget()</span><br><span class="line">    iosX64()</span><br><span class="line">    iosArm64()</span><br><span class="line">    iosSimulatorArm64()</span><br><span class="line"></span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        <span class="keyword">val</span> commonMain <span class="keyword">by</span> getting &#123;</span><br><span class="line">            dependencies &#123;</span><br><span class="line">                implementation(<span class="string">&quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1&quot;</span>)</span><br><span class="line">                implementation(<span class="string">&quot;io.ktor:ktor-client-core:2.3.12&quot;</span>)</span><br><span class="line">                implementation(<span class="string">&quot;org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> androidMain <span class="keyword">by</span> getting &#123;</span><br><span class="line">            dependencies &#123;</span><br><span class="line">                implementation(<span class="string">&quot;io.ktor:ktor-client-okhttp:2.3.12&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> iosMain <span class="keyword">by</span> creating &#123;</span><br><span class="line">            dependsOn(commonMain)</span><br><span class="line">            dependencies &#123;</span><br><span class="line">                implementation(<span class="string">&quot;io.ktor:ktor-client-darwin:2.3.12&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        getByName(<span class="string">&quot;iosX64Main&quot;</span>).dependsOn(iosMain)</span><br><span class="line">        getByName(<span class="string">&quot;iosArm64Main&quot;</span>).dependsOn(iosMain)</span><br><span class="line">        getByName(<span class="string">&quot;iosSimulatorArm64Main&quot;</span>).dependsOn(iosMain)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里最容易漏的是 <code>iosMain</code>。不建它，后面 iOS 三套 sourceSet 配置会写到怀疑人生。</p>
+<hr>
+<h2 id="第二步：先统一错误语义，再说“多端一致”"><a href="#第二步：先统一错误语义，再说“多端一致”" class="headerlink" title="第二步：先统一错误语义，再说“多端一致”"></a>第二步：先统一错误语义，再说“多端一致”</h2><p>很多迁移失败不是因为技术本身，而是 Android 和 iOS 的错误定义各自为政。</p>
+<p>建议 shared 里先把错误语义钉死：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="keyword">interface</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">object</span> Network : AppError</span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">object</span> Unauthorized : AppError</span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Server</span>(<span class="keyword">val</span> code: <span class="built_in">Int</span>, <span class="keyword">val</span> message: String? = <span class="literal">null</span>) : AppError</span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Unknown</span>(<span class="keyword">val</span> cause: Throwable) : AppError</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">sealed</span> <span class="keyword">interface</span> <span class="title class_">AppResult</span>&lt;<span class="type">out T</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Success</span>&lt;<span class="type">T</span>&gt;(<span class="keyword">val</span> <span class="keyword">data</span>: T) : AppResult&lt;T&gt;</span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Failure</span>(<span class="keyword">val</span> error: AppError) : AppResult&lt;<span class="built_in">Nothing</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>仓库层统一返回 <code>AppResult</code>，不要把原生异常往上抛：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserRepository</span>(<span class="keyword">private</span> <span class="keyword">val</span> api: UserApi) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">fetchProfile</span><span class="params">()</span></span>: AppResult&lt;UserProfile&gt; = runCatching &#123;</span><br><span class="line">        api.profile()</span><br><span class="line">    &#125;.fold(</span><br><span class="line">        onSuccess = &#123; AppResult.Success(it) &#125;,</span><br><span class="line">        onFailure = &#123; throwable -&gt; AppResult.Failure(throwable.toAppError()) &#125;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个改动看起来小，但它会直接减少“同一个错误，双端两个文案和两个处理逻辑”的情况。</p>
+<hr>
+<h2 id="第三步：把-Android-的-ViewModel-思路抽成-shared-StateHolder"><a href="#第三步：把-Android-的-ViewModel-思路抽成-shared-StateHolder" class="headerlink" title="第三步：把 Android 的 ViewModel 思路抽成 shared StateHolder"></a>第三步：把 Android 的 ViewModel 思路抽成 shared StateHolder</h2><p>这一步是迁移里的转折点。</p>
+<p>如果你还在 Android 端单独维护一套 <code>ViewModel</code> 逻辑，而 shared 只提供数据，那你其实只做了“网络层复用”。</p>
+<p>一般先把状态机抽成 shared：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">ProfileState</span>(</span><br><span class="line">    <span class="keyword">val</span> loading: <span class="built_in">Boolean</span> = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">val</span> userName: String = <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="keyword">val</span> error: AppError? = <span class="literal">null</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProfileStateHolder</span>(</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> repo: UserRepository,</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> scope: CoroutineScope</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> _state = MutableStateFlow(ProfileState())</span><br><span class="line">    <span class="keyword">val</span> state: StateFlow&lt;ProfileState&gt; = _state.asStateFlow()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">load</span><span class="params">()</span></span> &#123;</span><br><span class="line">        scope.launch &#123;</span><br><span class="line">            _state.update &#123; it.copy(loading = <span class="literal">true</span>, error = <span class="literal">null</span>) &#125;</span><br><span class="line">            <span class="keyword">when</span> (<span class="keyword">val</span> result = repo.fetchProfile()) &#123;</span><br><span class="line">                <span class="keyword">is</span> AppResult.Success -&gt; _state.update &#123;</span><br><span class="line">                    it.copy(loading = <span class="literal">false</span>, userName = result.<span class="keyword">data</span>.name)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">is</span> AppResult.Failure -&gt; _state.update &#123;</span><br><span class="line">                    it.copy(loading = <span class="literal">false</span>, error = result.error)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Android 端先消费这个状态；等 iOS 接入时，iOS 也走同一个状态流。这样迁移的收益才会真正显现出来。</p>
+<hr>
+<h2 id="什么时候开始用-CMP-比较稳"><a href="#什么时候开始用-CMP-比较稳" class="headerlink" title="什么时候开始用 CMP 比较稳"></a>什么时候开始用 CMP 比较稳</h2><p>别把第一个 CMP 页面选在登录、支付、下单这些链路上。建议从“低风险 + 状态简单”的页面开始，比如：</p>
+<ul>
+<li>设置页</li>
+<li>纯展示详情页</li>
+<li>简单列表页</li>
+</ul>
+<p>一个最小 CMP 页面大概这样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">ProfileScreen</span><span class="params">(holder: <span class="type">ProfileStateHolder</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> uiState <span class="keyword">by</span> holder.state.collectAsState()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">when</span> &#123;</span><br><span class="line">        uiState.loading -&gt; CircularProgressIndicator()</span><br><span class="line">        uiState.error != <span class="literal">null</span> -&gt; Text(<span class="string">&quot;Load failed&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span> -&gt; Text(<span class="string">&quot;Hello, <span class="subst">$&#123;uiState.userName&#125;</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先跑通 1 个页面，再决定要不要扩大 CMP 覆盖面，这样风险最低。</p>
+<hr>
+<h2 id="迁移里最容易复现的坑"><a href="#迁移里最容易复现的坑" class="headerlink" title="迁移里最容易复现的坑"></a>迁移里最容易复现的坑</h2><h3 id="1-把平台能力硬抽到-shared"><a href="#1-把平台能力硬抽到-shared" class="headerlink" title="1) 把平台能力硬抽到 shared"></a>1) 把平台能力硬抽到 shared</h3><p>比如权限、推送、支付 SDK。如果硬抽，很快就会陷入 <code>expect/actual</code> 爆炸。建议这些继续放在平台层，只把业务决策结果交给 shared。</p>
+<h3 id="2-shared-里默认跑主线程"><a href="#2-shared-里默认跑主线程" class="headerlink" title="2) shared 里默认跑主线程"></a>2) shared 里默认跑主线程</h3><p>重解析 JSON、批量 DB 写入不切 dispatcher，两端一起卡。这个问题非常常见，而且第一次排查很难想到是 shared 造成的。</p>
+<h3 id="3-iOS-接-Flow-时没处理生命周期"><a href="#3-iOS-接-Flow-时没处理生命周期" class="headerlink" title="3) iOS 接 Flow 时没处理生命周期"></a>3) iOS 接 Flow 时没处理生命周期</h3><p>订阅了不取消，页面销毁后还在收数据。建议做一层 <code>watch + close</code> 封装，把取消行为显式化。</p>
+<h3 id="4-一次迁太多"><a href="#4-一次迁太多" class="headerlink" title="4) 一次迁太多"></a>4) 一次迁太多</h3><p>同时迁网络、数据库、UI，最后出了问题没人说得清是哪里坏了。建议每次只迁一个业务点，保持可回退。</p>
+<hr>
+<h2 id="给纯-Android-团队的最小迁移清单"><a href="#给纯-Android-团队的最小迁移清单" class="headerlink" title="给纯 Android 团队的最小迁移清单"></a>给纯 Android 团队的最小迁移清单</h2><p>按这个顺序做，基本不会翻车：</p>
+<ol>
+<li>建立 <code>shared</code>，只放模型和 1 个接口请求</li>
+<li>Android 先接 shared repository，不改页面</li>
+<li>抽一个 StateHolder，替换 Android 里同类 ViewModel 逻辑</li>
+<li>iOS 接入同一个 StateHolder</li>
+<li>选 1 个低风险页面试 CMP</li>
+<li>观察一轮线上数据，再决定是否扩大范围</li>
+</ol>
+<hr>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>KMP + CMP 这件事，不难在“会不会写代码”，难在“能不能控制迁移节奏”。</p>
+<p>从纯 Android 转过来，最怕的不是慢，而是乱。只要你能保证每一步都可验证、可回滚，迁移就能稳稳推进。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KMP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CMP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Android//" class="article-tag-list-link color3">Android</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2026/02/12/KMP%E4%B8%8ECMP%E7%94%9F%E4%BA%A7%E7%BA%A7%E8%90%BD%E5%9C%B0%EF%BC%9A%E6%9E%B6%E6%9E%84%E3%80%81%E5%B9%B6%E5%8F%91%E3%80%81%E6%80%A7%E8%83%BD%E4%B8%8E%E5%8F%91%E5%B8%83%E5%AE%9E%E8%B7%B5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-NIA架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1379,100 +1539,6 @@
 
 
   
-    <article id="post-Android-Framework之PKMS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/">Android Framework之PKMS</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/" class="archive-article-date">
-  	<time datetime="2022-06-27T16:59:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android-Framework之PKMS"><a href="#Android-Framework之PKMS" class="headerlink" title="Android Framework之PKMS"></a>Android Framework之PKMS</h1><h2 id="一，定义"><a href="#一，定义" class="headerlink" title="一，定义"></a>一，定义</h2><p><strong>PackageManagerService</strong>（简称 PKMS），是 Android 系统中核心服务之一，负责应用程序的<strong>安装</strong>，<strong>卸载</strong>，<strong>信息查询</strong>等工作。</p>
-<ul>
-<li>Android系统启动时，会启动（应用程序管理服务器PKMS），此服务负责扫描系统中特定的目录，寻找里面的APK格式的文件，并对这些文件进行解析，然后得到应用程序相关信息，最后完成应用程序的安装</li>
-<li>PKMS在安装应用过程中, 会全面解析应用程序的AndroidManifest.xml文件, 来得到Activity,Service, BroadcastReceiver, ContextProvider等信息,在结合PKMS服务就可以在OS中正常的使用应用程序了</li>
-<li>在Android系统中, 系统启动时由SystemServer启动PKMS服务,启动该服务后会执行应用程序的安装过程</li>
-</ul>
-<blockquote>
-<p>1.解析AndroidNanifest.xml清单文件，解析清单文件中的所有节点信息</p>
-<p>2.扫描.apk文件，安装系统应用，安装本地应用等</p>
-<p>3.管理本地应用，主要有， 安装，卸载，应用信息查询 等</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">FrameWork</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/28/Android-Framework%E4%B9%8BPKMS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1724,6 +1790,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">逆向</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">KMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CMP</a>
               </li>
             
             <div class="clearfix"></div>
