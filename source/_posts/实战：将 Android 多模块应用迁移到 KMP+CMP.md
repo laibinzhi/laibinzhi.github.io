@@ -59,7 +59,7 @@ hoopsnow/
 
 ## 技术栈替换
 
-迁移的核心就是把 Android 专属库替换为 KMP 兼容的���：
+迁移的核心就是把 Android 专属库替换为 KMP 兼容方案：
 
 | 功能 | 迁移前 | 迁移后 | 迁移难度 |
 |------|--------|--------|----------|
@@ -345,7 +345,7 @@ class GamesListScreenModel(
 - 删除 `@HiltViewModel` 和 `@Inject constructor`
 - `ViewModel()` → `ScreenModel`
 - `viewModelScope` → `screenModelScope`
-- `collectAsStateWithLifecycle()` → `collectAsState()`（CMP 中没�� AndroidX Lifecycle）
+- `collectAsStateWithLifecycle()` → `collectAsState()`（CMP 中没有 AndroidX Lifecycle）
 
 ## 六、Android 入口精简
 
@@ -411,26 +411,49 @@ struct ComposeView: UIViewControllerRepresentable {
 }
 ```
 
-shared 模块中提供 iOS 入口：
+shared 模块中提供 iOS 入口（最终落地版本）：
 
 ```kotlin
 // iosMain - MainViewController.kt
-fun MainViewController() = ComposeUIViewController { HoopsNowApp() }
+fun MainViewController() = ComposeUIViewController {
+    CompositionLocalProvider(
+        LocalTeamLogos provides TeamLogoProvider.getAllLogos(),
+        LocalPlayerHeadshot provides PlayerHeadshotProvider::getHeadshotUrl,
+    ) {
+        HoopsNowApp()
+    }
+}
 ```
 
 就这样，iOS 端就能跑起来了。整个 Compose UI 通过 `ComposeUIViewController` 嵌入 SwiftUI。
 
+最终 iOS 工程入口路径：
+
+```text
+iosApp/iosApp/iosApp.xcodeproj
+```
+
+常用构建命令：
+
+```bash
+# Apple Silicon 模拟器
+./gradlew :shared:linkDebugFrameworkIosSimulatorArm64
+
+# Intel 模拟器
+./gradlew :shared:linkDebugFrameworkIosX64
+```
+
 ## 八、清理旧代码
 
-迁移完成后，大量旧文件可以删除：
+迁移完成后建议清理：
 
-- `core/` — 9 个旧 Android 模块全部删除
-- `feature/` — 4 个功能模块全部删除
+- `core/` — 9 个旧 Android 模块
+- `feature/` — 4 个功能模块
 - `app/navigation/` — 旧 Navigation3 代码
 - `build-logic/` 中的 6 个 Convention Plugin（Hilt、Room、Feature、Library 等）
 - `libs.versions.toml` 中的 Hilt、KSP 相关声明
 
-从 20+ 个模块精简到 2 个（`app` + `shared`），`settings.gradle.kts` 清爽了很多。
+当前仓库为了迁移对照，仍保留了部分 `core/`、`feature/` 历史代码，但它们不在 `settings.gradle.kts` 中参与构建。构建维度已经是 2 个模块（`app` + `shared`）。
 
 ## 迁移后的项目结构
 
@@ -441,13 +464,21 @@ hoopsnow/
 │   └── src/
 │       ├── commonMain/                 # 全部业务逻辑 + UI
 │       │   ├── kotlin/.../
-│       │   │   ├── core/               # 数据层（model, data, database, network��
+│       │   │   ├── core/               # 数据层（model, data, database, network）
 │       │   │   ├── di/                 # Koin 模块
 │       │   │   └── ui/                 # UI 层（screens, components, theme, navigation）
+│       │   ├── composeResources/files/ # 跨平台资源
+│       │   │   ├── nba_players_name_id.json
+│       │   │   └── teams.json
 │       │   └── sqldelight/             # 数据库定义
 │       ├── androidMain/                # Android 平台实现
 │       └── iosMain/                    # iOS 平台实现
-├── iosApp/                             # iOS 入口（2 个 Swift 文件）
+├── iosApp/                             # iOS 入口
+│   └── iosApp/
+│       ├── iosApp.xcodeproj
+│       ├── iOSApp.swift
+│       ├── ContentView.swift
+│       └── Info.plist
 └── build-logic/                        # Convention Plugins（精简）
 ```
 
@@ -469,7 +500,7 @@ hoopsnow/
 带参数的 ScreenModel 需要用 `factory { params -> }` 定义，使用时通过 `koinScreenModel { parametersOf(...) }` 传入。
 
 ### 6. iOS Framework 编译
-每次修改 shared 代码后需要重新编译 Framework。开发阶段建议在 Xcode Build Phase 中添加自动编译脚本。
+每次修改 shared 代码后需要重新编译 Framework。Xcode 工程路径如果是 `iosApp/iosApp/iosApp.xcodeproj`，`Framework Search Paths` 和 Run Script 的相对路径要按两级目录配置，否则容易出现 `Framework not found Shared`。
 
 ## 迁移收益
 
@@ -503,6 +534,6 @@ hoopsnow/
 
 整个迁移花了大约一周时间，其中数据库迁移（Room → SQLDelight）和导航迁移（Navigation3 → Voyager）占了大部分工作量。网络层（Ktor）和序列化（kotlinx-serialization）本身就是 KMP 库，基本不用改。
 
-如果你的 Android 项目已经在用 Kotlin + Compose，迁移到 KMP + CMP 的成本比想象中低很多。最大的障碍是 Room 和 Hilt 这两个 Android 专属库的替换，但 SQLDelight 和 Koin 都是成熟的替代方���。
+如果你的 Android 项目已经在用 Kotlin + Compose，迁移到 KMP + CMP 的成本比想象中低很多。最大的障碍是 Room 和 Hilt 这两个 Android 专属库的替换，但 SQLDelight 和 Koin 都是成熟的替代方案。
 
 项目源码：[GitHub - laibinzhi/hoopsnow](https://github.com/laibinzhi/hoopsnow)（cmp 分支）
