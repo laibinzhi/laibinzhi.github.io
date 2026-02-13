@@ -154,6 +154,294 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-HashMap常见问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">HashMap常见问题</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2022-05-27T13:16:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HashMap常见问题"><a href="#HashMap常见问题" class="headerlink" title="HashMap常见问题"></a>HashMap常见问题</h1><h2 id="HashMap与HashTable的区别？"><a href="#HashMap与HashTable的区别？" class="headerlink" title="HashMap与HashTable的区别？"></a>HashMap与HashTable的区别？</h2><ul>
+<li>HashMap没有考虑同步，是线程不安全的；Hashtable使用了synchronized关键字，是线程安全的；</li>
+<li>HashMap允许K/V都为null；后者K/V都不允许为null；</li>
+<li>HashMap继承自AbstractMap类；而Hashtable继承自Dictionary类；</li>
+</ul>
+<h2 id="2-Put的实现原理"><a href="#2-Put的实现原理" class="headerlink" title="2. Put的实现原理"></a>2. Put的实现原理</h2>
+        
+          <a class="article-more-a" href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/27/HashMap%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android事件分发机制总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/">Android事件分发机制总结</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2022-05-27T03:12:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android事件分发机制总结"><a href="#Android事件分发机制总结" class="headerlink" title="Android事件分发机制总结"></a>Android事件分发机制总结</h1><h2 id="三个角色"><a href="#三个角色" class="headerlink" title="三个角色"></a>三个角色</h2><h4 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h4><p>Activity：只有分发<strong>dispatchTouchEvent</strong>和消费<strong>onTouchEvent</strong>两个方法。 事件由ViewRootImpl中DecorView  dispatchTouchEvent分发Touch事件-&gt;Activity的dispatchTouchEvent()- DecorView。superDispatchTouchEvent-&gt;ViewGroup的dispatchTouchEvent()。 如果返回false直接掉用onTouchEvent，true表示被消费</p>
+<h4 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h4><p>拥有分发、拦截和消费三个方法。：对应一个根ViewGroup来说，点击事件产生后，首先会传递给它，dispatchTouchEvent就会被调用，如果这个ViewGroup的onInterceptTouchEvent方法返回true就表示它要拦截当前事件， 事件就会交给这个ViewGroup的onTouchEvent处理。如果这个ViewGroup的onInterceptTouchEvent方法返回false就表示它不拦截当前事件，这时当前事件就会继续传递给它的子元素，接着子元素的dispatchTouchEvent方法就会被调用。</p>
+        
+          <a class="article-more-a" href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/27/Android%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Android-UI绘制流程及原理2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/">Android-UI绘制流程及原理2</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/" class="archive-article-date">
+  	<time datetime="2022-05-25T02:36:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前面<a href="https://www.laibinzhi.top/2019/08/07/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86/">Android-UI绘制流程及原理</a>中我们了解到View的绘制流程三大步骤：测量，布局，绘制，我们接着去看他们每一步又干了什么事情</p>
+<h2 id="UI绘制详细步骤"><a href="#UI绘制详细步骤" class="headerlink" title="UI绘制详细步骤"></a>UI绘制详细步骤</h2><ul>
+<li><p>测量performMeasure</p>
+<blockquote>
+<p>view.measure  —&gt; view.onMeasure —&gt; view.setMeasuredDimension </p>
+<p>—&gt;setMeasuredDimensionRaw</p>
+</blockquote>
+</li>
+<li><p>布局performLayout</p>
+<blockquote>
+<p>view.layout —&gt; view.onLayout</p>
+</blockquote>
+</li>
+<li><p>绘制performDraw</p>
+<blockquote>
+<p>ViewRootImpl.draw(fullRedrawNeeded) —&gt; ViewRootImpl.drawSoftware</p>
+<p>—&gt;view.draw(Canvas)</p>
+</blockquote>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安卓</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">View</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/25/Android-UI%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%862/">展开全文 >></a>
+        </p>
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Android虚拟机以及类加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -805,300 +1093,9 @@
 
 
   
-    <article id="post-Java并发编程概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/">Java并发编程概述</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/" class="archive-article-date">
-  	<time datetime="2022-05-05T10:20:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java并发编程"><a href="#Java并发编程" class="headerlink" title="Java并发编程"></a>Java并发编程</h1><h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><h3 id="进程和线程的由来"><a href="#进程和线程的由来" class="headerlink" title="进程和线程的由来"></a>进程和线程的由来</h3><ul>
-<li><strong>串行</strong>。初期的计算机智能串行执行任务，并且需要长时间等待用户输入。</li>
-<li><strong>批处理</strong>。预先将用户的指令集中成清单，批量串行处理指令，仍然无法并行执行。</li>
-<li>进程。进程独占内存空间，保存各自运行状态，相互间不干扰且可以互相切换，为并发处理任务提供了可能。</li>
-<li>线程。共享进程的内存资源，相互间切换更快捷，支持更细粒度的任务控制，使进程内的子任务得以并发执行。</li>
-</ul>
-<h3 id="进程是资源分配的最小单元，线程是CPU调度的最小单位"><a href="#进程是资源分配的最小单元，线程是CPU调度的最小单位" class="headerlink" title="进程是资源分配的最小单元，线程是CPU调度的最小单位"></a>进程是资源分配的最小单元，线程是CPU调度的最小单位</h3><ul>
-<li>所有与进程有关的资源，都被记录在PCB中。</li>
-<li>进程是抢占处理器的调度单位；线程属于某个进程，共享其资源。</li>
-<li>线程只由<strong>堆栈寄存器</strong>、<strong>程序计数器</strong>和<strong>TCB</strong>组成。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2022/05/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E6%A6%82%E8%BF%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-注解与反射以及动态代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">注解与反射以及动态代理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="archive-article-date">
-  	<time datetime="2022-04-22T09:58:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="注解与反射以及动态代理"><a href="#注解与反射以及动态代理" class="headerlink" title="注解与反射以及动态代理"></a>注解与反射以及动态代理</h1><h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="注解的定义"><a href="#注解的定义" class="headerlink" title="注解的定义"></a>注解的定义</h3><p>Annotation（注解）就是Java提供了一种元程序中的元素关联任何信息和着任何元数据（metadata）的途径和方法。</p>
-<p>基本规则：Annotation不能影响程序代码的执行，无论增加、删除 Annotation，代码都始终如一的执行。</p>
-<h3 id="什么是元数据"><a href="#什么是元数据" class="headerlink" title="什么是元数据"></a>什么是元数据</h3><ol>
-<li>元数据以标签的形式存在于Java代码中。</li>
-<li>元数据描述的信息是类型安全的，即元数据内部的字段都是有明确类型的。</li>
-<li>元数据需要编译器之外的工具额外的处理用来生成其它的程序部件。</li>
-<li>元数据可以只存在于Java源代码级别，也可以存在于编译之后的Class文件内部。</li>
-</ol>
-<h3 id="注解的原理"><a href="#注解的原理" class="headerlink" title="注解的原理"></a>注解的原理</h3><p>当Java源代码被编译时，编译器的一个插件annotation处理器则会处理这些annotation。处理器可以产生报告信息，或者创建附加的Java源文件或资源。如果annotation本身被加上了RententionPolicy的运行时类，则Java编译器则会将annotation的元数据存储到class文件中。然后，Java虚拟机或其他的程序可以查找这些元数据并做相应的处理。当然除了annotation处理器可以处理annotation外，我们也可以使用反射自己来处理annotation</p>
-<h3 id="注解的分类"><a href="#注解的分类" class="headerlink" title="注解的分类"></a>注解的分类</h3><h4 id="系统内置标准注解"><a href="#系统内置标准注解" class="headerlink" title="系统内置标准注解"></a>系统内置标准注解</h4><ol>
-<li>@Override(标记注解类型)</li>
-<li>@Deprecated(标志已过时)，</li>
-<li>@SuppressWarnings(抑制编译器警告)</li>
-</ol>
-        
-          <a class="article-more-a" href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">注解</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">代理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/22/%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84%E4%BB%A5%E5%8F%8A%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Kotlin-委托" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/">Kotlin-委托</a>
-    </h1>
-  
-
-        
-        <a href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/" class="archive-article-date">
-  	<time datetime="2022-01-21T14:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目地址<a target="_blank" rel="noopener" href="https://github.com/laibinzhi/KotlinDelegation">https://github.com/laibinzhi/KotlinDelegation</a></p>
-<h1 id="类委托"><a href="#类委托" class="headerlink" title="类委托"></a>类委托</h1><h3 id="首先从类委托开始"><a href="#首先从类委托开始" class="headerlink" title="首先从类委托开始"></a>首先从类委托开始</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">interface IWork &#123;</span><br><span class="line">    fun work()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Teacher : IWork &#123;</span><br><span class="line">    override fun work() &#123;</span><br><span class="line">        println(&quot;I am a teacher&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Police : IWork &#123;</span><br><span class="line">    override fun work() &#123;</span><br><span class="line">        println(&quot;I am a Police&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Tony(work: IWork) : IWork by work</span><br><span class="line"></span><br><span class="line">fun main() &#123;</span><br><span class="line">    Tony(Teacher()).work()</span><br><span class="line">    Tony(Police()).work()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打印:</span><br><span class="line">I am a teacher</span><br><span class="line">I am a Police</span><br></pre></td></tr></table></figure>
-
-<p>以上的代码当中，我们定义了一个 IWork 接口，它的 work() 方法用于表示该工作，Teacher 和 Police 都实现了这个接口。接着，我们的 Tony 也实现了这个接口，同时通过 by 这个关键字，将接口的实现委托给了它的参数 work。这种委托模式在我们的实际编程中十分常见，Tony 相当于一个壳，它虽然实现了 IWork 这个接口，但并不关心它怎么实现。具体是用 Teacher 还是 Police，传不同的委托对象进去，它就会有不同的行为。另外，以上委托类的写法，等价于以下 Java 代码，我们可以再进一步来看下：</p>
-        
-          <a class="article-more-a" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Kotlin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/21/Kotlin-%E5%A7%94%E6%89%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">« Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next »</a>
+      <a class="extend prev" rel="prev" href="/page/2/">« Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next »</a>
     </nav>
   
 
@@ -1359,6 +1356,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Jetpack Compose</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OpenGL</a>
               </li>
             
             <div class="clearfix"></div>
