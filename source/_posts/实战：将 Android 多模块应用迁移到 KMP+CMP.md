@@ -532,7 +532,7 @@ hoopsnow/
 
 ## 总结
 
-整个迁移花了大约一周时间，其中数据库迁移（Room → SQLDelight）和导航迁移（Navigation3 → Voyager）占了大部分工作量。网络层（Ktor）和序列化（kotlinx-serialization）本身就是 KMP 库，基本不用改。
+整个迁移花了大约一天时间，其中数据库迁移（Room → SQLDelight）和导航迁移（Navigation3 → Voyager）占了大部分工作量。网络层（Ktor）和序列化（kotlinx-serialization）本身就是 KMP 库，基本不用改。
 
 如果你的 Android 项目已经在用 Kotlin + Compose，迁移到 KMP + CMP 的成本比想象中低很多。最大的障碍是 Room 和 Hilt 这两个 Android 专属库的替换，但 SQLDelight 和 Koin 都是成熟的替代方案。
 
